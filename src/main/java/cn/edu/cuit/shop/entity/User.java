@@ -10,6 +10,8 @@ import java.util.Objects;
  */
 public class User {
 	
+	private long id;
+	
 	//-----------------------------field
 	/**
 	 * 用户ID
@@ -44,6 +46,7 @@ public class User {
 	// -------------------------Construct methods
 	public User(long userID, Date createTime, String number, String password, String nickname, String sex) {
 		super();
+		this.id = userID;
 		this.userID = userID;
 		this.createTime = createTime;
 		this.number = number;
@@ -83,6 +86,7 @@ public class User {
 
 	public void setUserID(long userID) {
 		this.userID = userID;
+		this.id = userID;
 	}
 
 	public Date getCreateTime() {
@@ -123,5 +127,14 @@ public class User {
 
 	public void setSex(String sex) {
 		this.sex = sex;
+	}
+	
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+		this.userID = id;
 	}
 }
