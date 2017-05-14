@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+        http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-4.1.xsd
+		http://www.springframework.org/schema/tx
+		http://www.springframework.org/schema/tx/spring-tx-4.1.xsd">
+	
+	<!-- 配置Spring -->
+	<!-- 1.配置Spring声明式事务 -->
+		<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+			<property name="dataSource" ref="dataSource"/>		
+		</bean>
+		<!-- 2.启用基于注解的声明式事务:默认使用注解来管理事务行为 -->
+		<tx:annotation-driven transaction-manager="transactionManager" />
+		<!-- 3.配置自动扫描Service包注解 -->
+		<context:component-scan base-package="cn.edu.cuit.shop.service.impl"/>
+		
+</beans>
