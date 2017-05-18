@@ -15,13 +15,13 @@ CREATE TABLE user(
 CREATE TABLE category (
   `category_id` bigint(20) NOT NULL AUTO_INCREMENT comment '分类id',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP comment '创建时间',
-  `name` varchar(255) NOT NULL comment '分类名',
+  `name` varchar(255) NOT NULL unique comment '分类名',
   PRIMARY KEY (`category_id`)
 ) ENGINE=InnoDB auto_increment=10000 DEFAULT CHARSET=utf8;
 
 CREATE TABLE product (
   	`product_id` bigint(20) NOT NULL AUTO_INCREMENT comment '产品id',
-  	`name` varchar(255) NOT NULL comment '产品名称',
+  	`name` varchar(255) NOT NULL unique comment '产品名称',
   	`create_time` timestamp NOT null ON UPDATE CURRENT_TIMESTAMP comment '创建时间',
   	`category_id` bigint(20) NOT NULL comment '分类id',
   	`attributes` varchar(255) DEFAULT NULL comment '属性，如：颜色,内存',
@@ -59,7 +59,7 @@ CREATE TABLE goods (
 ) ENGINE=InnoDB auto_increment=10000 DEFAULT CHARSET=utf8;
 
 CREATE TABLE inventory (
-  `inventory_id` bigint(20) NOT NULL AUTO_INCREMENT comment '商品id',
+  `inventory_id` bigint(20) NOT NULL AUTO_INCREMENT comment '库存id',
   `goods_id` bigint(20) NOT NULL comment '商品id',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP comment '创建时间',
   `inventory_number` bigint(20) NOT NULL comment '库存量',
@@ -95,10 +95,11 @@ CREATE TABLE order_item (
   `order_item_id` bigint(20) NOT NULL AUTO_INCREMENT comment '订单项id',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP comment '创建时间',
   `goods_id` bigint(20) NOT NULL comment '商品id',
-  `orders_id` bigint(20) NOT NULL comment '用户id',
+  `orders_id` bigint(20) NOT NULL comment '订单id',
   `goods_number` bigint(20) NOT NULL comment '商品数量',
   PRIMARY KEY (`order_item_id`),
-  constraint fk_order_order_item foreign key(orders_id) references orders(orders_id)
+  constraint fk_order_order_item foreign key(orders_id) references orders(orders_id),
+  constraint fk_good_order_item foreign key(goods_id) references goods(goods_id)
 ) ENGINE=InnoDB auto_increment=10000 DEFAULT CHARSET=utf8;
 
 
