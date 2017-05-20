@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Built-By: kanyuxia
-Build-Jdk: 1.8.0_101
+Built-By: ￨ﾐﾽ￥ﾏﾶ￥ﾈﾻ￧ﾗﾕ
+Build-Jdk: 1.8.0_60
 Created-By: Maven Integration for Eclipse
 
