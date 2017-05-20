@@ -7,6 +7,12 @@
 	<insert id="insertUser">
 		<!-- 'ignore' 忽略主键、唯一键冲突错误(返回值为0) -->
 		insert ignore into user(number,password,nickname,sex)
-		values(#{number},#{password},#{nickname},#{sex})
+		values(#{number},#{password},#{nickname},#{sex});
 	</insert>
+	<!-- 查询用户信息 -->
+	<select id="selectUser" resultType="cn.edu.cuit.shop.entity.User">
+		select user_id,create_time,number,nickname,sex
+		from user
+		where number=#{number} and password=#{password};
+	</select>
 </mapper>

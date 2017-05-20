@@ -7,6 +7,8 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import cn.edu.cuit.shop.entity.User;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:spring/spring-*.xml")
 public class TestUserService {
@@ -23,5 +25,14 @@ public class TestUserService {
 		
 		boolean successed = userService.register(number, password, nickname, sex);
 		System.out.println(successed);
+	}
+	
+	@Test
+	public void testLogin() {
+		String number = "kanyuxia@outlook.com";
+		String password = "123456";
+		
+		User user = userService.login(number, password);
+		System.out.println(user);
 	}
 }
