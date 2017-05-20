@@ -10,8 +10,6 @@ import java.util.Objects;
  */
 public class User {
 	
-	private long id;
-	
 	//-----------------------------field
 	/**
 	 * 用户ID
@@ -46,7 +44,6 @@ public class User {
 	// -------------------------Construct methods
 	public User(long userID, Date createTime, String number, String password, String nickname, String sex) {
 		super();
-		this.id = userID;
 		this.userID = userID;
 		this.createTime = createTime;
 		this.number = number;
@@ -59,10 +56,14 @@ public class User {
 		super();
 	}
 	
-	// -------------------Override equals、hashcode methods
+	// -------------------Override equals、hashcode、toString methods
 	@Override
 	public int hashCode() {
-		return this.number.hashCode() ^ this.password.hashCode();
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((nickname == null) ? 0 : nickname.hashCode());
+		result = prime * result + ((password == null) ? 0 : password.hashCode());
+		return result;
 	}
 	
 	@Override
@@ -73,9 +74,15 @@ public class User {
 		if (obj instanceof User) {
 			User user = (User) obj;
 			return Objects.equals(this.number, user.getNumber()) 
-					&& Objects.equals(this.password, ((User) obj).getPassword());
+					&& Objects.equals(this.password, user.getPassword());
 		}
 		return false;
+	}
+
+	@Override
+	public String toString() {
+		return "User [userID=" + userID + ", createTime=" + createTime + ", number=" + number + ", password=" + password
+				+ ", nickname=" + nickname + ", sex=" + sex + "]";
 	}
 
 	// -------------------------setter、getter methods
@@ -86,7 +93,6 @@ public class User {
 
 	public void setUserID(long userID) {
 		this.userID = userID;
-		this.id = userID;
 	}
 
 	public Date getCreateTime() {
@@ -129,12 +135,7 @@ public class User {
 		this.sex = sex;
 	}
 	
-	public long getId() {
-		return id;
-	}
-
 	public void setId(long id) {
-		this.id = id;
 		this.userID = id;
 	}
 }
