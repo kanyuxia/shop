@@ -1,8 +1,4 @@
--- 数据库初始化脚本
-create database shop default charset=utf8;
-use shop;
-
-CREATE TABLE user(
+CREATE TABLE if not exists user(
 	`user_id` bigint(20) NOT NULL AUTO_INCREMENT comment '用户id',
   	`create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP comment '创建时间',
   	`number` varchar(30) NOT NULL unique comment '用户账号',
@@ -12,14 +8,14 @@ CREATE TABLE user(
   	PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB auto_increment=10000 default charset=utf8;
 
-CREATE TABLE category (
+CREATE TABLE if not exists category (
   `category_id` bigint(20) NOT NULL AUTO_INCREMENT comment '分类id',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP comment '创建时间',
   `name` varchar(255) NOT NULL unique comment '分类名',
   PRIMARY KEY (`category_id`)
 ) ENGINE=InnoDB auto_increment=10000 DEFAULT CHARSET=utf8;
 
-CREATE TABLE product (
+CREATE TABLE if not exists product (
   	`product_id` bigint(20) NOT NULL AUTO_INCREMENT comment '产品id',
   	`name` varchar(255) NOT NULL unique comment '产品名称',
   	`create_time` timestamp NOT null ON UPDATE CURRENT_TIMESTAMP comment '创建时间',
@@ -29,7 +25,7 @@ CREATE TABLE product (
   	constraint fk_product_category foreign key(category_id) references category(category_id)
 ) ENGINE=InnoDB auto_increment=10000 DEFAULT CHARSET=utf8;
 
-CREATE TABLE property (
+CREATE TABLE if not exists property (
   	`property_id` bigint(20) NOT NULL AUTO_INCREMENT comment '属性id',
  	`create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP comment '创建时间',
   	`name` varchar(255) NOT NULL comment '属性名',
@@ -38,7 +34,7 @@ CREATE TABLE property (
   	constraint fk_product_property foreign key(product_id) references product(product_id)
 ) ENGINE=InnoDB auto_increment=10000 DEFAULT CHARSET=utf8;
 
-CREATE TABLE property_value (
+CREATE TABLE if not exists property_value (
   `property_value_id` bigint(20) NOT NULL AUTO_INCREMENT comment '属性值id',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP comment '创建时间',
   `property_id` bigint(20) NOT NULL comment '属性id',
@@ -47,7 +43,7 @@ CREATE TABLE property_value (
   constraint fk_property_property_value foreign key(property_id) references property(property_id)
 ) ENGINE=InnoDB auto_increment=10000 DEFAULT CHARSET=utf8;
 
-CREATE TABLE goods (
+CREATE TABLE if not exists goods (
   `goods_id` bigint(20) NOT NULL AUTO_INCREMENT comment '商品id',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP comment '创建时间',
   `attributes` varchar(255) DEFAULT NULL comment '属性，如：白,32G',
@@ -58,7 +54,7 @@ CREATE TABLE goods (
   constraint fk_product_goods foreign key(product_id) references product(product_id)
 ) ENGINE=InnoDB auto_increment=10000 DEFAULT CHARSET=utf8;
 
-CREATE TABLE inventory (
+CREATE TABLE if not exists inventory (
   `inventory_id` bigint(20) NOT NULL AUTO_INCREMENT comment '库存id',
   `goods_id` bigint(20) NOT NULL comment '商品id',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP comment '创建时间',
@@ -69,7 +65,7 @@ CREATE TABLE inventory (
   constraint fk_goods_inventory foreign key(goods_id) references goods(goods_id)
 ) ENGINE=InnoDB auto_increment=10000 DEFAULT CHARSET=utf8;
 
-CREATE TABLE shop_cart (
+CREATE TABLE if not exists shop_cart (
   `shop_cart_id` bigint(20) NOT NULL AUTO_INCREMENT comment '购物车id',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP comment '创建时间',
   `goods_id` bigint(20) NOT NULL comment '商品id',
@@ -80,7 +76,7 @@ CREATE TABLE shop_cart (
   constraint fk_user_shop_cart foreign key(user_id) references user(user_id)
 ) ENGINE=InnoDB auto_increment=10000 DEFAULT CHARSET=utf8;
 
-CREATE TABLE orders (
+CREATE TABLE if not exists orders (
   `orders_id` bigint(20) NOT NULL AUTO_INCREMENT comment '订单id',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP comment '创建时间',
   `harvest_address` varchar(500) NOT NULL comment '收货地址',
@@ -91,7 +87,7 @@ CREATE TABLE orders (
   constraint fk_user_order foreign key(user_id) references user(user_id)
 ) ENGINE=InnoDB auto_increment=10000 DEFAULT CHARSET=utf8;
 
-CREATE TABLE order_item (
+CREATE TABLE if not exists order_item (
   `order_item_id` bigint(20) NOT NULL AUTO_INCREMENT comment '订单项id',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP comment '创建时间',
   `goods_id` bigint(20) NOT NULL comment '商品id',

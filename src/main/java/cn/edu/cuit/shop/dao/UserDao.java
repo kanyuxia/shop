@@ -23,4 +23,6 @@ public interface UserDao {
 	 * @return 用户 or null
 	 */
 	User selectUser(@Param("number")String number, @Param("password")String password);
+	
+	
 }
