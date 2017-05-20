@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>drag-test</title>
+	<!-- vernder css -->
+	<link rel="stylesheet" type="text/css" href="./vender/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="./vender/css/simple-line-icons.css">
+	<link rel="stylesheet" type="text/css" href="./vender/css/font-awesome.min.css">
+	<!-- 自定义 css -->
+	<link rel="stylesheet" type="text/css" href="./css/app.css">
+	<link rel="stylesheet" type="text/css" href="./css/drag.css">
+
+	<!-- <link rel="stylesheet" type="text/css" href="./css/jquery-ui.min.css">
+	-->
+	<script type="text/javascript" src="./vender/js/jquery.min.js"></script>
+	<script type="text/javascript" src="./vender/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="./vender/js/jq-ui.js"></script>
+	<script type="text/javascript" src="./vender/js/jquery.htmlClean.js"></script>
+
+	<!-- 编辑器 -->
+	<script type="text/javascript" charset="utf-8" src="./vender/js/ueditor1/ueditor.config.js"></script>
+	<script type="text/javascript" charset="utf-8" src="./vender/js/ueditor1/ueditor.all.js"></script>
+	<script type="text/javascript" charset="utf-8" src="./vender/js/ueditor1/lang/zh-cn/zh-cn.js"></script>
+	<!-- angular -->
+	<script type="text/javascript" charset="utf-8" src="./vender/js/angular.js"></script>
+	<script type="text/javascript" charset="utf-8" src="./js/angular-controller/bootstrap.js"></script>
+	<!-- 自定义 -->
+	<script type="text/javascript" src="./js/drag.js"></script>
+	<!-- Wysiwyg -->
+	<script type="text/javascript" src="./vender/js/Wysiwyg/bootstrap-wysiwyg.js"></script>
+	<script type="text/javascript" src="./vender/js/Wysiwyg/jquery.hotkeys.js"></script>
+</head>
+<body class="editview">
+	<div class="container-fluid">
+		<div id="head-bar" class="navbar navbar-inverse navbar-fixed-top" >
+			<ul  class="nav navbar-nav">
+				<li class="active" id="edit">
+					<a href="javascript:void(0);">></a>
+				</li>
+				<li  id="preview">
+					<a href="javascript:void(0);"><</a>
+				</li>
+				<li  id="createHTML">
+					<a href="#" >..</a>
+				</li>
+				<li  id="emptyHTML">
+					<a href="#" >..</a>
+				</li>
+			</ul>
+			<div style="float:right ;color: white;font-size: 16px;padding-top: 14px;padding-right: 20px; background-color: #080808; height: auto;padding-bottom: 14px; padding-left: 20px">管理员</div>
+		</div>
+
+		<div class="content">
+			<!-- <div class="user-demo box"></div> -->
+			<div class="editor">
+				<button class="btn btn-success save">保存</button>
+				<script type="text/plain" id="myEditor" style="width:100%; height: 500px;">
+				    <p>这里我可以写一些输入提示</p>
+				</script>
+			</div>
+
+
+			<p>test</p>
+			<p>test</p>
+			<p>test</p>
+			<p>test</p>
+			<p>test</p>
+			<p>test</p>
+			<p>test</p>
+			<p>test</p>
+			<p>test</p>
+			<p>test</p>
+			<p>test</p>
+			<p>test</p>
+			<p>test</p>
+			<p>test</p>
+			<p>test</p>
+			<p>test</p>
+			<p>test</p>
+			<p>test</p>
+			<p>test</p>
+			<p>test</p>
+			<p>test</p>
+			<p>test</p>
+			<p>test</p>
+			<p>test</p>
+			<p>test</p>
+			<p>test</p>
+			<p>test</p>
+			<p>test</p>
+			<p>test</p>
+			<p>test</p>
+			<p>test</p>
+			<p>test</p>
+			<p>test</p>
+			<p>test</p>
+			<p>test</p>
+			<!-- <div class="btn-editor"></div> -->
+		</div>
+		<div class="left-nav" style="position:fixed; left:0px; top:0px;">
+			<h4 class="title-v">网上商城后台</h4>
+			<nav class="navi bg-dark">
+				<ul class="nav">
+					<span class="line"></span>
+					<li id="grid">
+						<a href="#collapse1"role="button" class="auto" data-toggle="collapse" href="#collapse1" aria-expanded="false" aria-controls="collapse1">
+							<span class="pull-right"> <i class="glyphicon glyphicon-chevron-down"></i>
+							</span> <i class="glyphicon glyphicon-th text-primary-dker" ></i>
+							<span class="font-bold">分类管理</span>
+						</a>
+						<ul class="dk collapse" id="collapse1">
+							<li>
+								<div class="demo grid">
+									<span class="demo-name">商品分类</span>
+								</div>
+							</li>
+						</ul>
+						<span class="line"></span>
+					</li>
+					<li id="css">
+						<a href="#collapse2"role="button" class="auto" data-toggle="collapse" href="#collapse2" aria-expanded="false" aria-controls="collapse2">
+							<span class="pull-right">
+								<i class="glyphicon glyphicon-menu-down "></i>
+							</span>
+							<i class="glyphicon glyphicon-leaf text-success1" ></i>
+							<span class="font-bold">商品管理</span>
+						</a>
+						<ul class="dk collapse" id="collapse2">
+							<li>
+								<div class="demo ele">
+									<span class="demo-name">商品上架</span>
+								</div>
+							</li>
+							<li>
+								<div class="demo ele">
+									<span class="demo-name">商品列表</span>
+								</div>
+							</li>
+						</ul>
+					</li>
+					<span class="line"></span>
+					<li id="components">
+						<a href="#collapse3"role="button" class="auto" data-toggle="collapse" href="#collapse3" aria-expanded="false" aria-controls="collapse3">
+							<span class="pull-right">
+								<i class="glyphicon glyphicon-menu-down"></i>
+							</span>
+							<i class="glyphicon glyphicon-tree-deciduous text-info-lter" ></i>
+							<span class="font-bold">订单管理</span>
+						</a>
+						<ul class="dk collapse" id="collapse3">
+							<li>
+								<div class="demo ele">
+									<span class="demo-name">订单列表</span>
+								</div>
+							</li>
+							<li>
+								<div class="demo ele">
+									<span class="demo-name">订单列表</span>
+								</div>
+							</li>
+						</ul>
+					</li>
+					<span class="line"></span>
+					<li id="plugins">
+						<a href="#collapse4"role="button" class="auto" data-toggle="collapse" href="#collapse4" aria-expanded="false" aria-controls="collapse4">
+							<span class="pull-right">
+								<i class="glyphicon glyphicon-menu-down"></i>
+							</span>
+							<i class="glyphicon glyphicon-grain text-info-dker" ></i>
+							<span class="font-bold">用户管理</span>
+						</a>
+						<ul class="dk collapse" id="collapse4">
+							<li>
+								<div class="demo ele">
+									<span class="demo-name">用户列表</span>
+								</div>
+							</li>
+						</ul>
+					</li>
+					<span class="line"></span>
+				</ul>
+			</nav>
+		</div>
+	</div>
+	<!-- Large modal -->
+	<div class="modal fade dowloadHTML" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">页面内容</h4>
+				</div>
+				<div class="modal-body">
+					<textarea rows="20" style="width: 100%;">
+						
+					</textarea>
+				</div>
+				<div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+		        <button type="button" class="btn btn-primary">下载</button>
+		      </div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		/*$(".user-demo").delegate("button", "click", function(e) {
+			e.preventDefault();
+		})*/
+
+		
+		//自适应屏幕
+
+		/*$(window).resize(function() {
+			UM.getEditor('myEditor').setWidth(document.body.clientWidth - 200);
+		});*/
+	 	//editor.execCommand( 'source');
+	</script>
+</body>
+</html>
