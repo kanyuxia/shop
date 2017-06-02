@@ -39,6 +39,8 @@ public class Goods {
 	 * 外键：产品id
 	 */
 	private long productID;
+	
+	private Product product;
 
 	// -----------------------Construct method
 	public Goods() {
@@ -82,7 +84,8 @@ public class Goods {
 	@Override
 	public String toString() {
 		return "Goods [goodsID=" + goodsID + ", createTime=" + createTime + ", attributes=" + attributes
-				+ ", originalPrice=" + originalPrice + ", sellPrice=" + sellPrice + ", productID=" + productID + "]";
+				+ ", originalPrice=" + originalPrice + ", sellPrice=" + sellPrice + ", productID=" + productID
+				+ ", product=" + product + "]";
 	}
 
 	//--------------------setter、getter methods
@@ -132,6 +135,14 @@ public class Goods {
 
 	public void setProductID(long productID) {
 		this.productID = productID;
+	}
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 	
 	
