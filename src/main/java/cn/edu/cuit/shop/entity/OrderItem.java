@@ -5,7 +5,7 @@ import java.util.Objects;
 
 /**
  * 订单项信息表
- * @author kanyuxia
+ * @author inori
  *
  */
 public class OrderItem {
@@ -23,7 +23,7 @@ public class OrderItem {
 	/**
 	 * 商品数量
 	 */
-	private long Goods_number;
+	private long goodsNumber;
 	
 	/**
 	 * 外键：商品id
@@ -34,6 +34,10 @@ public class OrderItem {
 	 * 外键：订单id
 	 */
 	private long ordersID;
+
+	private Goods goods;
+	
+	private Orders orders;
 	
 	// -------------------------Construct methods
 	public OrderItem() {
@@ -41,14 +45,20 @@ public class OrderItem {
 	}
 
 	public OrderItem(long orderItemID, Date createTime, long goods_number, long goodsID, long ordersID) {
-		super();
 		this.orderItemID = orderItemID;
 		this.createTime = createTime;
-		Goods_number = goods_number;
+		this.goodsNumber = goods_number;
 		this.goodsID = goodsID;
 		this.ordersID = ordersID;
 	}
 	
+	public OrderItem(Date createTime, long goodsNumber, long goodsID, long ordersID) {
+		this.createTime = createTime;
+		this.goodsNumber = goodsNumber;
+		this.goodsID = goodsID;
+		this.ordersID = ordersID;
+	}
+
 	// -----------------------------Override some methods
 	@Override
 	public int hashCode() {
@@ -74,12 +84,14 @@ public class OrderItem {
 		return false;
 	}
 
+	
+	
 	@Override
 	public String toString() {
-		return "OrderItem [orderItemID=" + orderItemID + ", createTime=" + createTime + ", Goods_number=" + Goods_number
-				+ ", goodsID=" + goodsID + ", ordersID=" + ordersID + "]";
+		return "OrderItem [orderItemID=" + orderItemID + ", createTime=" + createTime + ", goodsNumber=" + goodsNumber
+				+ ", goodsID=" + goodsID + ", ordersID=" + ordersID + ", goods=" + goods + ", orders=" + orders + "]";
 	}
-	
+
 	// --------------------------setter、getter methods
 	public long getOrderItemID() {
 		return orderItemID;
@@ -97,12 +109,12 @@ public class OrderItem {
 		this.createTime = createTime;
 	}
 
-	public long getGoods_number() {
-		return Goods_number;
+	public long getGoodsNumber() {
+		return goodsNumber;
 	}
 
-	public void setGoods_number(long goods_number) {
-		Goods_number = goods_number;
+	public void setGoodsNumber(long goods_number) {
+		goodsNumber = goods_number;
 	}
 
 	public long getGoodsID() {
@@ -119,6 +131,30 @@ public class OrderItem {
 
 	public void setOrdersID(long ordersID) {
 		this.ordersID = ordersID;
+	}
+	
+	public long getId() {
+		return ordersID;
+	}
+
+	public void seId(long ordersID) {
+		this.ordersID = ordersID;
+	}
+
+	public Goods getGoods() {
+		return goods;
+	}
+
+	public void setGoods(Goods goods) {
+		this.goods = goods;
+	}
+
+	public Orders getOrders() {
+		return orders;
+	}
+
+	public void setOrder(Orders orders) {
+		this.orders = orders;
 	}
 	
 	

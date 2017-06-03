@@ -62,6 +62,8 @@ public class User {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((number == null) ? 0 : number.hashCode());
+		result = prime *   + ((nickname == null) ? 0 : nickname.hashCode());
+		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		return result;
 	}
 	

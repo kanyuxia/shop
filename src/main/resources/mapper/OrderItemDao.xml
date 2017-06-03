@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.cuit.shop.dao.OrderItemDao">
+
+	<!-- 插入订单项信息 -->
+	<insert id="insertOrderItem">
+		<!-- 'ignore' 忽略主键、唯一键冲突错误(返回值为0) -->
+		insert ignore into order_item(create_time,goods_id,orders_id,goods_number)
+		values(#{orderItem.createTime},#{orderItem.goodsID},#{orderItem.ordersID},#{orderItem.goodsNumber})
+	</insert>
+	<!-- 更新订单项 -->
+	<update id="updateOrderItem">
+		UPDATE order_item SET goods_number = #{orderItem.goodsNumber}
+		<if test="orderItem.goodsID != 0">
+			 , goods_id = #{orderItem.goodsID} 
+		</if>
+		<if test="orderItem.ordersID != 0">
+			 , orders_id = #{orderItem.ordersID} 
+		</if>
+		<where>
+			order_item_id = #{orderItem.orderItemID}
+		</where>
+ 	</update>
+ 	<!-- 不级联 -->
+ 	<select id="selectWithCleanById" resultType="OrderItem">
+	  	select order_item_id, create_time, goods_id, orders_id, goods_number
+	  	from order_item
+	  	where order_item_id = #{orderItemId}
+  	</select>
+  	<!-- 联合其他 -->
+  	<select id="selectWithOneById" resultType="OrderItem">
+	  	select oi.order_item_id, oi.create_time, oi.goods_id, oi.orders_id, oi.goods_number, 
+	  		o.orders_id "orders.ordersID",
+	  		o.create_time "orders.createTime",
+	  		o.harvest_address "orders.harvestAddress",
+	  		o.status "orders.status",
+	  		o.total_price "orders.totalPrice",
+	  		o.user_id "orders.userID",
+	  		g.goods_id "goods.goodsID",
+	  		g.create_time "goods.createTime",
+	  		g.attributes "goods.attributes",
+	  		g.product_id "goods.productID",
+	  		g.original_price "goods.originalPrice",
+	  		g.sell_price "goods.sellPrice" 
+	  	from order_item oi
+	  	left join orders o on oi.orders_id = o.orders_id 
+	  	left join goods g on oi.goods_id = g.goods_id
+	  	where oi.order_item_id = #{orderItemId}
+  	</select>
+  
+  	<!-- 通过id删除 -->
+	<delete id="deleteById">
+		delete from order_item
+		where order_item_id = #{orderItemId}
+	</delete>
+</mapper>

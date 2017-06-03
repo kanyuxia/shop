@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.cuit.shop.dao.GoodsDao">
+
+	<!-- 插入产品信息 -->
+	<insert id="insertGoods">
+		<!-- 'ignore' 忽略主键、唯一键冲突错误(返回值为0) -->
+		insert ignore into goods(create_time,attributes,product_id,original_price,sell_price)
+		values(#{goods.createTime},#{goods.attributes},#{goods.productID},#{goods.originalPrice},#{goods.sellPrice})
+	</insert>
+	<!-- 更新产品信息 -->
+	<update id="updateGoods">
+		UPDATE goods SET 
+			original_price = #{goods.originalPrice}, 
+			sell_price = #{goods.sellPrice}, 
+			product_id = #{goods.productID}, 
+			attributes = #{goods.attributes}
+		<where>
+			goods_id = #{goods.goodsID}
+		</where>
+ 	</update>
+ 	<!-- 不级联 -->
+ 	<select id="selectWithCleanById" resultType="Goods">
+	  	select goods_id, create_time, attributes, product_id, original_price, sell_price
+	  	from goods
+	  	where goods_id = #{goodsId}
+  	</select>
+  	<!-- 联合其他 -->
+  	<select id="selectWithOneById" resultType="Goods">
+	  	select  g.goods_id, g.create_time, g.attributes, g.product_id, g.original_price, g.sell_price, 
+	  		p.product_id "product.productID",
+	  		p.create_time "product.createTime",
+	  		p.name "product.name",
+	  		p.category_id "product.categoryID",
+	  		p.attributes "product.attributes"
+	  	from goods g
+	  	left join product p on p.product_id = g.product_id 
+	  	where g.goods_id = #{goodsId}
+  	</select>
+  
+  	<!-- 通过id删除 -->
+	<delete id="deleteById">
+		delete from goods
+		where goods_id = #{goodsId}
+	</delete>
+</mapper>

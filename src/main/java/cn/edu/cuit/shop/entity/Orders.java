@@ -1,6 +1,7 @@
 package cn.edu.cuit.shop.entity;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 import org.springframework.core.annotation.Order;
@@ -42,6 +43,10 @@ public class Orders {
 	 */
 	private long userID;
 	
+	private User user;
+	
+	private List<OrderItem> items;
+	
 	// ---------------------------Construct methods
 	public Orders() {
 		super();
@@ -80,12 +85,15 @@ public class Orders {
 		return false;
 	}
 
+	
+	
 	@Override
 	public String toString() {
 		return "Orders [ordersID=" + ordersID + ", createTime=" + createTime + ", harvestAddress=" + harvestAddress
-				+ ", status=" + status + ", totalPrice=" + totalPrice + ", userID=" + userID + "]";
+				+ ", status=" + status + ", totalPrice=" + totalPrice + ", userID=" + userID + ", user=" + user
+				+ ", items=" + items + "]";
 	}
-	
+
 	// ----------------------setter、getter methods
 	public long getOrdersID() {
 		return ordersID;
@@ -133,6 +141,22 @@ public class Orders {
 
 	public void setUserID(long userID) {
 		this.userID = userID;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public List<OrderItem> getItems() {
+		return items;
+	}
+
+	public void setItems(List<OrderItem> items) {
+		this.items = items;
 	}
 	
 	
