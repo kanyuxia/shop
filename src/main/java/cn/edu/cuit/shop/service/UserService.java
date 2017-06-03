@@ -20,4 +20,20 @@ public interface UserService {
 	 * @return 用户 or null
 	 */
 	User login(String number, String password);
+	
+	/**
+	 * 修改密码
+	 * @param number 用户名
+	 * @param oldPassword 旧密码
+	 * @param newPassword 新密码
+	 * @return 是否修改成功
+	 */
+	boolean modifyPassword(String number, String oldPassword, String newPassword);
+	
+	/**
+	 * 修改用户信息
+	 * @param user 新的用户信息
+	 * @return 是否修改成功
+	 */
+	boolean mofifyUser(User user);
 }

@@ -10,4 +10,5 @@ vals/org.eclipse.jst.jsp.core.JSPBatchValidator/global=FF01
 vals/org.eclipse.jst.jsp.core.JSPContentValidator/global=FF01
 vals/org.eclipse.wst.html.core.HTMLValidator/global=FF01
 vals/org.eclipse.wst.jsdt.core.JsValidator/global=FF01
+vals/org.eclipse.wst.json.core.json/global=FF03
 vf.version=3

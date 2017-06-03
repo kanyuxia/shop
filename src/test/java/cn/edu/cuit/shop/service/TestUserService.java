@@ -35,4 +35,15 @@ public class TestUserService {
 		User user = userService.login(number, password);
 		System.out.println(user);
 	}
+	
+	@Test
+	@Rollback(false)
+	public void testModifyPassword(){
+		String number = "kanyuxia@outlook.com";
+		String oldPassword = "123456";
+		String newPassword = "12345678";
+		
+		boolean successed = userService.modifyPassword(number, oldPassword, newPassword);
+		System.out.println(successed);
+	}
 }

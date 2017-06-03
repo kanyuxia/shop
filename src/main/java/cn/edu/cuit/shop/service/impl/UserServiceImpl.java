@@ -36,4 +36,26 @@ public class UserServiceImpl implements UserService {
 		User user = userDao.selectUser(number, password);
 		return user;
 	}
+	
+	/**
+	 * 修改密码
+	 * @param number 用户名
+	 * @param oldPassword 旧密码
+	 * @param newPassword 新密码
+	 * @return 是否修改成功
+	 */
+	public boolean modifyPassword(String number, String oldPassword, String newPassword){
+		int countNum = userDao.updatePassword(number, oldPassword, newPassword);
+		return countNum == 1 ? true : false;
+	}
+	
+	/**
+	 * 修改用户信息
+	 * @param user 新的用户信息
+	 * @return 是否修改成功
+	 */
+	public boolean mofifyUser(User user){
+		int countNum = userDao.updateUser(user.getNumber(), user.getNickname(), user.getSex());
+		return countNum == 1 ? true : false;
+	}
 }

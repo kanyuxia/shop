@@ -19,7 +19,7 @@ public class UserController {
 	/**
 	 * 注册用户
 	 * @param user 用户信息
-	 * @return 注册结果
+	 * @return
 	 */
 	@RequestMapping(value="/pass/register", method=RequestMethod.GET, 
 			produces={"application/json;charset=UTF-8"})
@@ -35,6 +35,12 @@ public class UserController {
 	}
 	
 	
+	/**
+	 * 用户登录
+	 * @param number
+	 * @param password
+	 * @return
+	 */
 	@RequestMapping(value="/pass/login", method=RequestMethod.GET,
 			produces={"application/json;charset=UTF-8"})
 	@ResponseBody
@@ -45,5 +51,36 @@ public class UserController {
 			return new Result<>(true, user);
 		}
 		return new Result<>(false, "登录失败");
+	}
+	
+	/**
+	 * 修改密码
+	 * @param number 用户名
+	 * @param oldPassword 旧密码
+	 * @param newPassword 新密码
+	 * @return
+	 */
+	@RequestMapping(value="/pass/modifyPassword", method=RequestMethod.GET,
+			produces={"application/json;charset=UTF-8"})
+	@ResponseBody
+	public Result<Object> modifyPassword(String number, String oldPassword, String newPassword) {
+		System.out.println(number + oldPassword + newPassword);
+		boolean successed = userService.modifyPassword(number, oldPassword, newPassword);
+		if (successed) {
+			return new Result<Object>(true, null);
+		}
+		return new Result<Object>(false, "修改失败");
+	}
+	
+	@RequestMapping(value="/pass/modifyUser", method=RequestMethod.GET,
+			produces={"application/json;chart=UTF-8"})
+	@ResponseBody
+	public Result<Object> modifyUser(User user) {
+		System.out.println(user);
+		boolean successed = userService.mofifyUser(user);
+		if (successed) {
+			return new Result<Object>(true,null);
+		}
+		return new Result<Object>(false, "修改失败");
 	}
 }

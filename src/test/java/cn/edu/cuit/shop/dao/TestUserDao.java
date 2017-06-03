@@ -34,4 +34,13 @@ public class TestUserDao {
 		User user = userDao.selectUser(number, password);
 		System.out.println(user);
 	}
+	
+	@Test
+	public void testUpdatePassword() {
+		String number = "kanyuxia@outlook.com";
+		String oldPassword = "123456";
+		String newPassword = "12345678";
+		int countNum = userDao.updatePassword(number, oldPassword, newPassword);
+		System.out.println(countNum);
+	}
 }
