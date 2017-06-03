@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import cn.edu.cuit.shop.entity.User;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:spring/spring-dao.xml")
 public class TestUserDao {
@@ -21,6 +23,24 @@ public class TestUserDao {
 		String sex = "男";
 		
 		int countNum = userDao.insertUser(number, password, nickname, sex);
+		System.out.println(countNum);
+	}
+	
+	@Test
+	public void testSelectUser() {
+		String number = "kanyuxia@outlook.com";
+		String password = "123456";
+		
+		User user = userDao.selectUser(number, password);
+		System.out.println(user);
+	}
+	
+	@Test
+	public void testUpdatePassword() {
+		String number = "kanyuxia@outlook.com";
+		String oldPassword = "123456";
+		String newPassword = "12345678";
+		int countNum = userDao.updatePassword(number, oldPassword, newPassword);
 		System.out.println(countNum);
 	}
 }

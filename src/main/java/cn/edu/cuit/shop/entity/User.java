@@ -61,6 +61,7 @@ public class User {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((number == null) ? 0 : number.hashCode());
 		result = prime *   + ((nickname == null) ? 0 : nickname.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		return result;
@@ -73,8 +74,7 @@ public class User {
 		}
 		if (obj instanceof User) {
 			User user = (User) obj;
-			return Objects.equals(this.number, user.getNumber()) 
-					&& Objects.equals(this.password, user.getPassword());
+			return Objects.equals(this.number, user.getNumber());
 		}
 		return false;
 	}
