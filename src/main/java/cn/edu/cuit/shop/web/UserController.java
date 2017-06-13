@@ -48,9 +48,9 @@ public class UserController {
 		System.out.println(number + password);
 		User user = userService.login(number, password);
 		if (user != null) {
-			return new Result<>(true, user);
+			return new Result<User>(true, user);
 		}
-		return new Result<>(false, "登录失败");
+		return new Result<User>(false, "登录失败");
 	}
 	
 	/**

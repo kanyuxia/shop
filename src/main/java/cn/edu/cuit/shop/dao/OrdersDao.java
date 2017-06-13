@@ -4,9 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import cn.edu.cuit.shop.entity.OrderItem;
 import cn.edu.cuit.shop.entity.Orders;
-import cn.edu.cuit.shop.entity.Product;
 
 public interface OrdersDao {
 
@@ -52,6 +50,13 @@ public interface OrdersDao {
 	 * @return 查询
 	 */
 	Orders selectWithOrderItemById(@Param("ordersId") long ordersId);
+	
+	/**
+	 * 根据userId查找(关联订单项)
+	 * @param ordersId 订单id
+	 * @return 查询
+	 */
+	List<Orders> selectWithOrderItemByUserId(@Param("userId") long userId);
 	
 	/**
 	 * 根据ID删除

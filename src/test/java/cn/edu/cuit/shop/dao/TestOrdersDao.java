@@ -2,6 +2,7 @@ package cn.edu.cuit.shop.dao;
 
 
 import java.util.Date;
+import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -54,6 +55,12 @@ public class TestOrdersDao {
 	@Test
 	public void testSelectWithOrderItemById() {
 		Orders orders = ordersDao.selectWithOrderItemById(1);
+		System.out.println(orders);
+	}
+	
+	@Test
+	public void testSelectWithOrderItemByUserId() {
+		List<Orders> orders = ordersDao.selectWithOrderItemByUserId(2);
 		System.out.println(orders);
 	}
 	
