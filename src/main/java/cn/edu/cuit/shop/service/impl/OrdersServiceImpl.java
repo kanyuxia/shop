@@ -7,11 +7,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import cn.edu.cuit.shop.dao.GoodsDao;
+import cn.edu.cuit.shop.dao.InventoryDao;
+import cn.edu.cuit.shop.dao.OrderItemDao;
 import cn.edu.cuit.shop.dao.OrdersDao;
 import cn.edu.cuit.shop.entity.Goods;
+import cn.edu.cuit.shop.entity.Inventory;
 import cn.edu.cuit.shop.entity.OrderItem;
 import cn.edu.cuit.shop.entity.Orders;
 import cn.edu.cuit.shop.entity.User;
+import cn.edu.cuit.shop.exception.SysException;
 import cn.edu.cuit.shop.service.OrdersService;
 @Service
 public class OrdersServiceImpl implements OrdersService {
@@ -19,7 +23,11 @@ public class OrdersServiceImpl implements OrdersService {
 	@Autowired
 	private OrdersDao ordersDao;
 	@Autowired
+	private OrderItemDao orderItemDao;
+	@Autowired
 	private GoodsDao goodsDao;
+	@Autowired
+	private InventoryDao inventoryDao;
 	
 	@Override
 	public List<Orders> queryUserOrders(User user) {
@@ -35,10 +43,24 @@ public class OrdersServiceImpl implements OrdersService {
 
 	@Override
 	@Transactional
-	public boolean commitOrders(Orders orders) {
+	public synchronized boolean commitOrders(Orders orders) throws SysException{
+		boolean inventoryFlag = true;
+		ordersDao.insertOrders(orders);
 		for (OrderItem orderItem : orders.getItems()) {
-			Goods goods = goodsDao.selectWithCleanById(orderItem.getGoodsID());
+			orderItemDao.insertOrderItem(orderItem);
+			Goods goods = goodsDao.selectWithOneById(orderItem.getGoodsID());
+			Inventory inventory = inventoryDao.selectWithCleanByGoodsId(goods.getGoodsID());
+			if (inventory.getInventoryNumber() <=0 ) {
+				throw new SysException("商品：" + goods.getProduct().getName() + "库存不足！请重新提交订单！"); 
+			}
+			inventory.setInventoryNumber(inventory.getInventoryNumber() - orderItem.getGoodsNumber());
+			inventory.setSellNumber(inventory.getSellNumber() - orderItem.getGoodsNumber());
+			inventoryFlag = inventoryDao.updateInventoryByGoodsId(inventory) > 0 ? true : false; 
+			if (!inventoryFlag) {
+				throw new SysException("操作失败！");
+			}
 		}
+		orders.setStatus(3);
 		int flag = ordersDao.insertOrders(orders);
 		return flag > 0 ? true : false;
 	}

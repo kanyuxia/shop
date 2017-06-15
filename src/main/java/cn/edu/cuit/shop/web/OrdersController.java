@@ -9,9 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.sun.xml.internal.messaging.saaj.soap.StringDataContentHandler;
+
 import cn.edu.cuit.shop.dto.Result;
 import cn.edu.cuit.shop.entity.Orders;
 import cn.edu.cuit.shop.entity.User;
+import cn.edu.cuit.shop.exception.SysException;
 import cn.edu.cuit.shop.service.OrdersService;
 
 @Controller
@@ -44,5 +47,20 @@ public class OrdersController {
 	public @ResponseBody Result<Orders> item(@PathVariable long ordersId){
 		Orders orders = ordersService.getOrdersById(ordersId);
 		return new Result<Orders>(true, orders);
+	}
+	
+	@RequestMapping(value="/commit", method=RequestMethod.GET, 
+			produces={"application/json;charset=UTF-8"})
+	public @ResponseBody Result<Object> commit(Orders orders){
+		boolean flag = false;
+		try {
+			flag = ordersService.commitOrders(orders);
+			if (flag) {
+				return new Result<Object>(true, "提交成功");
+			}
+			return new Result<Object>(false, "提交失败");
+		} catch (SysException e) {
+			return new Result<Object>(true, e.getMessage());
+		}
 	}
 }

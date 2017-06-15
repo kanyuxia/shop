@@ -4,6 +4,7 @@ import java.util.List;
 
 import cn.edu.cuit.shop.entity.Orders;
 import cn.edu.cuit.shop.entity.User;
+import cn.edu.cuit.shop.exception.SysException;
 
 public interface OrdersService {
 	
@@ -33,7 +34,7 @@ public interface OrdersService {
 	 * @param orders
 	 * @return
 	 */
-	boolean commitOrders(Orders orders);
+	boolean commitOrders(Orders orders) throws SysException;
 	
 	/**
 	 * 修改订单状态

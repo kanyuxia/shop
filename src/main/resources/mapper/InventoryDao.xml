@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.cuit.shop.dao.InventoryDao">
+
+	<!-- 插入库存信息 -->
+	<insert id="insertInventory">
+		<!-- 'ignore' 忽略主键、唯一键冲突错误(返回值为0) -->
+		insert ignore into inventory(goods_id,create_time,inventory_number,sell_number)
+		values(#{inventory.goodsID},#{inventory.createTime},#{inventory.inventoryNumber},#{inventory.sellNumber})
+	</insert>
+	<!-- 更新库存信息 -->
+	<update id="updateInventoryByGoodsId">
+		UPDATE inventory SET 
+			inventory_number = #{inventory.inventoryNumber}, 
+			sell_number = #{inventory.sellNumber}
+		<where>
+			goods_id = #{inventory.goodsID}
+		</where>
+ 	</update>
+ 	<!-- 不级联 -->
+ 	<select id="selectWithCleanByGoodsId" resultType="Inventory">
+	  	select inventory_id, goods_id, create_time, inventory_number, sell_number
+	  	from inventory
+	  	where goods_id = #{goodsId}
+  	</select>
+  	
+  	<!-- 不级联 -->
+ 	<select id="selectWithCleanById" resultType="Inventory">
+	  	select inventory_id, goods_id, create_time, inventory_number, sell_number
+	  	from inventory
+	  	where inventory_id = #{inventoryId}
+  	</select>
+  
+  	<!-- 通过id删除 -->
+	<delete id="deleteById">
+		delete from inventory
+		where inventory_id = #{inventoryId}
+	</delete>
+	
+	<!-- 通过商品id删除 -->
+	<delete id="deleteByGoodsId">
+		delete from inventory
+		where goods_id = #{goodsId}
+	</delete>
+</mapper>
