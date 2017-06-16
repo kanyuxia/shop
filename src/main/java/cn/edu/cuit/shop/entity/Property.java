@@ -8,6 +8,10 @@ import java.util.Objects;
  * @author kanyuxia
  *
  */
+/**
+ * @author kanyuxia
+ *
+ */
 public class Property {
 	// --------------------------field
 	/**
@@ -25,11 +29,7 @@ public class Property {
 	 */
 	private String name;
 	
-	/**
-	 * 外键：产品id
-	 */
-	private long productID;
-
+	
 	// ------------------------Construct methods
 	public Property() {
 		super();
@@ -40,7 +40,6 @@ public class Property {
 		this.propertyID = propertyID;
 		this.createTime = createTime;
 		this.name = name;
-		this.productID = productID;
 	}
 	
 	// ----------------------------Override some methods
@@ -52,24 +51,23 @@ public class Property {
 		}
 		if (obj instanceof Property) {
 			Property property = (Property) obj;
-			return Objects.equals(this.name, property.getName()) 
-					&& Objects.equals(this.productID, property.getProductID());
+			return Objects.equals(this.name, property.getName());
 		}
 		return false;
 	}
 
+
+
 	@Override
 	public String toString() {
-		return "Property [propertyID=" + propertyID + ", createTime=" + createTime + ", name=" + name + ", productID="
-				+ productID + "]";
+		return "Property [propertyID=" + propertyID + ", createTime=" + createTime + ", name=" + name + "]";
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + (int) (productID ^ (productID >>> 32));
 		return result;
 	}
 
@@ -97,14 +95,4 @@ public class Property {
 	public void setName(String name) {
 		this.name = name;
 	}
-
-	public long getProductID() {
-		return productID;
-	}
-
-	public void setProductID(long productID) {
-		this.productID = productID;
-	}
-	
-	
 }

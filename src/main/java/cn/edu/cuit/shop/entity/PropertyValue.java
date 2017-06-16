@@ -29,20 +29,31 @@ public class PropertyValue {
 	 * 外键：属性id
 	 */
 	private long propertyID;
+	
+	/**
+	 * 外键：产品id
+	 */
+	private long productID;
+	
+	/**
+	 * 属性名称
+	 */
+	private Property property;
 
 	// -------------------------Construct methods
 	public PropertyValue() {
 		super();
 	}
-
-	public PropertyValue(long propertyValueID, Date createTime, String value, long propertyID) {
+	
+	public PropertyValue(long propertyValueID, Date createTime, String value, long propertyID, long productID) {
 		super();
 		this.propertyValueID = propertyValueID;
 		this.createTime = createTime;
 		this.value = value;
 		this.propertyID = propertyID;
+		this.productID = productID;
 	}
-	
+
 	//------------------------------Override some methods
 	@Override
 	public int hashCode() {
@@ -65,13 +76,12 @@ public class PropertyValue {
 		}
 		return false;
 	}
-
 	@Override
 	public String toString() {
 		return "PropertyValue [propertyValueID=" + propertyValueID + ", createTime=" + createTime + ", value=" + value
-				+ ", propertyID=" + propertyID + "]";
+				+ ", propertyID=" + propertyID + ", productID=" + productID + ", property=" + property + "]";
 	}
-	
+
 	// --------------------setter、getter methods
 	public long getPropertyValueID() {
 		return propertyValueID;
@@ -105,6 +115,20 @@ public class PropertyValue {
 		this.propertyID = propertyID;
 	}
 	
+	public long getProductID() {
+		return productID;
+	}
 	
+	public void setProductID(long productID) {
+		this.productID = productID;
+	}
+	
+	public Property getProperty() {
+		return property;
+	}
+	
+	public void setProperty(Property property) {
+		this.property = property;
+	}
 
 }

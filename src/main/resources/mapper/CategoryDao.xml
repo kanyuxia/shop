@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.cuit.shop.dao.CategoryDao">
+	
+	<resultMap type="cn.edu.cuit.shop.entity.Category" id="resultMap">
+		<id property="categoryID" column="category_id"/>
+		<result property="createTime" column="category_create_time"/>
+		<result property="name" column="category_name"/>
+		<collection property="products" ofType="cn.edu.cuit.shop.entity.Product">
+			<id property="productID" column="product_id"/>
+			<result property="name" column="product_name"/>
+			<result property="createTime" column="product_create_time"/>
+			<result property="categoryID" column="category_id"/>
+			<result property="attributes" column="attributes"/>
+		</collection>
+	</resultMap>
+	
+	
+	<!-- 查询所有的分类信息(不级联) -->
+	<select id="selectAll" resultType="cn.edu.cuit.shop.entity.Category">
+		select category_id,create_time,name
+		from category
+	</select>
+	
+	<!-- 查询所有的分类信息(级联) -->
+	<select id="selectAllofProduct" resultMap="resultMap">
+		select
+			a.category_id,
+			a.create_time as category_create_time,
+			a.name as category_name,
+			b.product_id,
+			b.name as product_name,
+			b.create_time as product_create_time,
+			b.category_id,
+			b.attributes
+		from category a
+		left join product b on a.category_id=b.category_id;
+	</select>
+	
+	<!-- 修改分类名称 -->
+	<update id="updateCategory">
+		update category
+		set name=#{newName}
+		where name=#{oldName}
+	</update>
+	
+	<!-- 删除分类 -->
+	<delete id="deleteCategory">
+		delete
+		from category
+		where name=#{name}
+	</delete>
+	
+	<!-- 添加分类 -->
+	<insert id="insertCategory">
+		insert ignore into category(name)
+		values(#{name});
+	</insert>
+</mapper>

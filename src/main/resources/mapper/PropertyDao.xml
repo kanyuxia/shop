@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.cuit.shop.dao.PropertyDao">
+
+	<!-- 添加属性信息 -->
+	<insert id="insertProperty">
+		insert ignore into property(name)
+		values(#{name});
+	</insert>
+	
+	<!-- 更新属性信息 -->
+	<update id="updateProperty"> 
+		update property
+		set name=#{newName}
+		where name=#{oldName};
+	</update>
+	
+	<!-- 删除属性信息 -->
+	<delete id="deleteProperty">
+		delete from property
+		where name=#{name};
+	</delete>
+	
+	<!-- 列出所有属性信息 -->
+	<select id="selectAll" resultType="cn.edu.cuit.shop.entity.Property">
+		select property_id,create_time,name
+		from property;
+	</select>
+</mapper>

@@ -20,10 +20,24 @@ public class TestProductDao {
 	
 	@Test
 	public void testInsertOrderItem() {
-		Product product = new Product(10, new Date(), "苹果", "内存,cpu", 1);
+		Product product1 = new Product(10, new Date(), "小米5", "内存,颜色", 10000);
+		Product product2 = new Product(10, new Date(), "小米6", "内存,颜色", 10000);
+		Product product3 = new Product(10, new Date(), "华为mate9", "内存,颜色", 10001);
+		Product product4 = new Product(10, new Date(), "IPhone7", "内存,颜色", 10002);
+		Product product5 = new Product(10, new Date(), "IPhone7", "内存,颜色", 10002);
 		
-		int countNum = productDao.insertProduct(product);
-		System.out.println(countNum);
+		int countNum1 = productDao.insertProduct(product1);
+		int countNum2 = productDao.insertProduct(product2);
+		int countNum3 = productDao.insertProduct(product3);
+		int countNum4 = productDao.insertProduct(product4);
+		int countNum5 = productDao.insertProduct(product5);
+		
+		
+		System.out.println(countNum1);
+		System.out.println(countNum2);
+		System.out.println(countNum3);
+		System.out.println(countNum4);
+		System.out.println(countNum5);
 	}
 	
 	@Test

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.cuit.shop.dao.PropertyValueDao">
+	<resultMap type="cn.edu.cuit.shop.entity.PropertyValue" id="resultMap">
+		<id property="propertyValueID" column="property_value_id"/>
+		<result property="createTime" column="property_value_create_time"/>
+		<result property="propertyID" column="property_id"/>
+		<result property="value" column="value"/>
+		<result property="productID" column="product_id"/>
+		<association property="property" javaType="cn.edu.cuit.shop.entity.Property">
+			<id property="propertyID" column="property_id"/>
+			<result property="createTime" column="property_create_time"/>
+			<result property="name" column="name"/>
+		</association>
+	</resultMap>
+
+	<!-- 插入属性值 -->
+	<insert id="insertPropertyValue">
+		insert into property_value(property_id,value,product_id)
+		values(#{propertyID},#{value},#{productID});
+	</insert>
+	
+	<!-- 修改属性值 -->
+	<update id="updatePropertyValue">
+		update property_value
+		set value=#{newValue}
+		where property_id=#{propertyID} and product_id=#{productID};
+	</update>
+	
+	<!-- 删除属性值 -->
+	<delete id="deletePropertyValue">
+		delete from property_value
+		where property_id=#{propertyID} and product_id=#{productID};
+	</delete>
+	
+	<!-- 列出产品的所有的属性 -->
+	<select id="selectByProductID" resultMap="resultMap">
+		select
+			a.property_value_id,
+			a.create_time as property_value_create_time,
+			a.property_id,
+			a.value,
+			a.product_id,
+			b.property_id,
+			b.create_time as property_create_time,
+			b.name
+		from property_value a
+			left join property b on a.property_id=b.property_id
+		where product_id=#{propertyID};
+	</select>
+</mapper>

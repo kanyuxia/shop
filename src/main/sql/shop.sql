@@ -1,3 +1,7 @@
+-- 数据库初始化脚本
+create database shop default charset=utf8;
+use shop;
+
 CREATE TABLE if not exists user(
 	`user_id` bigint(20) NOT NULL AUTO_INCREMENT comment '用户id',
   	`create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP comment '创建时间',
@@ -28,10 +32,8 @@ CREATE TABLE if not exists product (
 CREATE TABLE if not exists property (
   	`property_id` bigint(20) NOT NULL AUTO_INCREMENT comment '属性id',
  	`create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP comment '创建时间',
-  	`name` varchar(255) NOT NULL comment '属性名',
-  	`product_id` bigint(20) NOT NULL comment '产品id',
-  	PRIMARY KEY (`property_id`),
-  	constraint fk_product_property foreign key(product_id) references product(product_id)
+  	`name` varchar(255) NOT NULL unique comment '属性名',
+  	PRIMARY KEY (`property_id`)
 ) ENGINE=InnoDB auto_increment=10000 DEFAULT CHARSET=utf8;
 
 CREATE TABLE if not exists property_value (
@@ -39,7 +41,9 @@ CREATE TABLE if not exists property_value (
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP comment '创建时间',
   `property_id` bigint(20) NOT NULL comment '属性id',
   `value` varchar(255) DEFAULT NULL comment '属性值',
+  `product_id` bigint(20) NOT NULL comment '产品id',
   PRIMARY KEY (`property_value_id`),
+  constraint fk_product_property foreign key(product_id) references product(product_id),
   constraint fk_property_property_value foreign key(property_id) references property(property_id)
 ) ENGINE=InnoDB auto_increment=10000 DEFAULT CHARSET=utf8;
 
@@ -97,6 +101,3 @@ CREATE TABLE if not exists order_item (
   constraint fk_order_order_item foreign key(orders_id) references orders(orders_id),
   constraint fk_good_order_item foreign key(goods_id) references goods(goods_id)
 ) ENGINE=InnoDB auto_increment=10000 DEFAULT CHARSET=utf8;
-
-
-

@@ -10,8 +10,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import cn.edu.cuit.shop.entity.Goods;
-import cn.edu.cuit.shop.entity.OrderItem;
-import cn.edu.cuit.shop.entity.Product;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:spring/spring-dao.xml")
@@ -21,10 +19,27 @@ public class TestGoodsDao {
 	
 	@Test
 	public void testInsert() {
-		Goods goods = new Goods(12, new Date(), "四核,64G", 1200, 1199, 2);
+		Goods goods1 = new Goods(12, new Date(), "16G,金色", 2388.00, 2388.00, 10001);
+		Goods goods2 = new Goods(12, new Date(), "64G,金色", 2988.00, 2988.00, 10001);
+		Goods goods3 = new Goods(12, new Date(), "32G,黑色", 4899.00, 4899.00, 10002);
+		Goods goods4 = new Goods(12, new Date(), "128G,金色", 5688.00, 5688.00, 10002);
+		Goods goods5 = new Goods(12, new Date(), "32G,白色", 1599.00, 1599.00, 10003);
+		Goods goods6 = new Goods(12, new Date(), "32G,金色", 1699.00, 1699.00, 10003);
 		
-		int countNum = goodsDao.insertGoods(goods);
-		System.out.println(countNum);
+		int countNum1 = goodsDao.insertGoods(goods1);
+		int countNum2 = goodsDao.insertGoods(goods2);
+		int countNum3 = goodsDao.insertGoods(goods3);
+		int countNum4 = goodsDao.insertGoods(goods4);
+		int countNum5 = goodsDao.insertGoods(goods5);
+		int countNum6 = goodsDao.insertGoods(goods6);
+		
+		
+		System.out.println(countNum1);
+		System.out.println(countNum2);
+		System.out.println(countNum3);
+		System.out.println(countNum4);
+		System.out.println(countNum5);
+		System.out.println(countNum6);
 	}
 	
 	@Test

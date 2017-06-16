@@ -24,6 +24,14 @@ public class TestUserDao {
 		
 		int countNum = userDao.insertUser(number, password, nickname, sex);
 		System.out.println(countNum);
+		
+		String number1 = "18483620000";
+		String password1 = "123456";
+		String nickname1 = "听风来";
+		String sex1 = "男";
+		
+		int countNum1 = userDao.insertUser(number1, password1, nickname1, sex1);
+		System.out.println(countNum1);
 	}
 	
 	@Test
