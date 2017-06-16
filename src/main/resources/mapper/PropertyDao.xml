@@ -6,26 +6,27 @@
 
 	<!-- 添加属性信息 -->
 	<insert id="insertProperty">
-		insert ignore into property(name)
-		values(#{name});
+		insert ignore into property(name,category_id)
+		values(#{name},#{categoryID});
 	</insert>
 	
 	<!-- 更新属性信息 -->
 	<update id="updateProperty"> 
 		update property
 		set name=#{newName}
-		where name=#{oldName};
+		where name=#{oldName} and category_id=#{categoryID};
 	</update>
 	
 	<!-- 删除属性信息 -->
 	<delete id="deleteProperty">
 		delete from property
-		where name=#{name};
+		where name=#{name} and category_id=#{categoryID};
 	</delete>
 	
 	<!-- 列出所有属性信息 -->
 	<select id="selectAll" resultType="cn.edu.cuit.shop.entity.Property">
 		select property_id,create_time,name
-		from property;
+		from property
+		where category_id=#{categoryID};
 	</select>
 </mapper>

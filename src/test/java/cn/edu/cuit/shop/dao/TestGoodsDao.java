@@ -19,12 +19,12 @@ public class TestGoodsDao {
 	
 	@Test
 	public void testInsert() {
-		Goods goods1 = new Goods(12, new Date(), "16G,金色", 2388.00, 2388.00, 10001);
-		Goods goods2 = new Goods(12, new Date(), "64G,金色", 2988.00, 2988.00, 10001);
-		Goods goods3 = new Goods(12, new Date(), "32G,黑色", 4899.00, 4899.00, 10002);
-		Goods goods4 = new Goods(12, new Date(), "128G,金色", 5688.00, 5688.00, 10002);
-		Goods goods5 = new Goods(12, new Date(), "32G,白色", 1599.00, 1599.00, 10003);
-		Goods goods6 = new Goods(12, new Date(), "32G,金色", 1699.00, 1699.00, 10003);
+		Goods goods1 = new Goods(12, new Date(), "16G,金色", 2388.00, 2388.00, 10003);
+		Goods goods2 = new Goods(12, new Date(), "64G,金色", 2988.00, 2988.00, 10003);
+		Goods goods3 = new Goods(12, new Date(), "32G,黑色", 4899.00, 4899.00, 10004);
+		Goods goods4 = new Goods(12, new Date(), "128G,金色", 5688.00, 5688.00, 10004);
+		Goods goods5 = new Goods(12, new Date(), "32G,白色", 1599.00, 1599.00, 10000);
+		Goods goods6 = new Goods(12, new Date(), "32G,金色", 1699.00, 1699.00, 10000);
 		
 		int countNum1 = goodsDao.insertGoods(goods1);
 		int countNum2 = goodsDao.insertGoods(goods2);

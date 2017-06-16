@@ -21,9 +21,9 @@ public class TestProductDao {
 	public void testInsertOrderItem() {
 		Product product1 = new Product(10, new Date(), "小米5", "内存,颜色", 10000);
 		Product product2 = new Product(10, new Date(), "小米6", "内存,颜色", 10000);
-		Product product3 = new Product(10, new Date(), "华为mate9", "内存,颜色", 10001);
-		Product product4 = new Product(10, new Date(), "IPhone6", "内存,颜色", 10002);
-		Product product5 = new Product(10, new Date(), "IPhone7", "内存,颜色", 10002);
+		Product product3 = new Product(10, new Date(), "华为mate9", "内存,颜色", 10000);
+		Product product4 = new Product(10, new Date(), "IPhone6", "内存,颜色", 10000);
+		Product product5 = new Product(10, new Date(), "IPhone7", "内存,颜色", 10000);
 		
 		int countNum1 = productDao.insertProduct(product1);
 		int countNum2 = productDao.insertProduct(product2);

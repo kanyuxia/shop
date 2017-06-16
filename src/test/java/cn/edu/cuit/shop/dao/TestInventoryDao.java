@@ -20,7 +20,7 @@ public class TestInventoryDao {
 	
 	@Test
 	public void testInsert() {
-		Inventory inventory = new Inventory(1, new Date(), 1000, 1, 10005);
+		Inventory inventory = new Inventory(1, new Date(), 1000, 1, 10004);
 		
 		int countNum = inventoryDao.insertInventory(inventory);
 		System.out.println(countNum);

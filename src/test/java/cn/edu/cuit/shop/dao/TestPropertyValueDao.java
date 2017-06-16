@@ -20,15 +20,18 @@ public class TestPropertyValueDao {
 	
 	@Test
 	public void testInsertPropertyValue() {
-		int countNum1 = propertyValueDao.insertPropertyValue(10000, 10001, "苹果(IOS)");
-		int countNum2 = propertyValueDao.insertPropertyValue(10000, 10002, "苹果(IOS)");
-		int countNum3 = propertyValueDao.insertPropertyValue(10000, 10003, "安卓(Android)");
-		int countNum4 = propertyValueDao.insertPropertyValue(10001, 10001, "4.7英寸");
-		int countNum5 = propertyValueDao.insertPropertyValue(10001, 10002, "4.7英寸");
-		int countNum6 = propertyValueDao.insertPropertyValue(10001, 10003, "5.15英寸");
-		int countNum7 = propertyValueDao.insertPropertyValue(10002, 10001, "以官网信息为准");
-		int countNum8 = propertyValueDao.insertPropertyValue(10002, 10002, "以官网信息为准");
-		int countNum9 = propertyValueDao.insertPropertyValue(10002, 10003, "2910mAh/3000mAh(typ)");
+		int countNum1 = propertyValueDao.insertPropertyValue(10001, 10003, "苹果(IOS)");
+		int countNum2 = propertyValueDao.insertPropertyValue(10001, 10004, "苹果(IOS)");
+		int countNum3 = propertyValueDao.insertPropertyValue(10001, 10000, "安卓(Android)");
+		int countNum4 = propertyValueDao.insertPropertyValue(10002, 10003, "4.7英寸");
+		int countNum5 = propertyValueDao.insertPropertyValue(10002, 10004, "4.7英寸");
+		int countNum6 = propertyValueDao.insertPropertyValue(10002, 10000, "5.15英寸");
+		int countNum7 = propertyValueDao.insertPropertyValue(10003, 10003, "以官网信息为准");
+		int countNum8 = propertyValueDao.insertPropertyValue(10003, 10004, "以官网信息为准");
+		int countNum9 = propertyValueDao.insertPropertyValue(10004, 10000, "2910mAh/3000mAh(typ)");
+		int countNum10 = propertyValueDao.insertPropertyValue(10000, 10003, "苹果");
+		int countNum11 = propertyValueDao.insertPropertyValue(10000, 10004, "苹果");
+		int countNum12 = propertyValueDao.insertPropertyValue(10000, 10000, "小米");
 		
 		System.out.println(countNum1);
 		System.out.println(countNum2);
@@ -39,6 +42,9 @@ public class TestPropertyValueDao {
 		System.out.println(countNum7);
 		System.out.println(countNum8);
 		System.out.println(countNum9);
+		System.out.println(countNum10);
+		System.out.println(countNum11);
+		System.out.println(countNum12);
 	}
 	
 	@Test

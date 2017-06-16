@@ -18,23 +18,21 @@ public class TestCategoryDao {
 	
 	@Test
 	public void testInsertCategory() {
-		int countNum1 =  categoryDao.insertCategory("小米");
-		int countNum2 = categoryDao.insertCategory("华为");
-		int countNum3 = categoryDao.insertCategory("IPhone");
+		int countNum1 =  categoryDao.insertCategory("手机");
+		int countNum2 = categoryDao.insertCategory("手机配件");
 		System.out.println(countNum1);
 		System.out.println(countNum2);
-		System.out.println(countNum3);
 	}
 	
 	@Test
 	public void testUpdateCategory() {
-		int countNum1 = categoryDao.updateCategory("大米", "小米");
+		int countNum1 = categoryDao.updateCategory(10001, "手机配件1");
 		System.out.println(countNum1);
 	}
 	
 	@Test
 	public void testDeleteCategory() {
-		int countNum1 = categoryDao.deleteCategory("IPhone");
+		int countNum1 = categoryDao.deleteCategory(10001);
 		System.out.println(countNum1);
 	}
 	

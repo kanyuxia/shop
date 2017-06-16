@@ -32,8 +32,10 @@ CREATE TABLE if not exists product (
 CREATE TABLE if not exists property (
   	`property_id` bigint(20) NOT NULL AUTO_INCREMENT comment '属性id',
  	`create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP comment '创建时间',
-  	`name` varchar(255) NOT NULL unique comment '属性名',
-  	PRIMARY KEY (`property_id`)
+  	`name` varchar(255) NOT NULL comment '属性名',
+  	`category_id` bigint(20) NOT NULL comment '分类id',
+  	PRIMARY KEY (`property_id`),
+  	constraint fk_property_category foreign key(category_id) references category(category_id)
 ) ENGINE=InnoDB auto_increment=10000 DEFAULT CHARSET=utf8;
 
 CREATE TABLE if not exists property_value (

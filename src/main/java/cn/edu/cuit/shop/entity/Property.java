@@ -29,19 +29,28 @@ public class Property {
 	 */
 	private String name;
 	
+	/**
+	 * 外键：分类ID
+	 */
+	private long categoryID;
 	
 	// ------------------------Construct methods
 	public Property() {
 		super();
 	}
 
-	public Property(long propertyID, Date createTime, String name, long productID) {
+	
+	
+	public Property(long propertyID, Date createTime, String name, long categoryID) {
 		super();
 		this.propertyID = propertyID;
 		this.createTime = createTime;
 		this.name = name;
+		this.categoryID = categoryID;
 	}
-	
+
+
+
 	// ----------------------------Override some methods
 
 	@Override
@@ -57,11 +66,13 @@ public class Property {
 	}
 
 
-
 	@Override
 	public String toString() {
-		return "Property [propertyID=" + propertyID + ", createTime=" + createTime + ", name=" + name + "]";
+		return "Property [propertyID=" + propertyID + ", createTime=" + createTime + ", name=" + name + ", categoryID="
+				+ categoryID + "]";
 	}
+
+
 
 	@Override
 	public int hashCode() {
@@ -94,5 +105,13 @@ public class Property {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public void setCategoryID(long categoryID) {
+		this.categoryID = categoryID;
+	}
+	
+	public long getCategoryID() {
+		return categoryID;
 	}
 }

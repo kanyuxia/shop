@@ -14,25 +14,25 @@ public interface CategoryDao {
 	List<Category> selectAll();
 	
 	/**
-	 * 查询所有的分类信息(不级联)
+	 * 查询所有的分类信息(级联)
 	 * @return 分类信息
 	 */
 	List<Category> selectAllofProduct();
 	
 	/**
 	 * 修改分类名称
-	 * @param oldName 原分类名
+	 * @param categoryID 分类ID
 	 * @param newName 新分类名
 	 * @return 数据库影响行数
 	 */
-	int updateCategory(@Param("oldName")String oldName, @Param("newName")String newName);
+	int updateCategory(@Param("categoryID")long categoryID, @Param("newName")String newName);
 	
 	/**
 	 * 删除分类
-	 * @param name 分类名称
+	 * @param categoryID 分类ID
 	 * @return 数据库影响行数
 	 */
-	int deleteCategory(String name);
+	int deleteCategory(long categoryID);
 	
 	/**
 	 * 插入分类

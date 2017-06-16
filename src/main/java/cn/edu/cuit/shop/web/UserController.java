@@ -77,7 +77,7 @@ public class UserController {
 	@ResponseBody
 	public Result<Object> modifyUser(User user) {
 		System.out.println(user);
-		boolean successed = userService.mofifyUser(user);
+		boolean successed = userService.modifyUser(user);
 		if (successed) {
 			return new Result<Object>(true,null);
 		}

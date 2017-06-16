@@ -58,4 +58,10 @@ public class UserServiceImpl implements UserService {
 		int countNum = userDao.updateUser(user.getNumber(), user.getNickname(), user.getSex());
 		return countNum == 1 ? true : false;
 	}
+
+	@Override
+	public boolean modifyUser(User user) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

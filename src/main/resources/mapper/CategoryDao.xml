@@ -43,14 +43,14 @@
 	<update id="updateCategory">
 		update category
 		set name=#{newName}
-		where name=#{oldName}
+		where category_id=#{categoryID}
 	</update>
 	
 	<!-- 删除分类 -->
 	<delete id="deleteCategory">
 		delete
 		from category
-		where name=#{name}
+		where category_id=#{categoryID}
 	</delete>
 	
 	<!-- 添加分类 -->
