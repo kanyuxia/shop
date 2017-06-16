@@ -1,10 +1,8 @@
 package cn.edu.cuit.shop.dao;
 
-import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import cn.edu.cuit.shop.entity.OrderItem;
 import cn.edu.cuit.shop.entity.Product;
 
 public interface ProductDao {

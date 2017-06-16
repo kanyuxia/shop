@@ -7,14 +7,10 @@ import java.util.List;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import cn.edu.cuit.shop.entity.Goods;
-import cn.edu.cuit.shop.entity.OrderItem;
 import cn.edu.cuit.shop.entity.Orders;
-import cn.edu.cuit.shop.entity.Product;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:spring/spring-dao.xml")
@@ -24,7 +20,7 @@ public class TestOrdersDao {
 	
 	@Test
 	public void testInsert() {
-		Orders orders = new Orders(12, new Date(), "四川成都", 2, 1199, 1);
+		Orders orders = new Orders(12, new Date(), "四川成都", 2, 1599.00, 10000);
 		
 		int countNum = ordersDao.insertOrders(orders);
 		System.out.println(countNum);

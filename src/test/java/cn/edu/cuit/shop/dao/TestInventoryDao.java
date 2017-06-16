@@ -9,10 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import cn.edu.cuit.shop.entity.Goods;
 import cn.edu.cuit.shop.entity.Inventory;
-import cn.edu.cuit.shop.entity.OrderItem;
-import cn.edu.cuit.shop.entity.Product;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:spring/spring-dao.xml")
@@ -23,7 +20,7 @@ public class TestInventoryDao {
 	
 	@Test
 	public void testInsert() {
-		Inventory inventory = new Inventory(1, new Date(), 1000, 0, 1);
+		Inventory inventory = new Inventory(1, new Date(), 1000, 1, 10005);
 		
 		int countNum = inventoryDao.insertInventory(inventory);
 		System.out.println(countNum);

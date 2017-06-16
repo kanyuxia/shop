@@ -19,7 +19,7 @@ public class TestOrderItemDao {
 	
 	@Test
 	public void testInsertOrderItem() {
-		OrderItem orderItem = new OrderItem(new Date(), 1, 1, 1);
+		OrderItem orderItem = new OrderItem(new Date(), 1, 10005, 10000);
 		
 		int countNum = orderItemDao.insertOrderItem(orderItem);
 		System.out.println(countNum);

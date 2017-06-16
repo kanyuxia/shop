@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import cn.edu.cuit.shop.entity.OrderItem;
 import cn.edu.cuit.shop.entity.Product;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -23,7 +22,7 @@ public class TestProductDao {
 		Product product1 = new Product(10, new Date(), "小米5", "内存,颜色", 10000);
 		Product product2 = new Product(10, new Date(), "小米6", "内存,颜色", 10000);
 		Product product3 = new Product(10, new Date(), "华为mate9", "内存,颜色", 10001);
-		Product product4 = new Product(10, new Date(), "IPhone7", "内存,颜色", 10002);
+		Product product4 = new Product(10, new Date(), "IPhone6", "内存,颜色", 10002);
 		Product product5 = new Product(10, new Date(), "IPhone7", "内存,颜色", 10002);
 		
 		int countNum1 = productDao.insertProduct(product1);
