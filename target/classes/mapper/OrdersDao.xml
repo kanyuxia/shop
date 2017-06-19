@@ -83,6 +83,28 @@
 	  	where o.orders_id = #{ordersId}
   	</select>
   	
+  	<!-- 联合订单项 通过userId查询 -->
+  	<select id="selectWithOrderItemByUserId"  resultMap="ordersResult">
+	  	select o.orders_id as orders_id, 
+	  		o.create_time as create_time, 
+	  		o.harvest_address as harvest_address, 
+	  		o.status as status, 
+	  		o.user_id as user_id, 
+	  		o.total_price as total_price,
+	  		u.create_time as u_create_time,
+	  		u.number as u_number,
+	  		u.nickname as u_nickname,
+	  		u.sex as u_sex, 
+	  		oi.order_item_id as oi_order_item_id,
+	  		oi.create_time as oi_create_time,
+	  		oi.goods_id as oi_goods_id,
+	  		oi.goods_number as oi_goods_number
+	  	from orders o
+	  	left join user u on o.user_id = u.user_id 
+	  	left join order_item oi on o.orders_id = oi.orders_id 
+	  	where o.user_id = #{userId}
+  	</select>
+  	
   
   	<!-- 通过id删除 -->
 	<delete id="deleteById">
