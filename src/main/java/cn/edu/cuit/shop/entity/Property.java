@@ -1,14 +1,11 @@
 package cn.edu.cuit.shop.entity;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 /**
  * 属性表
- * @author kanyuxia
- *
- */
-/**
  * @author kanyuxia
  *
  */
@@ -33,6 +30,8 @@ public class Property {
 	 * 外键：分类ID
 	 */
 	private long categoryID;
+	
+	private List<PropertyValue> propertyValues;
 	
 	// ------------------------Construct methods
 	public Property() {
@@ -69,7 +68,7 @@ public class Property {
 	@Override
 	public String toString() {
 		return "Property [propertyID=" + propertyID + ", createTime=" + createTime + ", name=" + name + ", categoryID="
-				+ categoryID + "]";
+				+ categoryID + ", propertyValues=" + propertyValues + "]";
 	}
 
 
@@ -113,5 +112,13 @@ public class Property {
 	
 	public long getCategoryID() {
 		return categoryID;
+	}
+	
+	public List<PropertyValue> getPropertyValues() {
+		return propertyValues;
+	}
+	
+	public void setPropertyValues(List<PropertyValue> propertyValues) {
+		this.propertyValues = propertyValues;
 	}
 }

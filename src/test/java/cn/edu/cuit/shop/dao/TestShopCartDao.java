@@ -30,7 +30,7 @@ public class TestShopCartDao {
 	
 	@Test
 	public void testSelectOneShopCart() {
-		ShopCart shopCart = shopCartDao.selectOneShopCart(10004, 10000);
+		ShopCart shopCart = shopCartDao.selectOneShopCart(10004, 10001);
 		System.out.println(shopCart);
 	}
 	

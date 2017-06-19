@@ -35,7 +35,7 @@
 		where property_id=#{propertyID} and product_id=#{productID};
 	</delete>
 	
-	<!-- 列出产品的所有的属性 -->
+	<!-- 列出产品的所有的属性值(级联属性信息) -->
 	<select id="selectByProductID" resultMap="resultMap">
 		select
 			a.property_value_id,
@@ -48,6 +48,12 @@
 			b.name
 		from property_value a
 			left join property b on a.property_id=b.property_id
-		where product_id=#{propertyID};
+		where product_id=#{productID};
+	</select>
+	
+	<select id="selectDitByPropertyID" resultType="cn.edu.cuit.shop.entity.PropertyValue">
+		select distinct value
+		from property_value
+		where property_id=#{propertyID}
 	</select>
 </mapper>

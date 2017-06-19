@@ -59,7 +59,7 @@ public class TestGoodsDao {
 	
 	@Test
 	public void testSelectWithOneById() {
-		Goods goods = goodsDao.selectWithOneById(4);
+		Goods goods = goodsDao.selectWithOneById(10001);
 		System.out.println(goods);
 	}
 	

@@ -64,4 +64,10 @@ public class TestPropertyValueDao {
 		List<PropertyValue> propertyValues = propertyValueDao.selectByProductID(10001);
 		System.out.println(propertyValues);
 	}
+	
+	@Test
+	public void testSelectDitByPropertyID() {
+		List<PropertyValue> strings = propertyValueDao.selectDitByPropertyID(10000);
+		System.out.println(strings);
+	}
 }

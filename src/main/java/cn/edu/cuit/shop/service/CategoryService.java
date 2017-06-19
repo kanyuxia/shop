@@ -6,11 +6,12 @@ import cn.edu.cuit.shop.entity.Category;
 
 public interface CategoryService {
 	
+	
 	/**
-	 * 管理员：查询所有的分类信息(不级联)
+	 * 管理员/用户：查询所有的分类信息
 	 * @return 所有的分类信息
 	 */
-	List<Category> getAllCatsOfMana();
+	List<Category> listCats();
 	
 	/**
 	 * 管理员：修改分类名称
@@ -18,14 +19,14 @@ public interface CategoryService {
 	 * @param newName 新分类名称
 	 * @return 是否成功
 	 */
-	boolean modifyCatOfMana(long categoryID, String newName);
+	boolean modifyCat(long categoryID, String newName);
 	
 	/**
 	 * 管理员：删除分类
 	 * @param categoryID 分类ID
 	 * @return 是否成功
 	 */
-	boolean deleteCatOfMana(long categoryID);
+	boolean deleteCat(long categoryID);
 	
 	
 	/**
@@ -33,6 +34,8 @@ public interface CategoryService {
 	 * @param name 分类名称
 	 * @return 是否成功
 	 */
-	boolean insertCatOfMana(String name);
+	boolean insertCat(String name);
+	
+	
 	
 }

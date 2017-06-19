@@ -41,4 +41,11 @@ public interface PropertyDao {
 	 * @return 该分类下的所有属性信息
 	 */
 	List<Property> selectAll(long categoryID);
+	
+	/**
+	 * 列出分类下所有属性信息(级联属性值)
+	 * @param categoryID 分类ID
+	 * @return 该分类下的所有属性信息
+	 */
+	List<Property> selectAllOfValue(long categoryID);
 }

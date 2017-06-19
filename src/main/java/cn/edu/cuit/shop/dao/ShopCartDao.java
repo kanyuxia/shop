@@ -20,7 +20,7 @@ public interface ShopCartDao {
 			@Param("userID")long userID);
 	
 	/**
-	 * 查询购物车信息(不级联)
+	 * 查询购物车信息
 	 * @param goodsID 商品ID
 	 * @param userID 用户ID
 	 * @return 购物车信息
@@ -37,14 +37,14 @@ public interface ShopCartDao {
 	int updateGoodsNumber(@Param("shopCartID") long shopCartID, @Param("goodsNumber")long goodsNumber);
 
 	/**
-	 * 查找用户的购物车数据(不级联)
+	 * 查找用户的购物车数据
 	 * @param userID 用户ID
 	 * @return 用户购物车数据
 	 */
 	List<ShopCart> selectShopCart(@Param("userID") long userID);
 	
 	/**
-	 * 查找用户的购物车数据(级联)
+	 * 查找用户的购物车数据(级联商品、产品信息)
 	 * @param userID 用户ID
 	 * @return 用户购物车数据
 	 */

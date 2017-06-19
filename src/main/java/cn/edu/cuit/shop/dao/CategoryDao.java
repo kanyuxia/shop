@@ -8,16 +8,10 @@ import cn.edu.cuit.shop.entity.Category;
 
 public interface CategoryDao {
 	/**
-	 * 查询所有的分类信息(不级联)
+	 * 查询所有的分类信息
 	 * @return 分类信息
 	 */
 	List<Category> selectAll();
-	
-	/**
-	 * 查询所有的分类信息(级联)
-	 * @return 分类信息
-	 */
-	List<Category> selectAllofProduct();
 	
 	/**
 	 * 修改分类名称

@@ -48,5 +48,4 @@ public interface GoodsDao {
 	 * @return 影响的行数
 	 */
 	int deleteById(@Param("goodsId") long goodsId);
-	
 }

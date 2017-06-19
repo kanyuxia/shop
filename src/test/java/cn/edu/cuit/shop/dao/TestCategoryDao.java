@@ -41,10 +41,4 @@ public class TestCategoryDao {
 		List<Category> categories = categoryDao.selectAll();
 		System.out.println(categories);
 	}
-	
-	@Test
-	public void testSelectAllofProduct() {
-		List<Category> categories = categoryDao.selectAllofProduct();
-		System.out.println(categories);
-	}
 }

@@ -54,4 +54,9 @@ public class TestPropertyDao {
 		System.out.println(properties);
 	}
 	
+	@Test
+	public void testSelectAllOfValue() {
+		List<Property> properties = propertyDao.selectAllOfValue(10000);
+		System.out.println(properties);
+	}
 }

@@ -1,6 +1,8 @@
 package cn.edu.cuit.shop.dao;
 
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 import cn.edu.cuit.shop.entity.Product;
@@ -56,4 +58,27 @@ public interface ProductDao {
 	 */
 	int deleteById(@Param("productId") long productId);
 	
+	/**
+	 * 根据销量查询产品信息
+	 * @param offsetStart 起始偏移量
+	 * @param rowCount 行数
+	 * @return 产品信息
+	 */
+	List<Product> selectPageBySellNum(@Param("offsetStart")long offsetStart, @Param("rowCount")long rowCount);
+	
+	/**
+	 * 根据库存量查询产品信息
+	 * @param offsetStart 起始偏移量
+	 * @param rowCount 行数
+	 * @return 产品信息
+	 */
+	List<Product> selectPageByInvNum(@Param("offsetStart")long offsetStart, @Param("rowCount")long rowCount);
+	
+	/**
+	 * 根据上架时间查询产品信息
+	 * @param offsetStart 起始偏移量
+	 * @param rowCount 行数
+	 * @return 产品信息
+	 */
+	List<Product> selectPageByTime(@Param("offsetStart")long offsetStart, @Param("rowCount")long rowCount);
 }

@@ -2,6 +2,7 @@ package cn.edu.cuit.shop.dao;
 
 
 import java.util.Date;
+import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -69,5 +70,23 @@ public class TestProductDao {
 	public void testDeleteById() {
 		int countNum = productDao.deleteById(2);
 		System.out.println(countNum);
+	}
+	
+	@Test
+	public void testSelectPageBySellNum() {
+		List<Product> products = productDao.selectPageBySellNum(0, 10);
+		System.out.println(products);
+	}
+	
+	@Test
+	public void testSelectPageByInvNum() {
+		List<Product> products = productDao.selectPageByInvNum(0, 10);
+		System.out.println(products);
+	}
+	
+	@Test
+	public void testSelectPageByTime() {
+		List<Product> products = productDao.selectPageByTime(0, 10);
+		System.out.println(products);
 	}
 }

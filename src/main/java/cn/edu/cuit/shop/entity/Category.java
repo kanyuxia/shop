@@ -1,7 +1,6 @@
 package cn.edu.cuit.shop.entity;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Objects;
 
 /**
@@ -25,11 +24,6 @@ public class Category {
 	 * 分类名
 	 */
 	private String name;
-	
-	/**
-	 * 产品列表
-	 */
-	private List<Product> products;
 	
 	// -------------------------Construct methods
 	
@@ -65,11 +59,9 @@ public class Category {
 		return result;
 	}
 	
-
 	@Override
 	public String toString() {
-		return "Category [categoryID=" + categoryID + ", createTime=" + createTime + ", name=" + name + ", products="
-				+ products + "]";
+		return "Category [categoryID=" + categoryID + ", createTime=" + createTime + ", name=" + name + "]";
 	}
 
 	// -----------------------setter、getter methods
@@ -95,13 +87,5 @@ public class Category {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-	
-	public List<Product> getProducts() {
-		return products;
-	}
-	
-	public void setProducts(List<Product> products) {
-		this.products = products;
 	}
 }

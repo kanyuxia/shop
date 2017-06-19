@@ -37,10 +37,18 @@ public interface PropertyValueDao {
 	int deletePropertyValue(@Param("propertyID") long propertyID, @Param("productID") long productID);
 	
 	/**
-	 * 列出产品的所有的属性
+	 * 列出产品的所有的属性值(级联属性信息)
 	 * @param propertyID 产品ID
 	 * @return 该产品对应的所有属性
 	 */
-	List<PropertyValue> selectByProductID(@Param("propertyID") long propertyID);
+	List<PropertyValue> selectByProductID(long productID);
+	
+	
+	/**
+	 * 列出不重复的属性值
+	 * @param propertyID 属性ID
+	 * @return 该属性对应的不重复的属性值
+	 */
+	List<PropertyValue> selectDitByPropertyID(long propertyID);
 
 }

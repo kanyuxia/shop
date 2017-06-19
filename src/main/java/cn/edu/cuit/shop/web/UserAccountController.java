@@ -10,8 +10,13 @@ import cn.edu.cuit.shop.dto.Result;
 import cn.edu.cuit.shop.entity.User;
 import cn.edu.cuit.shop.service.UserService;
 
+/**
+ * 该Controller是有关用户账户信息的Controller
+ * @author kanyuxia
+ *
+ */
 @Controller
-public class UserController {
+public class UserAccountController {
 	
 	@Autowired
 	private UserService userService;
