@@ -34,6 +34,8 @@ public class Inventory {
 	 */
 	private long goodsID;
 	
+	private Goods goods;
+	
 	// ---------------------Construct method
 	public Inventory() {
 		super();
@@ -70,12 +72,14 @@ public class Inventory {
 		return false;
 	}
 
+	
+	
 	@Override
 	public String toString() {
 		return "Inventory [inventoryID=" + inventoryID + ", createTime=" + createTime + ", inventoryNumber="
-				+ inventoryNumber + ", sellNumber=" + sellNumber + ", goodsID=" + goodsID + "]";
+				+ inventoryNumber + ", sellNumber=" + sellNumber + ", goodsID=" + goodsID + ", goods=" + goods + "]";
 	}
-	
+
 	// -----------------------setter、getter methods
 	public long getInventoryID() {
 		return inventoryID;
@@ -117,5 +121,11 @@ public class Inventory {
 		this.goodsID = goodsID;
 	}
 	
+	public void setGoods(Goods goods) {
+		this.goods = goods;
+	}
 	
+	public Goods getGoods() {
+		return goods;
+	}
 }

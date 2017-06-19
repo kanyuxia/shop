@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.cuit.shop.dao.ShopCartDao">
+
+	<resultMap type="cn.edu.cuit.shop.entity.ShopCart" id="shopCartResult">
+		<id property="shopCartID" column="shop_cart_id"/>
+		<result property="createTime" column="shop_cart_create_time"/>
+		<result property="goodsNumber" column="goods_number"/>
+		<result property="userId" column="user_id"/>
+		<collection property="goods" ofType="cn.edu.cuit.shop.entity.Goods">
+			<id property="goodsID" column="goods_id"/>
+			<result property="createTime" column="goods_create_time"/>
+			<result property="attributes" column="attributes"/>
+			<result property="originalPrice" column="product_id"/>
+			<result property="sellPrice" column="original_price"/>
+			<result property="productID" column="sell_price"/>
+			<association property="product" javaType="cn.edu.cuit.shop.entity.Product">
+				<id property="productID" column="product_id"/>
+				<result property="createTime" column="product_create_time"/>
+				<result property="name" column="name"/>
+				<result property="attributes" column="attributes"/>
+				<result property="categoryID" column="category_id"/>
+			</association>
+		</collection>
+	</resultMap>
+
+	<!-- 向购物车插入商品 -->
+	<insert id="insertGoods">
+		insert into shop_cart(goods_id,goods_number,user_id)
+		values(#{goodsID},#{goodsNumber},#{userID})
+	</insert>
+	
+	<!-- 更新购物车中商品数量 -->
+	<update id="updateGoodsNumber">
+		update shop_cart
+		set goods_number=#{goodsNumber}
+		where shop_cart_id=#{shopCartID}
+	</update>
+	
+	<!-- 查找用户的购物车数据(不级联) -->
+	<select id="selectShopCart" resultType="cn.edu.cuit.shop.entity.ShopCart">
+		select shop_cart_id,create_time,goods_id,goods_number,user_id
+		from shop_cart
+		where user_id=#{userID}
+	</select>
+	
+	<!-- 查找用户的购物车数据(级联) -->
+	<select id="selectShopCartAll" resultMap="shopCartResult">
+		select
+			a.shop_cart_id,
+			a.create_time as shop_cart_create_time,
+			a.goods_number,
+			a.user_id,
+			b.goods_id,
+			b.create_time as goods_create_time,
+			b.attributes,
+			b.product_id,
+			b.original_price,
+			b.sell_price,
+			c.product_id,
+			c.name,
+			c.create_time as product_create_time,
+			c.category_id,
+			c.attributes
+		from shop_cart a 
+			left join goods b on a.goods_id = b.goods_id
+			left join product c on b.product_id = c.product_id
+		where a.user_id=#{userID}
+	</select>
+	
+	<!-- 删除购物车 -->
+	<delete id="deleteShopCart">
+		delete from shop_cart
+		where shop_cart_id=#{shopCartID}
+	</delete>
+	
+	<!-- 查询购物车信息(不级联) -->
+	<select id="selectOneShopCart" resultType="cn.edu.cuit.shop.entity.ShopCart">
+		select shop_cart_id,create_time,goods_id,goods_number,user_id
+		from shop_cart
+		where goods_id=#{goodsID} and user_id=#{userID}
+	</select>
+</mapper>

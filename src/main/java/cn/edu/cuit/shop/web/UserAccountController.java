@@ -10,8 +10,13 @@ import cn.edu.cuit.shop.dto.Result;
 import cn.edu.cuit.shop.entity.User;
 import cn.edu.cuit.shop.service.UserService;
 
+/**
+ * 该Controller是有关用户账户信息的Controller
+ * @author kanyuxia
+ *
+ */
 @Controller
-public class UserController {
+public class UserAccountController {
 	
 	@Autowired
 	private UserService userService;
@@ -77,7 +82,7 @@ public class UserController {
 	@ResponseBody
 	public Result<Object> modifyUser(User user) {
 		System.out.println(user);
-		boolean successed = userService.mofifyUser(user);
+		boolean successed = userService.modifyUser(user);
 		if (successed) {
 			return new Result<Object>(true,null);
 		}

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.cuit.shop.dao.PropertyDao">
+
+	<resultMap type="cn.edu.cuit.shop.entity.Property" id="resultMap">
+		<id property="propertyID" column="property_id"/>
+		<result property="createTime" column="property_create_time"/>
+		<result property="name" column="name"/>
+		<result property="categoryID" column="category_id"/>
+		<collection property="propertyValues" ofType="cn.edu.cuit.shop.entity.PropertyValue">  
+	        <id property="propertyValueID" column="property_value_id"/>  
+	        <result property="createTime" column="property_value_create_time"/>  
+	        <result property="propertyID" column="property_id"/>  
+	        <result property="value" column="value"/>  
+	        <result property="productID" column="product_id"/>
+	    </collection> 
+	</resultMap>
+
+	<!-- 添加属性信息 -->
+	<insert id="insertProperty">
+		insert ignore into property(name,category_id)
+		values(#{name},#{categoryID});
+	</insert>
+	
+	<!-- 更新属性信息 -->
+	<update id="updateProperty"> 
+		update property
+		set name=#{newName}
+		where name=#{oldName} and category_id=#{categoryID}
+	</update>
+	
+	<!-- 删除属性信息 -->
+	<delete id="deleteProperty">
+		delete from property
+		where name=#{name} and category_id=#{categoryID}
+	</delete>
+	
+	<!-- 列出所有属性信息(不级联) -->
+	<select id="selectAll" resultType="cn.edu.cuit.shop.entity.Property">
+		select property_id,create_time,name
+		from property
+		where category_id=#{categoryID}
+	</select>
+	
+	<!-- 列出所有属性信息(级联) -->
+	<select id="selectAllOfValue" resultMap="resultMap">
+		select 
+			a.property_id,
+			a.create_time as property_create_time,
+			a.name,
+			a.category_id,
+			b.property_value_id,
+			b.create_time as property_value_create_time,
+			b.property_id,
+			b.value,
+			b.product_id
+		from property a
+			left join property_value b on a.property_id = b.property_id
+		where a.category_id=#{categoryID}
+	</select>
+</mapper>

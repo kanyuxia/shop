@@ -35,5 +35,5 @@ public interface UserService {
 	 * @param user 新的用户信息
 	 * @return 是否修改成功
 	 */
-	boolean mofifyUser(User user);
+	boolean modifyUser(User user);
 }

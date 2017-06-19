@@ -28,7 +28,7 @@ public class StaticResourceController {
 		return "front/contact_us";
 	}
 	
-	@RequestMapping("/index")
+	@RequestMapping("/shop.com")
 	public String getIndex(){
 		return "front/index";
 	}

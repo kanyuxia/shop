@@ -1,6 +1,7 @@
 package cn.edu.cuit.shop.entity;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -26,23 +27,29 @@ public class Property {
 	private String name;
 	
 	/**
-	 * 外键：产品id
+	 * 外键：分类ID
 	 */
-	private long productID;
-
+	private long categoryID;
+	
+	private List<PropertyValue> propertyValues;
+	
 	// ------------------------Construct methods
 	public Property() {
 		super();
 	}
 
-	public Property(long propertyID, Date createTime, String name, long productID) {
+	
+	
+	public Property(long propertyID, Date createTime, String name, long categoryID) {
 		super();
 		this.propertyID = propertyID;
 		this.createTime = createTime;
 		this.name = name;
-		this.productID = productID;
+		this.categoryID = categoryID;
 	}
-	
+
+
+
 	// ----------------------------Override some methods
 
 	@Override
@@ -52,24 +59,25 @@ public class Property {
 		}
 		if (obj instanceof Property) {
 			Property property = (Property) obj;
-			return Objects.equals(this.name, property.getName()) 
-					&& Objects.equals(this.productID, property.getProductID());
+			return Objects.equals(this.name, property.getName());
 		}
 		return false;
 	}
 
+
 	@Override
 	public String toString() {
-		return "Property [propertyID=" + propertyID + ", createTime=" + createTime + ", name=" + name + ", productID="
-				+ productID + "]";
+		return "Property [propertyID=" + propertyID + ", createTime=" + createTime + ", name=" + name + ", categoryID="
+				+ categoryID + ", propertyValues=" + propertyValues + "]";
 	}
-	
+
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + (int) (productID ^ (productID >>> 32));
 		return result;
 	}
 
@@ -97,14 +105,20 @@ public class Property {
 	public void setName(String name) {
 		this.name = name;
 	}
-
-	public long getProductID() {
-		return productID;
-	}
-
-	public void setProductID(long productID) {
-		this.productID = productID;
+	
+	public void setCategoryID(long categoryID) {
+		this.categoryID = categoryID;
 	}
 	
+	public long getCategoryID() {
+		return categoryID;
+	}
 	
+	public List<PropertyValue> getPropertyValues() {
+		return propertyValues;
+	}
+	
+	public void setPropertyValues(List<PropertyValue> propertyValues) {
+		this.propertyValues = propertyValues;
+	}
 }

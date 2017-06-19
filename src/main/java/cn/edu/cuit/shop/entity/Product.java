@@ -41,6 +41,16 @@ public class Product {
 	 */
 	private long categoryID;
 	
+	/**
+	 * 总销量
+	 */
+	private long totalSellNumber;
+	
+	/**
+	 * 总库存量
+	 */
+	private long totalInvNumber;
+	
 	//分类
 	private Category category;
 
@@ -79,14 +89,12 @@ public class Product {
 		return super.equals(obj);
 	}
 
-	
-
-	
 
 	@Override
 	public String toString() {
 		return "Product [productID=" + productID + ", createTime=" + createTime + ", name=" + name + ", attributes="
-				+ attributes + ", goods=" + goods + ", categoryID=" + categoryID + ", category=" + category + "]";
+				+ attributes + ", goods=" + goods + ", categoryID=" + categoryID + ", totalSellNumber="
+				+ totalSellNumber + ", totalInvNumber=" + totalInvNumber + ", category=" + category + "]";
 	}
 
 	// -------------------setter、getter methods
@@ -146,5 +154,19 @@ public class Product {
 		this.goods = goods;
 	}
 	
+	public long getTotalSellNumber() {
+		return totalSellNumber;
+	}
 	
+	public void setTotalSellNumber(long totalSellNumber) {
+		this.totalSellNumber = totalSellNumber;
+	}
+	
+	public long getTotalInvNumber() {
+		return totalInvNumber;
+	}
+	
+	public void setTotalInvNumber(long totalInvNumber) {
+		this.totalInvNumber = totalInvNumber;
+	}
 }

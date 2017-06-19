@@ -1,7 +1,9 @@
 package cn.edu.cuit.shop.entity;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
+
 
 /**
  * 购物车信息表
@@ -34,6 +36,11 @@ public class ShopCart {
 	 * 用户id
 	 */
 	private long userId;
+	
+	/**
+	 * 所有商品
+	 */
+	private List<Goods> goods;
 	
 	// --------------------------Construct methods
 	public ShopCart() {
@@ -72,12 +79,13 @@ public class ShopCart {
 		return false;
 	}
 
+	
 	@Override
 	public String toString() {
 		return "ShopCart [shopCartID=" + shopCartID + ", createTime=" + createTime + ", goodsNumber=" + goodsNumber
-				+ ", goodsId=" + goodsId + ", userId=" + userId + "]";
+				+ ", goodsId=" + goodsId + ", userId=" + userId + ", goods=" + goods + "]";
 	}
-	
+
 	// ------------------setter、getter methodss
 	public long getShopCartID() {
 		return shopCartID;
@@ -119,5 +127,11 @@ public class ShopCart {
 		this.userId = userId;
 	}
 	
+	public void setGoods(List<Goods> goods) {
+		this.goods = goods;
+	}
 	
+	public List<Goods> getGoods() {
+		return goods;
+	}
 }

@@ -1,12 +1,9 @@
 package cn.edu.cuit.shop.dao;
 
-import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
 import cn.edu.cuit.shop.entity.Goods;
-import cn.edu.cuit.shop.entity.OrderItem;
-import cn.edu.cuit.shop.entity.Product;
 
 public interface GoodsDao {
 
@@ -51,5 +48,4 @@ public interface GoodsDao {
 	 * @return 影响的行数
 	 */
 	int deleteById(@Param("goodsId") long goodsId);
-	
 }

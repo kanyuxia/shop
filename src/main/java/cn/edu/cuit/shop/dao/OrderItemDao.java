@@ -1,8 +1,7 @@
 package cn.edu.cuit.shop.dao;
 
-import java.util.List;
 
-import org.apache.ibatis.annotations.Param;import org.springframework.core.annotation.Order;
+import org.apache.ibatis.annotations.Param;
 
 import cn.edu.cuit.shop.entity.OrderItem;
 

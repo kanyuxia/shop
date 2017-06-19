@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.cuit.shop.dao.CategoryDao">
+
+	<!-- 查询所有的分类信息 -->
+	<select id="selectAll" resultType="cn.edu.cuit.shop.entity.Category">
+		select category_id,create_time,name
+		from category
+	</select>
+	
+	<!-- 修改分类名称 -->
+	<update id="updateCategory">
+		update category
+		set name=#{newName}
+		where category_id=#{categoryID}
+	</update>
+	
+	<!-- 删除分类 -->
+	<delete id="deleteCategory">
+		delete
+		from category
+		where category_id=#{categoryID}
+	</delete>
+	
+	<!-- 添加分类 -->
+	<insert id="insertCategory">
+		insert ignore into category(name)
+		values(#{name})
+	</insert>
+</mapper>
