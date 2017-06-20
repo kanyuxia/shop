@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>商品列表</title>
+    <link rel="stylesheet" href="../../css/easyui.css">
+    <link rel="stylesheet" href="../../css/icon.css">
+    <script type="text/javascript" src="../../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/jquery.easyui.min.js"></script>
+</head>
+<!-- 在body上进行布局-->
+<body class="easyui-layout">
+<div data-options="region:'west',split:true" style="width: 500,height:auto;" maxWidth="600">
+    <!-- 创建主网格
+    url:获取主网格JSON的数据源-->
+    <table id="dg" style="width:auto;height:auto" class="easyui-datagrid"
+           url="datagrid_data1.json"
+           title="产品列表"
+           singleSelect="true"
+           fitColumns="true"
+           pagination="true"
+           data-options="onClickRow:onClickCell1"
+    >
+        <thead>
+        <tr>
+            <th field="productID" width="80">产品编号</th>
+            <th field="name" align="right" width="80">产品名称</th>
+            <th field="createTime" width="100">创建时间</th>
+            <th field="attributes" align="right" width="80">属性</th>
+        </tr>
+        </thead>
+    </table>
+</div>
+<!-- 显示详细商品-->
+<div data-options="region:'center',title:'子网格',split:false" style="width: 500px,height:100px;">
+    <table id="splbTable" class="easyui-datagrid" style="width:auto;height:auto"
+           data-options="
+                <!-- 显示行号-->
+                rownumbers:true,
+                <!-- 图标-->
+				iconCls: 'icon-edit',
+				singleSelect: true,
+				<!-- 数据来源-->
+				url: 'goods.json',
+				method:'get',
+				onClickCell: onClickCell,
+				pagination:true,
+				<!-- 默认每页大小-->
+				pageSize:10,
+				striped:true
+			"
+           fitcolumns="true">
+        <thead>
+        <th data-options="field:'productID',width:80">产品编号</th>
+        <th data-options="field:'goodsID',width:80">商品编号</th>
+        <th data-options="field:'createTime',width:80">创建时间</th>
+        <th data-options="field:'attributes',width:80,editor:{type:'text',options:{precision:1}}">属性</th>
+        <th data-options="field:'originalPrice',width:80,editor:{type:'numberbox',options:{precision:1}}">原价</th>
+        <th data-options="field:'sellPrice',width:80,editor:{type:'numberbox',options:{precision:1}}">售价</th>
+        <th data-options="field:'inventoryNumber',width:80,editor:{type:'numberbox',options:{precision:1}}">库存</th>
+        <th data-options="field:'action',width:80,formatter:function(value,row,index) {
+                                var d = '<a href=# onclick=deleterow(this)>删除</a>';
+                                return d;
+                            }">操作</th>
+        </thead>
+    </table>
+
+</div>
+<script type="text/javascript">
+    function onClickCell1(rowIndex, rowData) {
+        $("#splbTable").datagrid('load'), {
+            // 传递产品参数给后台
+            productID: rowData.productID
+        }
+        alert("成功");
+    }
+    var editIndex = undefined;
+    function endEditing() {
+        if (editIndex == undefined) {
+            return true
+        }
+        if ($('#splbTable').datagrid('validateRow', editIndex)) {
+            $('#splbTable').datagrid('endEdit', editIndex);
+            editIndex = undefined;
+            return true;
+        } else {
+            return false;
+        }
+    }
+    function onClickCell(index, field) {
+        if (endEditing()) {
+            $('#splbTable').datagrid('selectRow', index).datagrid('editCell', {index: index, field: field});
+            editIndex = index;
+        }
+    }
+
+    $.extend($.fn.datagrid.methods, {
+        editCell: function (jq, param) {
+            return jq.each(function () {
+                var opts = $(this).datagrid('options');
+                var fields = $(this).datagrid('getColumnFields', true).concat($(this).datagrid('getColumnFields'));
+                for (var i = 0; i < fields.length; i++) {
+                    var col = $(this).datagrid('getColumnOption', fields[i]);
+                    col.editor1 = col.editor;
+                    if (fields[i] != param.field) {
+                        col.editor = null;
+                    }
+                }
+                $(this).datagrid('beginEdit', param.index);
+                for (var i = 0; i < fields.length; i++) {
+                    var col = $(this).datagrid('getColumnOption', fields[i]);
+                    col.editor = col.editor1;
+                }
+            });
+        }
+    });
+
+    $('#splbTable').datagrid({
+        toolbar: [{
+            text: '保存',
+            iconCls: 'icon-save',
+            handler: function () {
+                save();
+            }
+        }]
+    });
+
+    function deleterow(target) {
+        $.messager.confirm('Confirm', '确认删除？', function (r) {
+            if (r) {
+                $('#splbTable').datagrid('deleteRow', getRowIndex(target));
+            }
+        })
+    }
+
+    function getRowIndex(target) {
+        var tr = $(target).closest('tr.datagrid-row');
+        return parseInt(tr.attr('datagrid-row-index'));
+    }
+
+    // 参考网址：http://www.cnblogs.com/loganni/p/5586380.html
+    /**
+     * 保存表格中被修改的数据
+     */
+    function save() {
+        // 判断是否有数据改变
+        if ($('#splbTable').datagrid('getChanges').length) {
+            // 获取修改的数据
+            var updated = $('#splbTable').datagrid('getChanges', updated);
+            // 获取删除的数据
+            var deleted = $('#splbTable').datagrid('getChanges', deleted);
+
+            // 去掉修改中重复的被删除的数据
+            //updated = deleteArray(updated,deleted);
+            // 将所有数据装到一起
+            var effecrow = new Object();
+
+            // 拼装JSON
+            effecrow = addJson(updated);
+            alert(JSON.stringify(effecrow));
+            // 用户确认进行数据修改后的保存操作
+            if (confirm("是否保存")) {
+                // 通过ajax提交到后台进行处理
+                $.ajax({
+                    type: 'POST',
+                    url: 'url',
+                    data: effecrow,
+                    // 执行成功返回值
+                    success: function () {
+                        $("#splbTable").datagrid('reload');
+                    },
+                    // 错误处理
+                    error: function () {
+                        alert('更新数据时发生了错误');
+                        $("#splbTable").datagrid('reload');
+                    }
+                })
+            } else {
+                alert("取消保存");
+            }
+        }
+    }
+
+
+    /**
+     * 传入两个数组，去掉A数组中B中存在的值,并返回新的A数组
+     * @param A
+     * @param B
+     */
+    function deleteArray(A, B) {
+        // 用临时数组保存A
+        var temp = A;
+        for (var i = 0; i < A.length; i++) {
+            for (var j = 0; j < B.length; j++) {
+                if (A[i] == B[j]) {
+                    temp.splice(i, 1);
+                }
+            }
+        }
+        return temp;
+    }
+
+    /**
+     * 将one对象组装放入all中,action为进行的操作
+     * @param one
+     */
+    function addJson(one) {
+        if (one.length > 0) {
+            // 商品
+            var goods = new Array();
+            // 遍历one
+            for (var i = 0; i < one.length; i++) {
+                // 组装goods
+                goods[i] = {
+                    goodsID: "",                                   //商品id
+                    createTime: "",                               //创建时间
+                    productID: one[i].productID, // 产品id
+                    attributes: one[i].attributes,               // 商品属性
+                    originalPrice: one[i].originalPrice,         // 原价
+                    sellPrice: one[i].sellPrice,                // 售价
+                    Inventory: {                             // 库存
+                        inventoryID: "",                         //库存id
+                        createTime: "",                          //创建时间
+                        inventoryNumber: one[i].inventoryNumber, //库存数量
+                        sellNumber: "",                           //销售数量
+                        goodsID: ""                              //商品id
+                    }
+                }
+            }
+            return goods;
+        }
+    }
+</script>
+</body>
+</html>

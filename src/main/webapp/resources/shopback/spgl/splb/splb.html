@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>商品列表</title>
+    <link rel="stylesheet" href="../../css/easyui.css">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/icon.css">
+    <script type="text/javascript" src="../../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/jquery.easyui.min.js"></script>
+</head>
+<body>
+<h3>商品列表</h3>
+<!-- 定义按钮-->
+<div id="tb" style="padding:5px;height:auto">
+    <div style="margin-bottom:5px">
+        <a href="#" class="easyui-linkbutton" iconCls="icon-save" onclick="save()" plain="true">保存</a>
+    </div>
+</div>
+<!-- 表格-->
+<table id="dg" class="easyui-datagrid" title="商品列表" style="width:auto;height:auto"
+       data-options="
+                <!-- 显示行号-->
+                rownumbers:true,
+                <!-- 图标-->
+				iconCls: 'icon-edit',
+				singleSelect: true,
+				<!-- 数据来源-->
+				url: 'datagrid_data.json',
+				method:'post',
+				onClickCell: onClickCell,
+				pageSize:10,
+				striped:true,
+				pagination:true,
+			"
+       fitcolumns="true">
+    <thead>
+    <tr>
+        <th data-options="field:'name',width:80">商品名称</th>
+        <th data-options="field:'attributes',width:200,editor:{type:'text'}">商品属性</th>
+        <th data-options="field:'originalPrice',width:80,editor:{type:'numberbox',options:{precision:1}}">原价</th>
+        <th data-options="field:'sellPrice',width:100,editor:{type:'numberbox',options:{precision:1}}">售价</th>
+        <th data-options="field:'product_name',width:200">所属产品</th>
+        <th data-options="field:'inventoryNumber',width:70">库存</th>
+        <th data-options="field:'name',width:200,editor:{type:'text',options:{precision:1}}">所属商品</th>
+        <th data-options="field:'action',width:200,formatter:function(value,row,index) {
+                                var d = '<a href=# onclick=deleterow(this)>删除</a>';
+                                return d;
+                            }">操作</th>
+    </tr>
+    </thead>
+</table>
+<script type="text/javascript">
+    $.extend($.fn.datagrid.methods, {
+        editCell: function(jq,param){
+            return jq.each(function(){
+                var opts = $(this).datagrid('options');
+                var fields = $(this).datagrid('getColumnFields',true).concat($(this).datagrid('getColumnFields'));
+                for(var i=0; i<fields.length; i++){
+                    var col = $(this).datagrid('getColumnOption', fields[i]);
+                    col.editor1 = col.editor;
+                    if (fields[i] != param.field){
+                        col.editor = null;
+                    }
+                }
+                $(this).datagrid('beginEdit', param.index);
+                for(var i=0; i<fields.length; i++){
+                    var col = $(this).datagrid('getColumnOption', fields[i]);
+                    col.editor = col.editor1;
+                }
+            });
+        }
+    });
+
+    var editIndex = undefined;
+    function endEditing(){
+        if (editIndex == undefined){return true}
+        if ($('#dg').datagrid('validateRow', editIndex)){
+            $('#dg').datagrid('endEdit', editIndex);
+            editIndex = undefined;
+            return true;
+        } else {
+            return false;
+        }
+    }
+    function onClickCell(index, field){
+        if (endEditing()){
+            $('#dg').datagrid('selectRow', index)
+                .datagrid('editCell', {index:index,field:field});
+            editIndex = index;
+        }
+    }
+</script>
+<script type="text/javascript">
+    // 参考网址：http://www.cnblogs.com/loganni/p/5586380.html
+    function save() {
+        // 判断是否有数据改变
+        if($('#dg').datagrid('getChanges').length) {
+            // 获取改变的数据
+            var updated = $('#dg').datagrid('getChanges',updated);
+            // 获取删除的数据
+            var deleted = $('#dg').datagrid('getChanges',deleted);
+            // 将所有数据装到一起
+            var effecrow = new Object();
+
+            updated = deleteArray(updated,deleted);
+            effecrow = {'updated':updated,
+                'deleted':deleted};
+            alert(JSON.stringify(effecrow));
+
+
+            // 用户确认进行数据修改后的保存操作
+            if(confirm("是否保存")) {
+                // 通过ajax提交到后台进行处理
+                $.ajax({
+                    type: 'POST',
+                    url: 'url',
+                    data: category,
+                    // 执行成功返回值
+                    success: function () {
+                        $("#dg").datagrid('reload');
+                    },
+                    // 错误处理
+                    error: function () {
+                        alert('更新数据时发生了错误');
+                        $("#dg").datagrid('reload');
+                    }
+                })
+            } else {
+                alert("取消保存");
+            }
+        }
+    }
+
+    function deleterow(target) {
+        $.messager.confirm('Confirm','确认删除？',function (r) {
+            if(r) {
+                $('#dg').datagrid('deleteRow',getRowIndex(target));
+            }
+        })
+    }
+
+    function getRowIndex(target){
+        var tr = $(target).closest('tr.datagrid-row');
+        return parseInt(tr.attr('datagrid-row-index'));
+    }
+
+    /**
+     * 传入两个数组，去掉A数组中B中存在的值,并返回新的A数组
+     * @param A
+     * @param B
+     */
+    function deleteArray(A,B) {
+        // 用临时数组保存A
+        var temp = A;
+        for(var i = 0; i < A.length; i++) {
+            for (var j = 0; j < B.length; j++) {
+                if(A[i] == B[j]) {
+                    temp.splice(i,1);
+                }
+            }
+        }
+        return temp;
+    }
+</script>
+</body>
+</html>

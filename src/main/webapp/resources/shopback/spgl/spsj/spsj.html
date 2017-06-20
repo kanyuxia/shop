@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>商品上架</title>
+    <link rel="stylesheet" href="../../css/easyui.css">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/icon.css">
+    <script type="text/javascript" src="../../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/jquery.easyui.min.js"></script>
+</head>
+<body>
+<h3>商品上架</h3>
+<!-- 定义按钮-->
+<div id="tb" style="padding:5px;height:auto">
+    <div style="margin-bottom:5px">
+        <a href="#" class="easyui-linkbutton" iconCls="icon-add" onclick="inserRow()" plain="true">新增</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-save" onclick="save()" plain="true">保存</a>
+    </div>
+</div>
+<!-- 表格-->
+<table id="spsj" class="easyui-datagrid" title="商品上架" style="width:auto;height:auto"
+       data-options="
+                <!-- 显示行号-->
+                rownumbers:true,
+                <!-- 图标-->
+				iconCls: 'icon-edit',
+				singleSelect: true,
+				<!-- 数据来源-->
+				method:'get',
+				onClickCell: onClickCell,
+				pagination:true,
+				striped:true,
+				scrollbarSize:10,
+				fitColumns:true,
+				height:400,
+			">
+    <thead>
+    <tr>
+        <!-- 显示产品名称，保存的数值为产品id-->
+        <th data-options="field:'productID',width:80,height:60,editor:{
+                            type:'combobox',
+                            options:{
+                                     valueField:'productid',
+                                     textField:'name',
+                                     url:'products.json',
+                                     required:true}}">产品名称
+        </th>
+        <!-- 商品属性-->
+        <th data-options="field:'attributes',width:100,height:60,editor:{type:'text',options:{precision:1}}">
+            属性
+        </th>
+        <!-- 商品原价-->
+        <th data-options="field:'originalPrice',width:80,height:60,editor:{type:'numberbox',options:{precision:1}}">原价
+        </th>
+        <!-- 商品售价-->
+        <th data-options="field:'sellPrice',width:80,height:60,editor:{type:'numberbox',options:{precision:1}}">售价</th>
+        <!-- 商品库存-->
+        <th data-options="field:'inventoryNumber',width:80,height:60,editor:{type:'numberbox',options:{precision:0}}">
+            库存
+        </th>
+        <!-- 删除按钮-->
+        <th data-options="field:'action',width:80,formatter:function(value,row,index) {
+                                var d = '<a href=# onclick=deleterow(this)>删除</a>';
+                                return d;
+                            }">操作
+        </th>
+    </tr>
+    </thead>
+</table>
+<script type="text/javascript">
+    $.extend($.fn.datagrid.methods, {
+        editCell: function (jq, param) {
+            return jq.each(function () {
+                var opts = $(this).datagrid('options');
+                var fields = $(this).datagrid('getColumnFields', true).concat($(this).datagrid('getColumnFields'));
+                for (var i = 0; i < fields.length; i++) {
+                    var col = $(this).datagrid('getColumnOption', fields[i]);
+                    col.editor1 = col.editor;
+                    if (fields[i] != param.field) {
+                        col.editor = null;
+                    }
+                }
+                $(this).datagrid('beginEdit', param.index);
+                for (var i = 0; i < fields.length; i++) {
+                    var col = $(this).datagrid('getColumnOption', fields[i]);
+                    col.editor = col.editor1;
+                }
+            });
+        }
+    });
+
+    var editIndex = undefined;
+    function endEditing() {
+        if (editIndex == undefined) {
+            return true
+        }
+        if ($('#spsj').datagrid('validateRow', editIndex)) {
+            $('#spsj').datagrid('endEdit', editIndex);
+            editIndex = undefined;
+            return true;
+        } else {
+            return false;
+        }
+    }
+    function onClickCell(index, field) {
+        if (endEditing()) {
+            $('#spsj').datagrid('selectRow', index)
+                .datagrid('editCell', {index: index, field: field});
+            editIndex = index;
+        }
+    }
+</script>
+<script type="text/javascript" src="spsj.js"></script>
+</body>
+</html>

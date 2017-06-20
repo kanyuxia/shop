@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>订单列表</title>
+    <link rel="stylesheet" href="../../css/easyui.css">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/icon.css">
+    <script type="text/javascript" src="../../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../../js/datagrid-detailview.js"></script>
+</head>
+<body>
+<!-- 主网格-->
+<table id="dg" style="width:auto;height:auto"
+       url="/shop/queryOrders.do"
+       title="订单列表"
+       singleSelect="true"
+       fitColumns="true"
+       pagination="true">
+    <thead>
+    <tr>
+        <th field="ordersID" width="80">订单编号</th>
+        <th field="createTime" width="100">创建时间</th>
+        <th field="userID" WIDTH="100">用户编号</th>
+        <th field="user" width="60" align="center">用户</th>
+        <th field="harvestAddress" align="right" width="80">收货地址</th>
+        <th field="status" align="right" width="80">订单状态</th>
+        <th field="totalPrice" width="220">总价格</th>
+    </tr>
+    </thead>
+    <div id="tb">
+        <span>订单编号:</span>
+        <input id="ordersID" style="line-height:26px;border:1px solid #ccc">
+        <span>用户编号:</span>
+        <input id="userID" style="line-height:26px;border:1px solid #ccc">
+        <a href="#" class="easyui-linkbutton" plain="true" onclick="doSearch()">查询</a>
+    </div>
+</table>
+
+<script type="text/javascript">
+
+    $('#dg').datagrid({
+        view: detailview,
+        detailFormatter:function(index,row){
+            return '<div style="padding:2px"><table id="ddv-"' + 'index" class="ddv"></table></div>';
+        },
+        onExpandRow: function(index,row){
+            var ddv = $(this).datagrid('getRowDetail',index).find('table.ddv');
+            ddv.datagrid({
+                url:'/shop/queryOrderItemsByorderId.do',
+                fitColumns:true,
+                singleSelect:true,
+                rownumbers:true,
+                loadMsg:'',
+                //onClickCell: onClickCell,
+                height:'auto',
+                columns:[[
+                    {field:'orderItemID',title:'订单项id',width:100},
+                    {field:'createTime',title:'创建时间',width:100},
+                    {field:'goodsID',title:'商品编号',width:100},
+                    {field:'goodsname',title:'商品名称',width:100}
+                ]],
+                onResize:function(){
+                    $('#dg').datagrid('fixDetailRowHeight',index);
+                },
+                onLoadSuccess:function(){
+                    setTimeout(function(){
+                        $('#dg').datagrid('fixDetailRowHeight',index);
+                    },0);
+                }
+            });
+            $('#dg').datagrid('fixDetailRowHeight',index);
+        }
+    });
+
+    function onClickCell(index, field) {
+        if (endEditing()) {
+            $("dg").datagrid('selectRow', index)
+                .datagrid('editCell', {index: index, field: field});
+            editIndex = index;
+        }
+    }
+
+    /**
+     * 用户输入进行搜索
+     */
+    function doSearch() {
+        $('#dg').datagrid('load',{
+            // 订单编号
+            category_id: $('#ordersID').val(),
+            // 用户
+            user: $('#userID').val()
+        });
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>订单列表</title>
+    <link rel="stylesheet" href="../../css/easyui.css">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/icon.css">
+    <script type="text/javascript" src="../../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/jquery.easyui.min.js"></script>
+</head>
+<body>
+<h3>订单列表</h3>
+<!-- 定义按钮-->
+<div id="tb" style="padding:5px;height:auto">
+    <div style="margin-bottom:5px">
+        <a href="#" class="easyui-linkbutton" iconCls="icon-save" onclick="save()" plain="true">保存</a>
+    </div>
+</div>
+<!-- 表格-->
+<table id="ddlb" class="easyui-datagrid" title="订单列表" style="width:auto;height:auto"
+       data-options="
+                <!-- 显示行号-->
+                rownumbers:true,
+                <!-- 图标-->
+				iconCls: 'icon-edit',
+				singleSelect: true,
+				<!-- 数据来源-->
+				url: 'data.json',
+				method:'get',
+				onClickCell: onClickCell,
+				pagination:true,
+				pageSize:10,
+				striped:true
+			"
+                fitcolumns="true">
+    <thead>
+    <tr>
+        <th data-options="field:'ordersID',width:80">订单编号</th>
+        <th data-options="field:'createTime',width:80">创建时间</th>
+        <th data-options="field:'harvestAddress',width:100,editor:{type:'text',options:{precision:1}}">
+            收货地址</th>
+        <th data-options="field:'status',width:80,height:60,editor:{
+                            type:'combobox',
+                            options:{
+                                     valueField:'id',
+                                     textField:'name',
+                                     data:data,
+                                     required:true}}"></th>
+        <th data-options="field:'totalPrice',width:80">总价格</th>
+        <th data-options="field:'userID',width:80">用户id</th>
+        <th data-options="field:'nickname',width:80">用户名</th>
+    </tr>
+    </thead>
+</table>
+<script type="text/javascript">
+    $.extend($.fn.datagrid.methods, {
+        editCell: function(jq,param){
+            return jq.each(function(){
+                var opts = $(this).datagrid('options');
+                var fields = $(this).datagrid('getColumnFields',true).concat($(this).datagrid('getColumnFields'));
+                for(var i=0; i<fields.length; i++){
+                    var col = $(this).datagrid('getColumnOption', fields[i]);
+                    col.editor1 = col.editor;
+                    if (fields[i] != param.field){
+                        col.editor = null;
+                    }
+                }
+                $(this).datagrid('beginEdit', param.index);
+                for(var i=0; i<fields.length; i++){
+                    var col = $(this).datagrid('getColumnOption', fields[i]);
+                    col.editor = col.editor1;
+                }
+            });
+        }
+    });
+
+    var data = [{
+        "id":1,
+        "name":"未配送"
+    },{
+        "id":2,
+        "name":"正在打包"
+    },{
+        "id":3,
+        "name":"已发货"
+    },{
+        "id":4,
+        "name":"正在配送"
+    },{
+        "id":5,
+        "name":"已签收"
+    }];
+    var editIndex = undefined;
+    function endEditing(){
+        if (editIndex == undefined){return true}
+        if ($('#ddlb').datagrid('validateRow', editIndex)){
+            $('#ddlb').datagrid('endEdit', editIndex);
+            editIndex = undefined;
+            return true;
+        } else {
+            return false;
+        }
+    }
+    function onClickCell(index, field){
+        if (endEditing()){
+            $('#ddlb').datagrid('selectRow', index)
+                .datagrid('editCell', {index:index,field:field});
+            editIndex = index;
+        }
+    }
+</script>
+<script type="text/javascript">
+    // 参考网址：http://www.cnblogs.com/loganni/p/5586380.html
+    function save() {
+        // 判断是否有数据改变
+        if($('#ddlb').datagrid('getChanges').length) {
+            // 获取改变的数据
+            var updated = $('#ddlb').datagrid('getChanges',updated);
+            // 获取删除的数据
+            var deleted = $('#ddlb').datagrid('getChanges',deleted);
+            // 将所有数据装到一起
+            var effecrow = new Object();
+            // 如果存在更新的数据
+            alert(JSON.stringify(updated));
+            if (updated.length) {
+                // 从一个对象中解析出字符串
+                effecrow[updated] = JSON.stringify(updated);
+            }
+            if (deleted.length) {
+                effecrow[deleted] = JSON.stringify(deleted);
+            }
+
+            // 通过ajax提交到后台进行处理
+            $.ajax({
+                type:'POST',
+                url:'url',
+                data:effecrow,
+                // 执行成功返回值
+                success:function () {
+                    $("#dg").datagrid('reload');
+                },
+                // 错误处理
+                error:function () {
+                    alert('更新数据时发生了错误');
+                }
+            })
+        }
+    }
+</script>
+</body>
+</html>
