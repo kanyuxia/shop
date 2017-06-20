@@ -1,6 +1,5 @@
 package cn.edu.cuit.shop.dao;
 
-
 import java.util.Date;
 
 import org.junit.Test;

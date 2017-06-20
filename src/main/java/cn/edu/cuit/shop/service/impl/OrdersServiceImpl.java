@@ -83,4 +83,9 @@ public class OrdersServiceImpl implements OrdersService {
 	public Orders getOrdersById(long ordersId) {
 		return ordersDao.selectWithCleanById(ordersId);
 	}
+
+	@Override
+	public List<Orders> queryAllOrders(int offset, int size) {
+		return ordersDao.selectWithOrderItem(offset, size);
+	}
 }

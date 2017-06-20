@@ -1,0 +1,10 @@
+.property-value{
+    margin: 10px 15px 10px 15px;
+    border-radius:0 0 0 0;
+}
+li {
+    list-style-type:none;
+}
+.btn-group .btn+.btn {
+    margin-left: 15px;
+}

@@ -59,7 +59,7 @@ public class GoodsServiceImpl implements GoodsService {
 	 */
 	public Goods getGoodsByGoodsID(long goodsID) {
 		Goods goods = goodsDao.selectWithOneById(goodsID);
-		Product product = productDao.selectWithOneById(goods.getProductID());
+		Product product = productDao.selectWithGoodsById(goods.getProductID());
 		goods.setProduct(product);
 		return goods;
 	}

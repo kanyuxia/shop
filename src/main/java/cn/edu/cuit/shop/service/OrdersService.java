@@ -48,5 +48,7 @@ public interface OrdersService {
 	 * @return
 	 */
 	boolean updateOrders(Orders orders);
+	
+	List<Orders> queryAllOrders(int offset, int size);
 
 }
