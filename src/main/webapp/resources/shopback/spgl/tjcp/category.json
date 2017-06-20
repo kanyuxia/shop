@@ -1,0 +1,16 @@
+[{
+  "categoryID":1,
+  "name":"手机"
+},{
+  "categoryID":2,
+  "name":"电脑"
+},{
+  "categoryID":3,
+  "name":"生鲜"
+},{
+  "categoryID":4,
+  "name":"mp3"
+},{
+  "categoryID":5,
+  "name":"书籍"
+}]

@@ -1,0 +1,45 @@
+body {
+    margin: 0;
+    padding: 0;
+    min-width: 500px;
+}
+
+#north {
+    height:60px;
+    background-color: rgb(58,63,81) ;
+    padding:0px
+}
+
+#north div h2 {
+    color: #ffffff;
+}
+
+#west {
+    background-color: rgb(58,63,81);
+}
+
+#west div {
+    background-color: rgb(58,63,81);
+}
+
+.logo {
+    width: 180px;
+}
+
+.logo h2 {
+    display: block;
+    width: 180px;
+}
+
+.name {
+    position: relative;
+    left: 90%;
+    top:-20px;
+    color: #ffffff;
+    padding-bottom: 20px;
+    font-size: 20px;
+}
+
+#name {
+    color: #ffffff;
+}
