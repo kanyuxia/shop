@@ -4,55 +4,45 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.edu.cuit.shop.dao.ProductDao">
 	
-	<!-- 根据销量查询产品信息的Map -->
-	<resultMap type="cn.edu.cuit.shop.entity.Product" id="sellNumberResult">
+	<!-- 根据分类ID依据上架时间分页查询产品信息的Map -->
+	<!-- 根据分类ID依据价格高低分页查询产品信息的Map -->
+	<!-- 根据分类ID依据销量分页查询产品信息的Map -->
+	<!-- 根据分类ID依据库存量分页查询产品信息的Map -->
+	<!-- 获得销量最高的商品信息的Map -->
+	<resultMap type="cn.edu.cuit.shop.entity.Product" id="orderResult">
 		<id property="productID" column="product_id"/>  
 	    <result property="name" column="name"/>  
 	    <result property="createTime" column="product_create_time"/>  
 	    <result property="categoryID" column="category_id"/>  
 	    <result property="attributes" column="product_attributes"/>
-	    <result property="totalSellNumber" column="total_sell_number"/>
 	    <collection property="goods" ofType="Goods">  
 	        <id property="goodsID" column="goods_id"/>  
 	        <result property="createTime" column="goods_create_time"/>  
 	        <result property="attributes" column="goods_attributes"/>  
 	        <result property="originalPrice" column="original_price"/>  
-	        <result property="sellPrice" column="sell_price"/> 
+	        <result property="sellPrice" column="sell_price"/>
+	        <result property="picture" column="picture"/>
 	    </collection>  
 	</resultMap>
 	
-	<!-- 根据库存量查询产品信息的Map -->
+	<!-- 根据分类ID依据库存量分页查询产品信息的Map -->
 	<resultMap type="cn.edu.cuit.shop.entity.Product" id="inventoryNumberResult">
 		<id property="productID" column="product_id"/>  
 	    <result property="name" column="name"/>  
 	    <result property="createTime" column="product_create_time"/>  
 	    <result property="categoryID" column="category_id"/>  
 	    <result property="attributes" column="product_attributes"/>
-	    <result property="totalInvNumber" column="total_inventory_number"/>
 	    <collection property="goods" ofType="Goods">  
 	        <id property="goodsID" column="goods_id"/>  
 	        <result property="createTime" column="goods_create_time"/>  
 	        <result property="attributes" column="goods_attributes"/>  
 	        <result property="originalPrice" column="original_price"/>  
-	        <result property="sellPrice" column="sell_price"/> 
+	        <result property="sellPrice" column="sell_price"/>
+	        <result property="picture" column="picture"/>
 	    </collection>  
 	</resultMap>
 	
-	<!-- 根据上架时间查询产品信息的Map -->
-	<resultMap type="cn.edu.cuit.shop.entity.Product" id="createTimeResult">
-		<id property="productID" column="product_id"/>  
-	    <result property="name" column="name"/>  
-	    <result property="createTime" column="product_create_time"/>  
-	    <result property="categoryID" column="category_id"/>  
-	    <result property="attributes" column="product_attributes"/>
-	    <collection property="goods" ofType="Goods">  
-	        <id property="goodsID" column="goods_id"/>  
-	        <result property="createTime" column="goods_create_time"/>  
-	        <result property="attributes" column="goods_attributes"/>  
-	        <result property="originalPrice" column="original_price"/>  
-	        <result property="sellPrice" column="sell_price"/> 
-	    </collection>  
-	</resultMap>
+	
 
   	<resultMap id="productResult" type="Product">  
 	    <id property="productID" column="product_id"/>  
@@ -70,7 +60,8 @@
 	        <result property="createTime" column="goods_create_time"/>  
 	        <result property="attributes" column="goods_attributes"/>  
 	        <result property="originalPrice" column="goods_original_price"/>  
-	        <result property="sellPrice" column="goods_sell_price"/>  
+	        <result property="sellPrice" column="goods_sell_price"/>
+	        <result property="picture" column="picture"/>
 	        <result property="productID" column="product_id"/>  
 	    </collection>  
 	</resultMap>
@@ -120,7 +111,8 @@
   			g.create_time as goods_create_time,
   			g.attributes as goods_attributes,
   			g.original_price as goods_original_price,
-  			g.sell_price as goods_sell_price
+  			g.sell_price as goods_sell_price,
+  			g.picture as picture
 	  	from product p
 	  	left join category c on p.category_id = c.category_id 
 	  	left join goods g on p.product_id = g.product_id 
@@ -134,7 +126,7 @@
 	</delete>
 	
 	<!-- 根据销量查询产品信息 -->
-	<select id="selectPageBySellNum" resultMap="sellNumberResult">
+	<select id="selectHightestBySellNum" resultMap="orderResult">
 		SELECT
 			p.product_id,
 			p.create_time as product_create_time,
@@ -146,10 +138,49 @@
 			d.create_time as goods_create_time,
 			d.original_price,
 			d.sell_price,
-			d.total_sell_number
+			d.picture,
+			d.sell_number
 		FROM
 			product AS p
-		LEFT JOIN (
+		RIGHT JOIN (
+			SELECT
+				b.goods_id,
+				b.create_time,
+				b.attributes,
+				b.original_price,
+				b.sell_price,
+				b.picture,
+				b.product_id AS product_id,
+				a.sell_number
+			FROM
+				inventory AS a
+			LEFT JOIN goods AS b ON a.goods_id = b.goods_id
+			GROUP BY
+				b.product_id
+		) AS d ON p.product_id = d.product_id
+		ORDER BY
+			d.sell_number DESC
+		LIMIT #{number}
+	</select>
+	
+	<!-- 根据分类ID依据销量分页查询产品信息 -->
+	<select id="selectPageBySellNum" resultMap="orderResult">
+		SELECT
+			p.product_id,
+			p.create_time as product_create_time,
+			p.attributes as product_attributes,
+			p.name,
+			p.category_id,
+			d.goods_id,
+			d.attributes as goods_attributes,
+			d.create_time as goods_create_time,
+			d.original_price,
+			d.sell_price,
+			d.picture,
+			d.sell_number
+		FROM 
+			product AS p
+		RIGHT JOIN (
 			SELECT
 				b.goods_id,
 				b.create_time,
@@ -157,20 +188,28 @@
 				b.original_price,
 				b.sell_price,
 				b.product_id AS product_id,
-				SUM(a.sell_number) AS total_sell_number
+				b.picture,
+				a.sell_number
 			FROM
 				inventory AS a
-			LEFT JOIN goods b ON a.goods_id = b.goods_id
+			LEFT JOIN goods AS b ON a.goods_id = b.goods_id
 			GROUP BY
 				b.product_id
 		) AS d ON p.product_id = d.product_id
+		WHERE p.product_id IN (
+			SELECT f.product_id
+			FROM
+				product as f
+			WHERE
+				category_id=#{categoryID}
+		)
 		ORDER BY
-			d.total_sell_number DESC
+			d.sell_number DESC
 		LIMIT #{offsetStart},#{rowCount}
 	</select>
 	
-	<!-- 根据库存量查询产品信息 -->
-	<select id="selectPageByInvNum" resultMap="inventoryNumberResult">
+	<!-- 根据分类ID依据库存量分页查询产品信息 -->
+	<select id="selectPageByInvNum" resultMap="orderResult">
 		SELECT
 			p.product_id,
 			p.create_time as product_create_time,
@@ -182,10 +221,11 @@
 			d.create_time as goods_create_time,
 			d.original_price,
 			d.sell_price,
-			d.total_inventory_number
+			d.picture,
+			d.inventory_number
 		FROM
 			product AS p
-		LEFT JOIN (
+		RIGHT JOIN (
 			SELECT
 				b.goods_id,
 				b.create_time,
@@ -193,20 +233,28 @@
 				b.original_price,
 				b.sell_price,
 				b.product_id AS product_id,
-				SUM(a.inventory_number) AS total_inventory_number
+				b.picture,
+				a.inventory_number
 			FROM
 				inventory AS a
-			LEFT JOIN goods b ON a.goods_id = b.goods_id
+			LEFT JOIN goods AS b ON a.goods_id = b.goods_id
 			GROUP BY
 				b.product_id
 		) AS d ON p.product_id = d.product_id
+		WHERE p.product_id IN (
+			SELECT f.product_id
+			FROM
+				product as f
+			WHERE
+				category_id=#{categoryID}
+		)
 		ORDER BY
-			d.total_inventory_number DESC
+			d.inventory_number DESC
 		LIMIT #{offsetStart},#{rowCount}
 	</select>
 	
 	<!-- 根据上架时间查询产品信息 -->
-	<select id="selectPageByTime" resultMap="createTimeResult">
+	<select id="selectPageByTime" resultMap="orderResult">
 		SELECT
 			p.product_id,
 			p.create_time as product_create_time,
@@ -217,24 +265,77 @@
 			d.attributes as goods_attributes,
 			d.create_time as goods_create_time,
 			d.original_price,
+			d.picture,
 			d.sell_price
 		FROM
 			product AS p
-		LEFT JOIN (
+		RIGHT JOIN (
 			SELECT
 				b.goods_id,
 				b.create_time,
 				b.attributes,
 				b.original_price,
 				b.sell_price,
+				b.picture,
 				b.product_id AS product_id
 			FROM
-				goods AS b
+				inventory AS a
+			LEFT JOIN goods AS b ON a.goods_id = b.goods_id
 			GROUP BY
 				b.product_id
 		) AS d ON p.product_id = d.product_id
+		WHERE p.product_id IN (
+			SELECT f.product_id
+			FROM
+				product as f
+			WHERE
+				category_id=#{categoryID}
+		)
 		ORDER BY
-			d.create_time
+			d.create_time DESC
+		LIMIT #{offsetStart},#{rowCount}
+	</select>
+	
+	<!-- 根据分类ID依据价格高低分页查询产品信息 -->
+	<select id="selectPageByPrice" resultMap="orderResult">
+		SELECT
+			p.product_id,
+			p.create_time as product_create_time,
+			p.attributes as product_attributes,
+			p.name,
+			p.category_id,
+			d.goods_id,
+			d.attributes as goods_attributes,
+			d.create_time as goods_create_time,
+			d.original_price,
+			d.picture,
+			d.sell_price
+		FROM
+			product AS p
+		RIGHT JOIN (
+			SELECT
+				b.goods_id,
+				b.create_time,
+				b.attributes,
+				b.original_price,
+				b.sell_price,
+				b.picture,
+				b.product_id AS product_id
+			FROM
+				inventory AS a
+			LEFT JOIN goods AS b ON a.goods_id = b.goods_id
+			GROUP BY
+				b.product_id
+		) AS d ON p.product_id = d.product_id
+		WHERE p.product_id IN (
+			SELECT f.product_id
+			FROM
+				product as f
+			WHERE
+				category_id=#{categoryID}
+		)
+		ORDER BY
+			d.sell_price DESC
 		LIMIT #{offsetStart},#{rowCount}
 	</select>
 </mapper>

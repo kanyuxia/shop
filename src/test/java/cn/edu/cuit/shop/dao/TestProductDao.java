@@ -50,43 +50,49 @@ public class TestProductDao {
 	}
 	@Test
 	public void testSelectCleanById() {
-		Product product = productDao.selectWithCleanById(2);
+		Product product = productDao.selectWithCleanById(10003);
 		System.out.println(product);
 	}
 	
 	@Test
 	public void testSelectWithOneById() {
-		Product product = productDao.selectWithOneById(2);
+		Product product = productDao.selectWithOneById(10003);
 		System.out.println(product);
 	}
 	
 	@Test
 	public void testSelectWithGoodsById() {
-		Product product = productDao.selectWithGoodsById(1);
+		Product product = productDao.selectWithGoodsById(10003);
 		System.out.println(product);
 	}
 	
 	@Test
 	public void testDeleteById() {
-		int countNum = productDao.deleteById(2);
+		int countNum = productDao.deleteById(10003);
 		System.out.println(countNum);
 	}
 	
 	@Test
 	public void testSelectPageBySellNum() {
-		List<Product> products = productDao.selectPageBySellNum(0, 10);
+		List<Product> products = productDao.selectPageBySellNum(10002, 0, 10);
 		System.out.println(products);
 	}
 	
 	@Test
 	public void testSelectPageByInvNum() {
-		List<Product> products = productDao.selectPageByInvNum(0, 10);
+		List<Product> products = productDao.selectPageByInvNum(10000, 0, 10);
 		System.out.println(products);
 	}
 	
 	@Test
 	public void testSelectPageByTime() {
-		List<Product> products = productDao.selectPageByTime(0, 10);
+		List<Product> products = productDao.selectPageByTime(10000, 0, 10);
+		System.out.println(products);
+	}
+	
+	@Test
+	public void testSelectHightestBySellNum() {
+		List<Product> products = productDao.selectHightestBySellNum(5);
 		System.out.println(products);
 	}
 }

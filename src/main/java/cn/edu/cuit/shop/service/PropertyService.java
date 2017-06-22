@@ -15,11 +15,11 @@ public interface PropertyService {
 	List<Property> listProperties(long categoryID);
 	
 	/**
-	 * 通过产品Id返回其对于的属性值(级联属性)
-	 * @param productID 产品ID
+	 * 通过商品ID返回其对于的产品所对应于的属性值(级联属性)
+	 * @param goodsID 商品ID
 	 * @return 其对于的属性值(级联属性)
 	 */
-	List<PropertyValue> getValuesByProID(long productID);
+	List<PropertyValue> listValuesByProID(long goodsID);
 	
 	
 }

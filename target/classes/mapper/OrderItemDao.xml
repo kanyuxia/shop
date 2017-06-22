@@ -43,7 +43,8 @@
 	  		g.attributes "goods.attributes",
 	  		g.product_id "goods.productID",
 	  		g.original_price "goods.originalPrice",
-	  		g.sell_price "goods.sellPrice" 
+	  		g.sell_price "goods.sellPrice",
+	  		g.picture "goods.picture"
 	  	from order_item oi
 	  	left join orders o on oi.orders_id = o.orders_id 
 	  	left join goods g on oi.goods_id = g.goods_id

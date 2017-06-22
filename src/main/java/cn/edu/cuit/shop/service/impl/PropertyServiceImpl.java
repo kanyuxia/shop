@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import cn.edu.cuit.shop.dao.GoodsDao;
 import cn.edu.cuit.shop.dao.PropertyDao;
 import cn.edu.cuit.shop.dao.PropertyValueDao;
+import cn.edu.cuit.shop.entity.Goods;
 import cn.edu.cuit.shop.entity.Property;
 import cn.edu.cuit.shop.entity.PropertyValue;
 import cn.edu.cuit.shop.service.PropertyService;
@@ -18,6 +20,8 @@ public class PropertyServiceImpl implements PropertyService {
 	private PropertyDao propertyDao;
 	@Autowired
 	private PropertyValueDao propertyValueDao;
+	@Autowired
+	private GoodsDao goodsDao;
 	
 
 	/**
@@ -35,12 +39,13 @@ public class PropertyServiceImpl implements PropertyService {
 	}
 	
 	/**
-	 * 通过产品Id返回其对于的属性值(级联属性)
-	 * @param productID 产品ID
+	 * 通过商品ID返回其对于的产品所对应于的属性值(级联属性)
+	 * @param goodsID 商品ID
 	 * @return 其对于的属性值(级联属性)
 	 */
-	public List<PropertyValue> getValuesByProID(long productID) {
-	 	List<PropertyValue> listValues = propertyValueDao.selectByProductID(productID);
+	public List<PropertyValue> listValuesByProID(long goodsID) {
+		Goods goods = goodsDao.selectWithCleanById(goodsID);
+	 	List<PropertyValue> listValues = propertyValueDao.selectByProductID(goods.getProductID());
 		return listValues;
 	}
 

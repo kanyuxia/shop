@@ -61,7 +61,7 @@ public class TestPropertyValueDao {
 	
 	@Test
 	public void testSelectByProductID() {
-		List<PropertyValue> propertyValues = propertyValueDao.selectByProductID(10001);
+		List<PropertyValue> propertyValues = propertyValueDao.selectByProductID(10003);
 		System.out.println(propertyValues);
 	}
 	

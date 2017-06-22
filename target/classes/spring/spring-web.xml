@@ -20,5 +20,5 @@
 		<property name="suffix" value=".html" />
 	</bean>
 	<!-- 4.配置自动扫描web -->
-	<context:component-scan base-package="cn.edu.cuit.shop.web" />        
+	<context:component-scan base-package="cn.edu.cuit.shop.web" />   
 </beans>

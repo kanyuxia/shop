@@ -19,14 +19,14 @@ public interface ShopCatService {
 	 */
 	boolean deleteShopCart(long shopCartID);
 	
-	
 	/**
 	 * 将商品加入购物车
-	 * @param userID
-	 * @param goodsID
+	 * @param userID  用户ID
+	 * @param goodsID 商品ID
+	 * @param goodsNumber 商品数量
 	 * @return 是否成功
 	 */
-	boolean addShopCart(long userID, long goodsID);
+	boolean addShopCart(long userID, long goodsID, long goodsNumber);
 	
 	/**
 	 * 更新购物车中商品数量

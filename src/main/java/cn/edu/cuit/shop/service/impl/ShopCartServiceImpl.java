@@ -42,12 +42,13 @@ public class ShopCartServiceImpl implements ShopCatService {
 	 * @param goodsID
 	 * @return 是否成功
 	 */
-	public boolean addShopCart(long userID, long goodsID) {
+	public boolean addShopCart(long userID, long goodsID, long goodsNumber) {
 		ShopCart shopCart = shopCartDao.selectOneShopCart(goodsID, userID);
 		if (shopCart == null) {
-			shopCartDao.insertGoods(goodsID, 1, userID);
+			int countNum = shopCartDao.insertGoods(goodsID, goodsNumber, userID);
+			return countNum == 1 ? true : false;
 		}
-		return updateGoodsNumber(shopCart.getShopCartID(), shopCart.getGoodsNumber() + 1);
+		return updateGoodsNumber(shopCart.getShopCartID(), shopCart.getGoodsNumber() + goodsNumber);
 	}
 
 	/**

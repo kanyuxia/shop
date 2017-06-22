@@ -58,27 +58,53 @@ public interface ProductDao {
 	 */
 	int deleteById(@Param("productId") long productId);
 	
-	/**
-	 * 根据销量查询产品信息
-	 * @param offsetStart 起始偏移量
-	 * @param rowCount 行数
-	 * @return 产品信息
-	 */
-	List<Product> selectPageBySellNum(@Param("offsetStart")long offsetStart, @Param("rowCount")long rowCount);
 	
 	/**
-	 * 根据库存量查询产品信息
-	 * @param offsetStart 起始偏移量
-	 * @param rowCount 行数
-	 * @return 产品信息
+	 * 获得销量最高的商品信息
+	 * @param number 商品数目
+	 * @return 商品信息
 	 */
-	List<Product> selectPageByInvNum(@Param("offsetStart")long offsetStart, @Param("rowCount")long rowCount);
+	List<Product> selectHightestBySellNum(long number);
 	
 	/**
-	 * 根据上架时间查询产品信息
+	 * 根据分类ID依据销量分页查询产品信息
+	 * @param categoryID 分类ID
 	 * @param offsetStart 起始偏移量
 	 * @param rowCount 行数
 	 * @return 产品信息
 	 */
-	List<Product> selectPageByTime(@Param("offsetStart")long offsetStart, @Param("rowCount")long rowCount);
+	List<Product> selectPageBySellNum(@Param("categoryID")long categoryID, @Param("offsetStart")long offsetStart, 
+			@Param("rowCount")long rowCount);
+	
+	/**
+	 * 根据分类ID依据库存量分页查询产品信息
+	 * @param categoryID 分类ID
+	 * @param offsetStart 起始偏移量
+	 * @param rowCount 行数
+	 * @return 产品信息
+	 */
+	List<Product> selectPageByInvNum(@Param("categoryID")long categoryID, @Param("offsetStart")long offsetStart, 
+			@Param("rowCount")long rowCount);
+	
+	/**
+	 * 根据分类ID依据上架时间分页查询产品信息
+	 * @param categoryID 分类ID
+	 * @param offsetStart 起始偏移量
+	 * @param rowCount 行数
+	 * @return 产品信息
+	 */
+	List<Product> selectPageByTime(@Param("categoryID")long categoryID, @Param("offsetStart")long offsetStart, 
+			@Param("rowCount")long rowCount);
+	
+	
+	/**
+	 * 根据分类ID依据价格高低分页查询产品信息
+	 * @param categoryID 分类ID
+	 * @param offsetStart 起始偏移量
+	 * @param rowCount 行数
+	 * @param order 排序方式
+	 * @return 产品信息
+	 */
+	List<Product> selectPageByPrice(@Param("categoryID")long categoryID, @Param("offsetStart")long offsetStart, 
+			@Param("rowCount")long rowCount);
 }

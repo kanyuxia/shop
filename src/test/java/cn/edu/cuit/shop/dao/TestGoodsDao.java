@@ -53,7 +53,7 @@ public class TestGoodsDao {
 	}
 	@Test
 	public void testSelectCleanById() {
-		Goods goods = goodsDao.selectWithCleanById(4);
+		Goods goods = goodsDao.selectWithCleanById(10001);
 		System.out.println(goods);
 	}
 	

@@ -36,9 +36,15 @@ public class Goods {
 	private double sellPrice;
 	
 	/**
+	 * 图片地址
+	 */
+	private String picture;
+	
+	/**
 	 * 外键：产品id
 	 */
 	private long productID;
+
 	
 	private Product product;
 
@@ -81,11 +87,12 @@ public class Goods {
 		return false;
 	}
 
+
 	@Override
 	public String toString() {
 		return "Goods [goodsID=" + goodsID + ", createTime=" + createTime + ", attributes=" + attributes
-				+ ", originalPrice=" + originalPrice + ", sellPrice=" + sellPrice + ", productID=" + productID
-				+ ", product=" + product + "]";
+				+ ", originalPrice=" + originalPrice + ", sellPrice=" + sellPrice + ", picture=" + picture
+				+ ", productID=" + productID + ", product=" + product + "]";
 	}
 
 	//--------------------setter、getter methods
@@ -145,5 +152,11 @@ public class Goods {
 		this.product = product;
 	}
 	
+	public void setPicture(String picture) {
+		this.picture = picture;
+	}
 	
+	public String getPicture() {
+		return picture;
+	}
 }

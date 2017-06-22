@@ -16,6 +16,7 @@
 			<result property="originalPrice" column="product_id"/>
 			<result property="sellPrice" column="original_price"/>
 			<result property="productID" column="sell_price"/>
+			<result property="picture" column="picture"/>
 			<association property="product" javaType="cn.edu.cuit.shop.entity.Product">
 				<id property="productID" column="product_id"/>
 				<result property="createTime" column="product_create_time"/>
@@ -59,6 +60,7 @@
 			b.product_id,
 			b.original_price,
 			b.sell_price,
+			b.picture,
 			c.product_id,
 			c.name,
 			c.create_time as product_create_time,
