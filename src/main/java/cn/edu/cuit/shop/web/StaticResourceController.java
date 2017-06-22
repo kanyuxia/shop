@@ -18,10 +18,6 @@ public class StaticResourceController {
 		return "front/cart";
 	}
 	
-	@RequestMapping("/checkout")
-	public String getCheckout() {
-		return "front/checkout";
-	}
 	
 	@RequestMapping("/contactUs")
 	public String getContactUs() {
@@ -33,9 +29,9 @@ public class StaticResourceController {
 		return "front/index";
 	}
 	
-	@RequestMapping("/myAccount")
+	@RequestMapping("/shop")
 	public String getMyAccount() {
-		return "front/my_account";
+		return "front/shop";
 	}
 	
 	@RequestMapping("/simpleProduct")
