@@ -1,6 +1,5 @@
 package cn.edu.cuit.shop.dao;
 
-
 import java.util.Date;
 import java.util.List;
 
@@ -51,6 +50,12 @@ public class TestOrdersDao {
 	@Test
 	public void testSelectWithOrderItemById() {
 		Orders orders = ordersDao.selectWithOrderItemById(1);
+		System.out.println(orders);
+	}
+	
+	@Test
+	public void testSelectWithOrderItem() {
+		List<Orders> orders = ordersDao.selectWithOrderItem(0, 1);
 		System.out.println(orders);
 	}
 	

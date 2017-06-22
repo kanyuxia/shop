@@ -59,6 +59,14 @@ public interface OrdersDao {
 	List<Orders> selectWithOrderItemByUserId(@Param("userId") long userId);
 	
 	/**
+	 * 分页查询所有
+	 * @param offset
+	 * @param size
+	 * @return
+	 */
+	List<Orders> selectWithOrderItem(@Param("offset") int offset, @Param("size")int size);
+	
+	/**
 	 * 根据ID删除
 	 * @param ordersId 订单id
 	 * @return 影响的行数

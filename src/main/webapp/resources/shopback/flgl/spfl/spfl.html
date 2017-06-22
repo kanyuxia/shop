@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>商品分类</title>
+    <link rel="stylesheet" href="../../css/easyui.css">
+    <link rel="stylesheet" href="../../css/icon.css">
+    <script type="text/javascript" src="../../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/jquery.easyui.min.js"></script>
+<body>
+<h3>商品分类列表</h3>
+<!-- 定义按钮-->
+<div id="tb" style="padding:5px;height:auto">
+    <div style="margin-bottom:5px">
+        <a href="#" class="easyui-linkbutton" iconCls="icon-add" onclick="add()" plain="true">新增</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-save" onclick="save()" plain="true">保存</a>
+    </div>
+</div>
+<div id="add"></div>
+    <!-- 表格-->
+<table id="dg" class="easyui-datagrid" title="Cell Editing in DataGrid" style="width:auto;height:auto"
+       data-options="
+                <!-- 显示行号-->
+                rownumbers:true,
+                <!-- 图标-->
+				iconCls: 'icon-edit',
+				singleSelect: true,
+				<!-- 数据来源-->
+				url: 'datagrid_data.json',
+				method:'get',
+				onClickCell: onClickCell,
+				pagination:true,
+				<!-- 默认每页大小-->
+				pageSize:10,
+				striped:true
+			"
+       fitcolumns="true">
+    <thead>
+    <!-- 表头-->
+    <tr>
+        <th data-options="field:'category_id',width:80">编号</th>
+        <th data-options="field:'create_time',width:100">创建时间</th>
+        <th data-options="field:'name',width:80,editor:{type:'text',options:{precision:1}}">分类名</th>
+        <th data-options="field:'action',width:80,formatter:function(value,row,index) {
+                                var d = '<a href=# onclick=delrow(this)>删除</a>';
+                                return d;
+                            }">操作</th>
+    </tr>
+    </thead>
+</table>
+<script type="text/javascript" src="spfl.js"></script>
+</body>
+</html>

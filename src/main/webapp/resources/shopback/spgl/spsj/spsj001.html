@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>商品上架</title>
+    <link rel="stylesheet" href="../../css/easyui.css">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/icon.css">
+    <script type="text/javascript" src="../../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/jquery.easyui.min.js"></script>
+</head>
+<body>
+    <div class="easyui-panel" style="width: 100%" title="商品上架">
+        <form id="#ff">
+            <div>
+                <label>所属产品：</label>
+                <select name="productID" class="form-control">
+                    <option value="1">华为荣耀C9</option>
+                    <option value="2">联想小新</option>
+                </select>
+            </div>
+            <div>
+                <label>属性：</label>
+                <input class="form-control" type="text" name="attributes" data-options="required:true"
+                       placeholder="如：白 32G，如有多个，请用分号;隔开">
+            </div>
+            <div>
+                <label>原价（元）：</label>
+                <input class="form-control" type="number" step="0.01" name="originalPrice" data-options="required:true"
+                       placeholder="请输入商品原价">
+            </div>
+            <div>
+                <label>售价（元）：</label>
+                <!-- step:确定精度-->
+                <input class="form-control" type="number" step="0.01" name="sellPrice" data-options="required:true"
+                       placeholder="请输入商品售价">
+            </div>
+            <div>
+                <label>库存</label>
+                <input class="form-control" type="number" name="inventoryNumber" data-options="required:true"
+                       placeholder="请输入商品库存">
+            </div>
+            <div>
+                <button type="button" class="btn btn-default" onclick="submitForm()">提交</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function submitForm() {
+            
+        }
+    </script>
+</body>
+</html>

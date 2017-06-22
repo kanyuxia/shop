@@ -24,15 +24,19 @@
 	<link rel="stylesheet" href="resources/front/css/woocommerce/woocommerce-smallscreen.css" />
 	<link rel="stylesheet" href="resources/front/css/woocommerce/prettyPhoto.css" />
 	<link rel="stylesheet" href="resources/front/css/yith-woocommerce-wishlist/style.css" />
+	<link rel="stylesheet" href="resources/front/css/main.css" />
 	
 	
 	<link rel="stylesheet" href="resources/front/css/custom.css" />
 	<link rel="stylesheet" href="resources/front/css/app-orange.css" id="theme_color" />
 	<link rel="stylesheet" href="" id="rtl" /> 
 	<link rel="stylesheet" href="resources/front/css/app-responsive.css" />
+
+	<script src="https://cdn.bootcss.com/angular.js/1.6.3/angular.min.js"></script>
+	<script src="resources/front/jss/simple_product.js"></script>
 </head>
 
-<body class="product-template-default single single-product woocommerce woocommerce-page">
+<body class="product-template-default single single-product woocommerce woocommerce-page" ng-app="simple" ng-controller="simpleController">
      
 
 	<div class="body-wrapper theme-clearfix">
@@ -685,10 +689,24 @@
 												
 												<div class="product-info clearfix">
 													<div class="product-stock pull-left out-stock">
-														<span>缺货</span>
+														<ul>
+															<li ng-repeat="x in property">
+																<span>{{x[0]}}</span>
+																<div  class="btn-group" data-toggle="buttons">
+
+																	<label class="btn btn-success property-value" ng-disabled="y.status == -1" ng-repeat="y in x" ng-if="x[0] != y" ng-click="selectProperty($parent.$index, y.value)">
+																		<input type="radio" value="{{y.value}}" name="String_{{$parent.$index}}" ng-checked="y.status == 1">{{y.value}}
+																	</label>
+																	<!--<botton class="btn btn-success property-value" ng-class="{true: 'active'}[y.status == 1]" ng-hide="x[0] == y" ng-disabled="y.status == -1">-->
+																		<!--{{y.value}}-->
+																	<!--</botton>-->
+																	<!--<button class="btn btn-success property-value" ng-hide="x[0] == y">{{y}}</button>-->
+																</div>
+															</li>
+														</ul>
 													</div>
 												</div>
-												
+												<div>{{name + 233}}</div>
 												<div class="description" itemprop="description">
 													<p>Proin nunc nibh, adipiscing eu nisi id, ultrices suscipit augue. Sed rhoncus hendrerit lacus, et venenatis felis. Donec ut fringilla magna ultrices suscipit augue. Proin nunc nibh, adipiscing eu nisi id, ultrices suscipit augue. Sed rhoncus hendrerit lacus, et venenatis felis. Donec ut fringilla magna ultrices suscipit augue.</p>
 												</div>

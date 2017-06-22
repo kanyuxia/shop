@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加分类</title>
+    <link rel="stylesheet" href="../../css/easyui.css">
+    <link rel="stylesheet" href="../../css/icon.css">
+    <script type="text/javascript" src="../../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/jquery.easyui.min.js"></script>
+</head>
+<body>
+    <!-- 表单-->
+    <form id="addform" align="center">
+        <label align="left">请输入分类名称：</label>
+        <input name="spfl" id="spfladd" class="easyui-textbox" type="text" placeholder="输入分类名" >
+        <button onclick="addform()" type="button">提交</button>
+    </form>
+
+    <script type="text/javascript">
+        /**
+         * 表单提交
+         */
+        function addform() {
+            $('#addform').form('submit',{
+                url:'',
+                method:'post',
+                onSubmit:function (data) {
+                    // 提交表单事件
+                    alert(JSON.stringify(document.getElementById('spfladd').valueOf()));
+                }
+            })
+        }
+    </script>
+</body>
+</html>
