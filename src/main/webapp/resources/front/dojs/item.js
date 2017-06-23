@@ -93,7 +93,7 @@ app.controller('simpleController', function($scope, $http) {
         console.log(index);
         $scope.selectedProperty[index] = value;
         console.log($scope.selectedProperty);
-//        $scope.panduan(index);
+        $scope.panduan(index);
     }
 
     $scope.panduan = function(index){

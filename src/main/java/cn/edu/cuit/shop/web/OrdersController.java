@@ -42,7 +42,7 @@ public class OrdersController {
 		return new Result<Object>(false, "取消失败");
 	}
 	
-	@RequestMapping(value="/item/{ordersId}", method=RequestMethod.GET, 
+	@RequestMapping(value="/item/{ordersId}", method={RequestMethod.GET,RequestMethod.POST}, 
 			produces={"application/json;charset=UTF-8"})
 	public @ResponseBody Result<Orders> item(@PathVariable long ordersId){
 		Orders orders = ordersService.getOrdersById(ordersId);

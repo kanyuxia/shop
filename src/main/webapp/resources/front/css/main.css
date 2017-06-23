@@ -8,3 +8,6 @@ li {
 .btn-group .btn+.btn {
     margin-left: 15px;
 }
+.btn-group>.btn:first-child {
+    margin-left: 15px;
+}
