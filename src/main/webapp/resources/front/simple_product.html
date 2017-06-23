@@ -694,7 +694,7 @@
 																<span>{{x[0]}}</span>
 																<div  class="btn-group" data-toggle="buttons">
 
-																	<label class="btn btn-success property-value" ng-disabled="y.status == -1" ng-repeat="y in x" ng-if="x[0] != y" ng-click="selectProperty($parent.$index, y.value)">
+																	<label class="btn btn-success property-value" ng-disabled="y.status == -1" ng-repeat="y in x" ng-hide="x[0] == y" ng-click="selectProperty($parent.$index, y.value)">
 																		<input type="radio" value="{{y.value}}" name="String_{{$parent.$index}}" ng-checked="y.status == 1">{{y.value}}
 																	</label>
 																	<!--<botton class="btn btn-success property-value" ng-class="{true: 'active'}[y.status == 1]" ng-hide="x[0] == y" ng-disabled="y.status == -1">-->
