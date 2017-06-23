@@ -20,7 +20,6 @@ public class TestOrdersDao {
 	@Test
 	public void testInsert() {
 		Orders orders = new Orders(12, new Date(), "四川成都", 2, 1599.00, 10000);
-		
 		int countNum = ordersDao.insertOrders(orders);
 		System.out.println(countNum);
 	}

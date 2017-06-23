@@ -26,4 +26,16 @@ public class StaticResourceController {
 		return "front/category";
 	}
 	
+	@RequestMapping("/orders")
+	public String oders() {
+		return "front/my_account";
+	}
+	
+	@RequestMapping("/my")
+	public String my() {
+		return "front/my";
+	}
+	
+	
+	
 }

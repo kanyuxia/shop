@@ -38,6 +38,8 @@ app.controller('simpleController', function($scope, $http) {
         // "productID": -1
     };
 
+    $scope.goodsValue = {};
+
     $scope.property = new Array();
     $scope.selectedGoodsId = -1;
     $scope.selectedProperty = new Array();
@@ -48,6 +50,24 @@ app.controller('simpleController', function($scope, $http) {
     }).then(function(result) {
         if (result.data.success == true){
             $scope.currentGoods = result.data.data;
+            $scope.selectedGoodsId =  $scope.currentGoods.goodsID;
+            $scope.currentGoods.pictures = $scope.currentGoods.picture.split(",");
+            $http({
+                method: 'GET',
+                url: '/item/'+ $scope.selectedGoodsId +'/inventory'
+            }).then(function(result) {
+                console.log(result);
+                $scope.currentGoods.inventory = result.data.data;
+                console.log($scope.currentGoods);
+            });
+            $http({
+                method: 'GET',
+                url: '/item/'+ $scope.selectedGoodsId +'/properties'
+            }).then(function(result) {
+                console.log(result);
+                $scope.goodsValue = result.data.data;
+                console.log($scope.goodsValue);
+            });
             $scope.currentProduct = result.data.data.product;
             $scope.currentProduct.attributeArr = $scope.currentProduct.attributes.split(",");
             //默认选择
@@ -87,14 +107,48 @@ app.controller('simpleController', function($scope, $http) {
                 return;
             }
         }
+        message("该商品不存在！","info");
     }
 
     $scope.selectProperty = function (index, value) {
         console.log(index);
         $scope.selectedProperty[index] = value;
         console.log($scope.selectedProperty);
-        $scope.panduan(index);
+        $scope.selected();
+//        $scope.panduan(index);
     }
+
+    //加入购物车
+    $scope.addShopCar = function () {
+
+        $http({
+            method: 'POST',
+            url: '/cart/addcart?gid='+$scope.selectedGoodsId,
+            data : {
+                gid :  $scope.selectedGoodsId
+            }
+        }).then(function(result) {
+            if(result.data.data == true){
+                message("添加购物车成功！","success");
+            }else {
+                message("添加购物车失败！","danger");
+            }
+
+        });
+    }
+
+    function message(messages, type){
+        $.bootstrapGrowl(messages, {
+            ele: 'body', // which element to append to
+            type: type, // (null, 'warning', 'info', 'danger', 'success')
+            offset: {from: 'top', amount: 60}, // 'top', or 'bottom'
+            align: 'right', // ('left', 'right', or 'center')
+            width: 250, // (integer, or 'auto')
+            delay: 4000,
+            allow_dismiss: true,
+            stackup_spacing: 10 // spacing between consecutively stacked growls.
+        });
+    };
 
     $scope.panduan = function(index){
         // for (var i = 0; i<$scope.property.length; i++) {

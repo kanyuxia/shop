@@ -30,7 +30,7 @@
 	<link rel="stylesheet" href="/resources/front/css/main.css" />
 </head>
 
-<body class="page woocommerce-account woocommerce-page" ng-app="orders" ng-controller="ordersController">
+<body class="page woocommerce-account woocommerce-page" style="background: #f2f2f2" ng-app="my" ng-controller="myController">
 
      
 
@@ -203,115 +203,38 @@
 		
 		<div class="container">
 			<div class="row">
-				<div id="contents" role="main" class="main-page  col-lg-12 col-md-12 col-sm-12 col-xs-12">
-					<div class="post-6 page type-page status-publish hentry">
-						<div class="entry">
-							<div class="entry-content">
-								<header>
-									<h2 class="entry-title">我的账号</h2>
-								</header>
-								
-								<div class="entry-content">
-									<div class="woocommerce">
-                                        <div>
-                                            <h3 class="dib">订单信息</h3>
-
-											<div class="row">
-												<div class = "col-md-6 style1" style="background: #f1f1f1; border-right: #B1B1B1 solid 1px">订单详情</div>
-												<div class="col-md-6 style1"style="padding-top: 0px;">
-													<div class = "col-md-3 style1" style="background: #f1f1f1; border-right: #B1B1B1 solid 1px">收货人</div>
-													<div class = "col-md-3 style1" style="background: #f1f1f1; border-right: #B1B1B1 solid 1px">金额</div>
-													<div class = "col-md-3 style1" style="background: #f1f1f1; border-right: #B1B1B1 solid 1px">状态</div>
-													<div class = "col-md-3 style1" style="background: #f1f1f1;">操作</div>
-												</div>
-
+				<div id="contents" role="main" class="main-page  col-lg-12 col-md-12 col-sm-12 col-xs-12" style="background: #f2f2f2">
+					<div class="post-6 page type-page status-publish hentry" style="background: #f2f2f2">
+						<div class="entry" style="background: #f2f2f2">
+							<div class="entry-content" style="background: #f2f2f2">
+								<div class="entry-content" style="background: #f2f2f2">
+									<div class="woocommerce" style="background: #f2f2f2">
+                                        <div class="container">
+											<div class="col-md-2 style1" style="background:white;height: 600px;margin-right: 40px;padding-top: 50px">
+												<div style="padding-bottom: 10px;">账户管理</div>
+												<a href="#" style="padding-top: 10px; font-size: 16px; color: grey; font-size: 14px; display: block">个人信息</a>
+												<a href="#" style="padding-top: 20px; font-size: 16px; color: grey; font-size: 14px; display: block" data-toggle="modal" data-target="#myModal">修改密码</a>
 											</div>
 
-											<div style="margin-top: 20px;" ng-repeat="x in orders">
-												<div class="row" style="border: #f1f1f1 solid 1px">
-													<div style="background: #f1f1f1; height: 30px;padding-top: 10px">
-														<span class="col-md-3">{{x.createTime | date:'yyyy-MM-dd HH:mm:ss'}}</span> <span class="col-md-3">订单号：{{x.ordersID}}</span>
+											<div class="col-md-9 style1" style="background:white;height: 600px;">
+												<div class="row">
+													<div class="col-md-8 col-md-offset-1"style="margin-top: 50px">
+														<img src="\resources\front\picture\photo.jpg" alt="..." class="img-circle col-md-5" style="max-height: 320px;padding: 10px;margin-left: 50px;margin-right: 50px;">
+														<div style="margin-top: 40px; text-align: left;">
+															<li style="font-size: 20px;color: #000000;">{{user.nickname}}</li>
+															<li style="font-size: 14px;color: grey; margin-top: 15px">早上好~</li>
+															<li style="font-size: 16px;color: #ff6709; margin-top: 15px">{{user.number}}</li>
+															<li style="font-size: 16px;color: #805aff; margin-top: 15px">{{user.sex}}</li>
+															<li style="font-size: 16px;color: #805aff; margin-top: 15px">账户安全：<span style="color: #ff6709;">安全</span></li>
+														</div>
 													</div>
+													<hr>
+													<div>
 
-													<div ng-repeat="y in x.items" style="border-bottom: #f1f1f1 solid 1px">
-														<div class = "col-md-6 style1" style="padding-top: 0px">
-															<div style="background: white">
-																<img src="\resources\front\images\1903\c3.jpg" alt="..." class="img-thumbnail col-md-3" style="max-height: 120px">
-																<div class="col-md-9" style="padding-top: 20px">{{y.goods.product.name}}</div>
-															</div>
-														</div>
-														<div class="col-md-6 style1"style="padding-top: 0px; height: auto">
-															<div class = "col-md-3 style1">
-																<div style="padding-top: 10px;">
-																	{{x.user.nickname}}
-																</div>
-															</div>
-															<div class = "col-md-3 style1">
-																<div style="padding-top: 10px;">
-																	{{y.goods.sellPrice}}
-																</div>
-															</div>
-															<div class = "col-md-3 style1">
-																<div style="padding-top: 10px;">
-																	{{x.statusName}}
-																</div>
-															</div>
-															<div class = "col-md-3 style1">
-																<div style="padding-top: 10px;">
-																	<button class="btn btn-default property-value" ng-if="x.status == 1" ng-click="change(2, x.ordersID)">提交订单</button>
-																	<button class="btn btn-default property-value" ng-if="x.status == 2" ng-click="change(3, x.ordersID)">确认收货</button>
-																	<button class="btn btn-default property-value" ng-if="x.status == 3" ng-click="change(4, x.ordersID)">评价订单</button>
-																</div>
-															</div>
-														<!--	<div class = "col-md-3 style1" style="background: #805aff">金额</div>
-															<div class = "col-md-3 style1" style="background: greenyellow;">状态</div>
-															<div class = "col-md-3 style1" style="background: magenta">操作</div>-->
-														</div>
 													</div>
 												</div>
-											</div>
-
-
-                                               <!-- <table cellspacing="0" cellpadding="0" class="order-table" id="J_OrderTable" summary="订单信息区域">
-                                                    <caption style="display: none">订单信息区域</caption>
-                                                        <thead>
-                                                            <tr>
-                                                            <th class="s-title">店铺宝贝<hr/></th>
-                                                            <th class="s-price">单价(元)<hr/></th>
-                                                            <th class="s-recipients">收件人<hr/></th>   
-                                                            <th class="s-amount">数量<hr/></th>
-                                                            <th class="s-agio">优惠方式(元)<hr/></th>
-                                                            <th class="s-total">小计(元)<hr/></th>
-                                                            </tr>
-                                                        </thead>
-                                                    <tbody  class="J_Shop" >
-                                                    <tr class="or_first"><td colspan="6"></td></tr>
-                                                    <tr class="shop blue-line"></tr>
-                                                        <td class="s-title">
-                                                            <a href="#" target="_blank" title="索尼相机X2445" class="J_MakePoint" >
-                                                                <img width="180" height="180" src="/resources/front/images/1903/56-180x180.jpg" class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" alt="" srcset="/resources/front/images/1903/56-180x180.jpg 180w, /resources/front/images/1903/56-150x150.jpg 150w, /resources/front/images/1903/56-300x300.jpg 300w, /resources/front/images/1903/56.jpg 600w" sizes="(max-width: 180px) 100vw, 180px"><span class="title J_MakePoint" >索尼相机X2445</span>
-                                                            </a>
-                                                            <div class="props">
-                                                                <span>物品描述 </span>
-                                                            </div>
-                                                        </td>
-                                                        <td class="s-recipients">
-                                                            <span class='recipients'>马英</span>
-                                                        </td>
-                                                        <td class="s-price">
-                                                            <span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span>300.00</span>
-                                                        </td>
-                                                        <td class="s-amount" data-point-url="">
-                                                            <input type="hidden" class="J_Quantity" value="1" />1
-                                                        </td>
-                                                        <td class="s-agio">
-                                                            <div class="J_Promotion promotion" data-point-url="">无优惠</div>
-                                                        </td>
-                                                        <td class="s-total">
-                                                            <span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span>300.00</span>
-                                                        </td>
-                                            </table>  -->
-                                        </div> 
+                                        	</div>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -319,6 +242,42 @@
 					</div>
 				</div>
 			</div>
+		</div>
+
+		<!-- 模态框（Modal） -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							&times;
+						</button>
+						<h4 class="modal-title" id="myModalLabel">
+							修改密码
+						</h4>
+					</div>
+					<div class="modal-body">
+						<form >
+							<div class="form-group">
+								<label for="exampleInputEmail1">原密码</label>
+								<input type="email" class="form-control" ng-model="oldpass" id="exampleInputEmail1" placeholder="原密码.." required="required">
+							</div>
+							<div class="form-group">
+								<label for="exampleInputPassword1">新密码</label>
+								<input type="password" class="form-control" ng-model="newpass" id="exampleInputPassword1" placeholder="新密码.." required="required">
+								<input type="password" class="form-control" ng-model="surepass" id="exampleInputPassword2" placeholder="确认密码.."  required="required">
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+						</button>
+						<button type="button" class="btn btn-primary" ng-click="password()" data-dismiss="modal">
+							提交
+						</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal -->
 		</div>
 		
 	<footer id="footer" class="footer default theme-clearfix">
@@ -737,7 +696,9 @@
 	<script type="text/javascript" src="/resources/front/js/main.min.js"></script>
 
 	<script src="https://cdn.bootcss.com/angular.js/1.6.3/angular.min.js"></script>
-	<script type="text/javascript" src="/resources/front/dojs/orders.js"></script>
+	<script src="http://ifightcrime.github.io/bootstrap-growl/jquery.bootstrap-growl.min.js"></script>
+	<script type="text/javascript" src="/resources/front/dojs/my.js"></script>
+
    
 	<script type="text/javascript">
 		var sticky_navigation_offset_top = $("#header .header-bottom").offset().top;

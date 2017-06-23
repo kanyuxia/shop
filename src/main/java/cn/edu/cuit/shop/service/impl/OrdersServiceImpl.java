@@ -32,6 +32,11 @@ public class OrdersServiceImpl implements OrdersService {
 	@Override
 	public List<Orders> queryUserOrders(User user) {
 		List<Orders> ordersList = ordersDao.selectWithOrderItemByUserId(user.getUserID());
+		for (Orders orders : ordersList) {
+			for (OrderItem orderItem : orders.getItems()) {
+				orderItem.setGoods(goodsDao.selectWithOneById(orderItem.getGoodsID()));
+			}
+		}
 		return ordersList;
 	}
 

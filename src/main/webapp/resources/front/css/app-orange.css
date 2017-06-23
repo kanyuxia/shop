@@ -14639,3 +14639,50 @@ div.stars .rating-hidden {
   right: auto;
   left: 15px;
 }
+
+.dib-wrap .dib {
+    font-size:12px;
+	letter-spacing:normal;
+	word-spacing:normal;
+	vertical-align:top    
+}
+
+.order-table th.s-title {
+    width:350px;
+    text-align:center;
+	border-left:0
+}
+
+.order-table th.s-price {
+    width:150px
+}
+
+.order-table th.s-amount {
+    width:150px
+}
+
+.order-table th.s-agio {
+    width:150px
+}
+
+.order-table th.s-total {
+    width:150px
+}
+
+.order-table {
+    width:80%;
+	margin-top:20px;
+	*table-layout:fixed
+}
+
+.order-table th.s-recipients {
+    width:150px
+}
+
+.J_Shop {
+    
+}
+
+.order-table .or_first {
+    height:25px
+}

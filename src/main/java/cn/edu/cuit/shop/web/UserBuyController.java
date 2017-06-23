@@ -52,11 +52,11 @@ public class UserBuyController {
 	 * @param goodsNum 商品数量
 	 * @return 是否加入成功
 	 */
-	@RequestMapping(value="/cart/addcart", method=RequestMethod.GET,
+	@RequestMapping(value="/cart/addcart", method={RequestMethod.GET,RequestMethod.POST},
 			produces={"application/json;charset=UTF-8"})
 	@ResponseBody
 	public Result<Boolean> addCart(@RequestParam(value="gid", required=true) long goodsID,
-			@RequestParam(value="gnum", required=true) long goodsNumber) {
+			@RequestParam(value="gnum", defaultValue="1") long goodsNumber) {
 		if (goodsNumber <= 0) {
 			return new Result<Boolean>(false, "加入购物车失败,商品数量小于等于0");
 		}

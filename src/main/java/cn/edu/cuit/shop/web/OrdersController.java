@@ -32,6 +32,16 @@ public class OrdersController {
 		return new Result<List<Orders>>(true, orders);
 	}
 	
+	@RequestMapping(value="/changeStatus", method=RequestMethod.GET, 
+			produces={"application/json;charset=UTF-8"})
+	public @ResponseBody Result<Object> changeStatus(Orders orders){
+		boolean flag = ordersService.updateOrdersStatus(orders);
+		if (flag) {
+			return new Result<Object>(true, "修改成功");
+		}
+		return new Result<Object>(false, "修改失败");
+	}
+	
 	@RequestMapping(value="/cancel/{ordersId}", method=RequestMethod.GET, 
 			produces={"application/json;charset=UTF-8"})
 	public @ResponseBody Result<Object> cancelOrders(@PathVariable long ordersId){
