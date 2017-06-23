@@ -1,5 +1,7 @@
 package cn.edu.cuit.shop.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 import cn.edu.cuit.shop.entity.User;
@@ -44,4 +46,6 @@ public interface UserDao {
 	 */
 	int updateUser(@Param("number")String number, @Param("newNickname")String newNickname,
 			@Param("newSex")String newSex);
+
+	List<User> selectPage(@Param("offset")int i, @Param("number")int rows);
 }

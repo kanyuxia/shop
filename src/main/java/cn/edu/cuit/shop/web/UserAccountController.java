@@ -34,11 +34,14 @@ public class UserAccountController {
 	@RequestMapping(value="/pass/register", method=RequestMethod.POST, 
 			produces={"application/json;charset=UTF-8"})
 	@ResponseBody
-	public Result<Object> register(@RequestParam() User user){
+	public Result<Object> register(@RequestParam() User user, HttpServletRequest request){
 		System.out.println(user);
 		boolean successed = userService.register(user.getNumber(), user.getPassword(), 
 				user.getNickname(), user.getSex());
 		if (successed) {
+			User user1 = userService.login(user.getNickname(), user.getPassword());
+			HttpSession session = request.getSession();
+			session.setAttribute("user", user1);
 			return new Result<Object>(true, null);
 		}
 		return new Result<Object>(false, "注册失败");
@@ -70,6 +73,7 @@ public class UserAccountController {
 	@ResponseBody
 	public Result<User> login(@RequestParam(required=true)String number, 
 			@RequestParam(required=true)String password, HttpServletRequest request) {
+		System.out.println(number + password);
 		User user = userService.login(number, password);
 		if (user != null) {
 			HttpSession session = request.getSession();

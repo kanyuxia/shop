@@ -4,6 +4,13 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.edu.cuit.shop.dao.GoodsDao">
 
+	<!-- 不级联 -->
+ 	<select id="selectId" resultType="long">
+	  	select goods_id
+	  	from goods
+	  	where create_time = #{goods.createTime}
+  	</select>
+
 	<!-- 插入产品信息 -->
 	<insert id="insertGoods">
 		<!-- 'ignore' 忽略主键、唯一键冲突错误(返回值为0) -->

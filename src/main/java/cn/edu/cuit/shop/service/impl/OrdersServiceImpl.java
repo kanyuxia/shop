@@ -10,6 +10,7 @@ import cn.edu.cuit.shop.dao.GoodsDao;
 import cn.edu.cuit.shop.dao.InventoryDao;
 import cn.edu.cuit.shop.dao.OrderItemDao;
 import cn.edu.cuit.shop.dao.OrdersDao;
+import cn.edu.cuit.shop.dao.UserDao;
 import cn.edu.cuit.shop.entity.Goods;
 import cn.edu.cuit.shop.entity.Inventory;
 import cn.edu.cuit.shop.entity.OrderItem;
@@ -28,6 +29,8 @@ public class OrdersServiceImpl implements OrdersService {
 	private GoodsDao goodsDao;
 	@Autowired
 	private InventoryDao inventoryDao;
+	@Autowired
+	private UserDao userDao;
 	
 	@Override
 	public List<Orders> queryUserOrders(User user) {
@@ -87,5 +90,10 @@ public class OrdersServiceImpl implements OrdersService {
 	@Override
 	public List<Orders> queryAllOrders(int offset, int size) {
 		return ordersDao.selectWithOrderItem(offset, size);
+	}
+
+	@Override
+	public List<Orders> queryOrdersByNickName(long id) {
+		return ordersDao.selectWithOrderItemByUserId(id);
 	}
 }

@@ -1,5 +1,6 @@
 package cn.edu.cuit.shop.web;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.edu.cuit.shop.dto.Result;
+import cn.edu.cuit.shop.entity.OrderItem;
 import cn.edu.cuit.shop.entity.Orders;
 import cn.edu.cuit.shop.entity.ShopCart;
 import cn.edu.cuit.shop.entity.User;
@@ -139,6 +141,11 @@ public class UserBuyController {
 			produces={"application/json;charset=UTF-8"})
 	@ResponseBody
 	public Result<Boolean> commitOrders(@RequestBody() Orders orders) {
+		System.out.println(orders);
+		orders.setCreateTime(new Date());
+		for (OrderItem orderItem : orders.getItems()) {
+			orderItem.setCreateTime(new Date());
+		}
 		try {
 			ordersService.commitOrders(orders);
 			return new Result<Boolean>(true, true);

@@ -47,6 +47,8 @@
      */
     function submitForm(){
         $('#ff').form('submit',{
+        	url:"/addProducts.do",
+        	method:'post',
             onSubmit:function () {
                 var name = document.getElementById("tjcpname").value;
                 var attributes = document.getElementById("tjtcattributes").value;
@@ -55,7 +57,6 @@
                 if(name == "" || attributes == "" || cd == "") {
                     $.messager.alert("提示","请检查是否所有选项都已填写",'warning');
                 }
-                return $('#ff').form('enableValidation').form('validate');
             },
             success:function (data) {
                 alert("成功");

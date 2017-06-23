@@ -71,6 +71,8 @@ public interface GoodsService {
 	 * @return 商品信息及其产品信息
 	 */
 	Goods getGoodsByGoodsIDofAll(long goodsID);
+
+	List<Goods> getGoodsByProductId(Long productID);
 	
 	
 }

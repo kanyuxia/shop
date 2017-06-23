@@ -17,6 +17,14 @@ public class TestGoodsDao {
 	@Autowired
 	private GoodsDao goodsDao;
 	
+	
+	@Test
+	public void testInsert1() {
+		Goods goods1 = new Goods(12, new Date(), "金色", 2388.00, 2388.00, 10009);
+		goodsDao.insertGoods(goods1);
+		System.out.println(goodsDao.selectId(goods1));
+	}
+	
 	@Test
 	public void testInsert() {
 		Goods goods1 = new Goods(12, new Date(), "16G,金色", 2388.00, 2388.00, 10003);

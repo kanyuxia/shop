@@ -35,6 +35,8 @@ public interface CategoryService {
 	 * @return 是否成功
 	 */
 	boolean insertCat(String name);
+
+	List<Category> queryByPagesize(int i, int rows);
 	
 	
 	

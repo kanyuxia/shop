@@ -1,5 +1,7 @@
 package cn.edu.cuit.shop.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -61,7 +63,12 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public boolean modifyUser(User user) {
-		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public List<User> queryUsersByPageSize(int i, int rows) {
+		List<User> list =  userDao.selectPage(i,rows);
+		return list;
 	}
 }

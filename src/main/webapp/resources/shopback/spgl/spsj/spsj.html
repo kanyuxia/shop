@@ -27,7 +27,7 @@
 				iconCls: 'icon-edit',
 				singleSelect: true,
 				<!-- 数据来源-->
-				method:'get',
+				method:'post',
 				onClickCell: onClickCell,
 				pagination:true,
 				striped:true,
@@ -43,7 +43,8 @@
                             options:{
                                      valueField:'productid',
                                      textField:'name',
-                                     url:'products.json',
+                                     dataType:'json',
+                                     url:'/queryProducts.do',
                                      required:true}}">产品名称
         </th>
         <!-- 商品属性-->

@@ -1,5 +1,7 @@
 package cn.edu.cuit.shop.service;
 
+import java.util.List;
+
 import cn.edu.cuit.shop.entity.User;
 
 public interface UserService {
@@ -36,4 +38,6 @@ public interface UserService {
 	 * @return 是否修改成功
 	 */
 	boolean modifyUser(User user);
+
+	List<User> queryUsersByPageSize(int i, int rows);
 }

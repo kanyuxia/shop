@@ -109,4 +109,10 @@ public class GoodsServiceImpl implements GoodsService {
 		goods.setProduct(product);
 		return goods;
 	}
+
+	@Override
+	public List<Goods> getGoodsByProductId(Long productID) {
+		Product product = productDao.selectWithGoodsById(productID);
+		return product.getGoods();
+	}
 }

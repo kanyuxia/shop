@@ -19,6 +19,7 @@ app.controller('controller', function($scope, $http, $location) {
 		$scope.goodsInfo = result['data'];
 		for (var i = 0; i < $scope.goodsInfo.length; i++) {
 			$scope.goodsInfo[i].goods[0].picture = splitPicture($scope.goodsInfo[i].goods[0].picture);
+			
 		}
 		// 设置起始偏移量为放回的商品的数量
 		offset = offset + $scope.goodsInfo.length;

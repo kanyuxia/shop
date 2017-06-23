@@ -9,6 +9,16 @@
 		insert ignore into user(number,password,nickname,sex)
 		values(#{number},#{password},#{nickname},#{sex});
 	</insert>
+	
+	<!-- 查询用户信息 -->
+	<select id="selectPage" resultType="cn.edu.cuit.shop.entity.User">
+		select user_id,create_time,number,nickname,sex
+		from user
+		order by create_time
+		limit #{offset},#{number}
+	</select>
+	
+	
 	<!-- 查询用户信息 -->
 	<select id="selectUser" resultType="cn.edu.cuit.shop.entity.User">
 		select user_id,create_time,number,nickname,sex

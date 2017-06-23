@@ -4,8 +4,11 @@ package cn.edu.cuit.shop.dao;
 import org.apache.ibatis.annotations.Param;
 
 import cn.edu.cuit.shop.entity.Goods;
+import cn.edu.cuit.shop.entity.User;
 
 public interface GoodsDao {
+	
+	long selectId(@Param("goods") Goods goods);
 
 	/**
 	 * 插入商品

@@ -14,6 +14,13 @@ public interface CategoryDao {
 	List<Category> selectAll();
 	
 	/**
+	 * 查询所有的分类信息
+	 * @return 分类信息
+	 */
+	List<Category> selectBypage(@Param("offsetStart")long offsetStart, @Param("number")long number);
+	
+	
+	/**
 	 * 修改分类名称
 	 * @param categoryID 分类ID
 	 * @param newName 新分类名
@@ -34,4 +41,7 @@ public interface CategoryDao {
 	 * @return 数据库影响行数
 	 */
 	int insertCategory(String name);
+	
+	
+	
 }

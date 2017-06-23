@@ -17,6 +17,16 @@ public class BackOrder {
 	 * 创建时间
 	 */
 	private Date createTime;
+	/**
+	 * 用户账号
+	 */
+	private String number;
+	
+	/**
+	 * 用户昵称
+	 */
+	private String nickname;
+	
 	
 	/**
 	 * 收获地址
@@ -33,15 +43,7 @@ public class BackOrder {
 	 */
 	private double totalPrice;
 	
-	/**
-	 * 用户账号
-	 */
-	private String number;
 	
-	/**
-	 * 用户昵称
-	 */
-	private String nickname;
 
 	public long getOrdersID() {
 		return ordersID;

@@ -75,8 +75,21 @@ app.controller('controller', function($scope, $http) {
 		
 	// 购买函数
 	$scope.commit = function() {
-		var catIDs = 1;
-		$http.post("/order/commit",catIDs).then(function successCallback(result) {
+		var order = {};
+		order.harvestAddress = "四川成都";
+		order.status = 1;
+		order.totalPrice = $scope.total;
+		order.userID = $scope.userInfo.userID;
+		order.items = [];
+		
+		console.log(order);
+		for (var i = 0; i < $scope.shopcatInfo.length; i++) {
+			var orderItem = {};
+			orderItem.goodsNumber = $scope.shopcatInfo[i].goodsNumber;
+			orderItem.goodsID = $scope.shopcatInfo[i].goods[0].goodsID;
+			order.items[i] = orderItem;
+		}
+		$http.post("/order/commit",order).then(function successCallback(result) {
 			var successed = result['data']['success'];
 			console.log(successed);
 		});
