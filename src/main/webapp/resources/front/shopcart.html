@@ -1,15 +1,11 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<title>categories</title>
+<title></title>
 <meta charset="utf-8" />
 
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-
-<!-- AngularJS -->
-<script
-	src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
 <!-- GOOGLE WEB FONTS -->
 <link rel="stylesheet" href="/resources/front/css/font-awesome.min.css">
 
@@ -31,32 +27,41 @@
 <link rel="stylesheet"
 	href="/resources/front/css/woocommerce/woocommerce.css" />
 <link rel="stylesheet"
-	href="/resources/front/css/yith-woocommerce-wishlist/style.css" />
-
-
+	href="/resources/front/css/woocommerce/woocommerce-layout.css" />
+<link rel="stylesheet"
+	href="/resources/front/css/woocommerce/woocommerce-smallscreen.css" />
+<link rel="stylesheet"
+	href="/resources/front/css/woocommerce/prettyPhoto.css" />
 <link rel="stylesheet"
 	href="/resources/front/css/yith-woocommerce-wishlist/style.css" />
+<link rel="stylesheet" href="/resources/front/css/main.css" />
+
+
 <link rel="stylesheet" href="/resources/front/css/custom.css" />
 <link rel="stylesheet" href="/resources/front/css/app-orange.css"
 	id="theme_color" />
 <link rel="stylesheet" href="" id="rtl" />
 <link rel="stylesheet" href="/resources/front/css/app-responsive.css" />
-<link rel="stylesheet" href="/resources/front/css/category.css" />
+
+<script src="https://cdn.bootcss.com/angular.js/1.6.3/angular.min.js"></script>
+<script src="/resources/front/dojs/docart.js"></script>
 </head>
 
-<body ng-app="myApp" ng-controller="controller" class="page page-id-6 home-style1">
-
+<body
+	class="product-template-default single single-product woocommerce woocommerce-page"
+	ng-app="simple" ng-controller="simpleController">
 
 
 
 	<div class="body-wrapper theme-clearfix">
+
 		<header id="header" class="header header-style1">
 			<div class="header-top clearfix">
 				<div class="container">
 					<div class="rows">
 						<div class="wrap-myacc pull-right">
 							<div class="sidebar-account pull-left">
-								<div class="account-title">你好</div>
+								<div class="account-title">你好，默默的看雨下</div>
 								<div id="my-account" class="my-account">
 									<div
 										class="widget-1 widget-first widget nav_menu-4 widget_nav_menu">
@@ -185,65 +190,118 @@
 			</div>
 		</header>
 
-		<div class="w" id="j_search_wrap">
-			<div class="container" id="j_container">
-				<div class="selector" id="j_selector">
-					<div class="sortbox">
-						<!--本部分的js文件为：category.js-->
-						<div class="siftbox clearfix">
-							<span class="label">已选条件:</span>
-							<div id="condition"></div>
-						</div>
-
-						<div id="filter">
-							<dl class="clearfix" ng-repeat="x in prosInfo">
-								<dt>{{x.name}}:</dt>
-								<dd>
-									<div>
-										<a>全部</a>
-									</div>
-								</dd>
-								<dd ng-repeat="xy in x.propertyValues">
-									<div>
-										<a>{{xy.value}}</a>
-									</div>
-								</dd>
-							</dl>
-						</div>
-						<div class="j02 main clearfix">
-							<div class="product" ng-repeat="x in goodsInfo">
-								<a href="/item/{{x.goods[0].goodsID}}" target="_blank"
-									class="iwrap"> <img src="{{x.goods[0].picture}}"> <p4
-										class="f12 line2 red">{{x.name}}</p4>
-									<dl class="line3">
-										<dd class="c2 red">
-											<span class="rmb">{{x.goods[0].sellPrice}}</span>
-										</dd>
-									</dl>
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div padding-top="100px">
-					<nav aria-label="">
-						<ul class="pager">
-							<h4 style="color:#FF0000">{{hint}}</h4>
-							<li>
-								<a href="javascript:void(0);" ng-click="prePage()">上一页</a>
-							</li>
-							<li>
-								<a href="javascript:void(0);" ng-click="nextPage()">下一页</a>
-							</li>
-						</ul>
-					</nav>
+		<div class="listings-title">
+			<div class="container">
+				<div class="wrap-title">
+					<h1></h1>
 				</div>
 			</div>
 		</div>
 
 
+		<div class="container">
+			<div class="row">
+				<div id="contents" role="main"
+					class="main-page col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="page type-page status-publish hentry">
+						<div class="entry-content">
+							<div class="entry-summary">
+								<div class="woocommerce">
+									<form action="" method="post">
+										<table class="shop_table shop_table_responsive cart"
+											cellspacing="0">
+											<thead>
+												<tr>
+													<th class="product-thumbnail">商品图片</th>
+													<th class="product-name">商品名字</th>
+													<th class="product-price">价格</th>
+													<th class="product-quantity">数量</th>
+													<th class="product-subtotal">总计</th>
+													<th class="product-remove">删除</th>
+												</tr>
+											</thead>
 
+											<tbody>
+												<tr class="cart_item">
+													<td class="product-thumbnail"><a
+														href="simple_product.html"> <img width="180"
+															height="180"
+															src="/resources/front/images/1903/56-180x180.jpg"
+															class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image"
+															alt=""
+															srcset="/resources/front/images/1903/56-180x180.jpg 180w, /resources/front/images/1903/56-150x150.jpg 150w, /resources/front/images/1903/56-300x300.jpg 300w, /resources/front/images/1903/56.jpg 600w"
+															sizes="(max-width: 180px) 100vw, 180px">
+													</a></td>
+
+													<td class="product-name" data-title="Product"><a
+														href="simple_product.html">索尼相机X2445</a></td>
+
+													<td class="product-price" data-title="Price"><span
+														class="woocommerce-Price-amount amount"><span
+															class="woocommerce-Price-currencySymbol">$</span>300.00</span></td>
+
+													<td class="product-quantity" data-title="Quantity">
+														<div class="quantity">
+															<input type="number" step="1" min="1" max="" name=""
+																value="1" title="Qty" class="input-text qty text"
+																size="4" pattern="[0-9]*" inputmode="numeric">
+														</div>
+													</td>
+
+													<td class="product-subtotal" data-title="Total"><span
+														class="woocommerce-Price-amount amount"><span
+															class="woocommerce-Price-currencySymbol">$</span>300.00</span></td>
+													<td class="product-remove"><a href="#"><h5>删除</h5></a>
+													</td>
+												</tr>
+
+											</tbody>
+										</table>
+									</form>
+
+									<div class="cart-collaterals">
+										<div class="products-wrapper">
+											<div class="cart_totals ">
+												<h2>购物车总计</h2>
+												<table cellspacing="0"
+													class="shop_table shop_table_responsive">
+													<tbody>
+														<tr class="order-total">
+															<th>总计</th>
+															<td data-title="Total"><strong><span
+																	class="woocommerce-Price-amount amount"><span
+																		class="woocommerce-Price-currencySymbol">￥</span>300.00</span></strong>
+															</td>
+														</tr>
+													</tbody>
+												</table>
+												<div class="wc-proceed-to-checkout">
+													<a href="checkout.html"
+														class="checkout-button button alt wc-forward">点击购买</a>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="cart-collaterals">
+										<div class="products-wrapper">
+											<div class="cart_totals ">
+												<h2>收货地址</h2>
+												<div class="form-group">
+													<input type="email" class="form-control" ng-model="harvestAddress">
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="clearfix"></div>
+					</div>
+				</div>
+			</div>
+		</div>
 
 		<footer id="footer" class="footer default theme-clearfix">
 			<!-- Content footer -->
@@ -469,7 +527,6 @@
 	</div>
 
 
-
 	<a id="etrostore-totop" href="#"></a>
 
 	<div id="subscribe_popup" class="subscribe-popup"
@@ -513,9 +570,6 @@
 			</div>
 		</div>
 	</div>
-	<!-- 调入自己写的JS -->
-	<script type="text/javascript"
-		src="/resources/front/dojs/docategory.js"></script>
 	<script type="text/javascript"
 		src="/resources/front/js/jquery/jquery.min.js"></script>
 	<script type="text/javascript"
@@ -531,6 +585,27 @@
 	<script type="text/javascript"
 		src="/resources/front/js/slick-1.6.0/slick.min.js"></script>
 
+	<script type="text/javascript">
+		/* <![CDATA[ */
+		var woocommerce_price_slider_params = {
+			"currency_symbol" : "$",
+			"currency_pos" : "left",
+			"min_price" : "100",
+			"max_price" : "500"
+		};
+		var wc_single_product_params = {
+			"i18n_required_rating_text" : "Please select a rating",
+			"review_rating_required" : "yes"
+		};
+		/* ]]> */
+	</script>
+
+	<script type="text/javascript" src="/resources/front/js/widget.min.js"></script>
+	<script type="text/javascript" src="/resources/front/js/mouse.min.js"></script>
+	<script type="text/javascript" src="/resources/front/js/slider.min.js"></script>
+	<script type="text/javascript"
+		src="/resources/front/js/js_composer/js_composer_front.min.js"></script>
+
 	<script type="text/javascript"
 		src="/resources/front/js/yith-woocommerce-compare/jquery.colorbox-min.js"></script>
 	<script type="text/javascript"
@@ -542,14 +617,19 @@
 	<script type="text/javascript"
 		src="/resources/front/js/sw_woocommerce/jquery.countdown.min.js"></script>
 	<script type="text/javascript"
-		src="/resources/front/js/js_composer/js_composer_front.min.js"></script>
+		src="/resources/front/js/woocommerce/price-slider.min.js"></script>
+	<script type="text/javascript"
+		src="/resources/front/js/woocommerce/single-product.min.js"></script>
+	<script type="text/javascript"
+		src="/resources/front/js/woocommerce/prettyPhoto/jquery.prettyPhoto.init.min.js"></script>
+	<script type="text/javascript"
+		src="/resources/front/js/woocommerce/prettyPhoto/jquery.prettyPhoto.min.js"></script>
 
 	<script type="text/javascript" src="/resources/front/js/plugins.js"></script>
 	<script type="text/javascript"
 		src="/resources/front/js/megamenu.min.js"></script>
 	<script type="text/javascript" src="/resources/front/js/main.min.js"></script>
-	<script type="text/javascript" src="/resources/front/js/category.js"></script>
-	<script type="text/javascript" src="/resources/front/js/jquery.min.js"></script>
+
 	<script type="text/javascript">
 		var sticky_navigation_offset_top = $("#header .header-bottom").offset().top;
 		var sticky_navigation = function() {
@@ -594,4 +674,5 @@
 	<!--<![endif]-->
 </body>
 </html>
+
 

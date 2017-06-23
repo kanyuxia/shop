@@ -37,7 +37,7 @@ public class UserBuyController {
 	 * 获取用户购物车信息
 	 * @return 用户购物车信息
 	 */
-	@RequestMapping(value="cart.shop.com/{ID}/current", method=RequestMethod.GET,
+	@RequestMapping(value="/cart/current", method=RequestMethod.GET,
 			produces={"application/json;charset=UTF-8"})
 	@ResponseBody
 	public Result<List<ShopCart>> getShopCart() {
@@ -52,7 +52,7 @@ public class UserBuyController {
 	 * @param goodsNum 商品数量
 	 * @return 是否加入成功
 	 */
-	@RequestMapping(value="cart.shop.com/cart/addcart", method=RequestMethod.GET,
+	@RequestMapping(value="/cart/addcart", method=RequestMethod.GET,
 			produces={"application/json;charset=UTF-8"})
 	@ResponseBody
 	public Result<Boolean> addCart(@RequestParam(value="gid", required=true) long goodsID,
@@ -75,7 +75,7 @@ public class UserBuyController {
 	 * @param goodsNum 商品数量
 	 * @return 是否加入成功
 	 */
-	@RequestMapping(value="cart.shop.com/cart/changeNum", method=RequestMethod.GET,
+	@RequestMapping(value="/cart/changeNum", method=RequestMethod.GET,
 			produces={"application/json;charset=UTF-8"})
 	@ResponseBody
 	public Result<Boolean> changeNum(@RequestParam(value="sid", required=true) long shopCartID,
@@ -95,7 +95,7 @@ public class UserBuyController {
 	 * @param shopCartID 购物车ID
 	 * @return 是否加入成功
 	 */
-	@RequestMapping(value="cart.shop.com/cart/delete", method=RequestMethod.GET,
+	@RequestMapping(value="/cart/delete", method=RequestMethod.GET,
 			produces={"application/json;charset=UTF-8"})
 	@ResponseBody
 	public Result<Boolean> changeNum(@RequestParam(value="sid", required=true) long shopCartID) {
@@ -110,7 +110,7 @@ public class UserBuyController {
 	 * 获得用户订单
 	 * @return 是否购买成功
 	 */
-	@RequestMapping(value="order.shop.com/order/{ID}/current", method=RequestMethod.GET,
+	@RequestMapping(value="/order/current", method=RequestMethod.GET,
 			produces={"application/json;charset=UTF-8"})
 	@ResponseBody
 	public Result<List<Orders>> getOrders() {
@@ -126,7 +126,7 @@ public class UserBuyController {
 	 * @param orders 商品信息
 	 * @return 是否购买成功
 	 */
-	@RequestMapping(value="cart.shop.com/cart/order/commit", method=RequestMethod.GET,
+	@RequestMapping(value="/order/commit", method=RequestMethod.GET,
 			produces={"application/json;charset=UTF-8"})
 	@ResponseBody
 	public Result<Boolean> commitOrders(@RequestBody() Orders orders) {

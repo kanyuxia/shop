@@ -10,9 +10,7 @@ app.controller('simpleController', function($scope, $http) {
     //     }
     // });
 
-    console.log("yayayyaya");
-    $scope.name = "哈哈哈哈哈";
-    console.log("hahahah");
+    
 
     //start------
     $scope.currentProduct = {
@@ -46,7 +44,7 @@ app.controller('simpleController', function($scope, $http) {
 
     $http({
         method: 'GET',
-        url: 'item.shop.com/10003/current'
+        url: '/item/10003/current'
     }).then(function(result) {
         if (result.data.success == true){
             $scope.currentGoods = result.data.data;
@@ -86,16 +84,19 @@ app.controller('simpleController', function($scope, $http) {
             if ($scope.currentProduct.goods[i].attributes + "," == str){
                 $scope.selectedGoodsId = $scope.currentProduct.goods[i].goodsID;
                 console.log($scope.selectedGoodsId);
+                return;
             }
         }
     }
 
     $scope.selectProperty = function (index, value) {
+        console.log(index);
         $scope.selectedProperty[index] = value;
         console.log($scope.selectedProperty);
+//        $scope.panduan(index);
     }
 
-    $scope.panduan = function(index, value){
+    $scope.panduan = function(index){
         // for (var i = 0; i<$scope.property.length; i++) {
         //     if (i = index) continue;
         //     for (var a = 0; a<$scope.currentProduct.goods; a++){
@@ -111,26 +112,56 @@ app.controller('simpleController', function($scope, $http) {
         //
         //     }
         // }
+        var goods =  $scope.currentProduct.goods;
         for (var i = 0; i<$scope.property.length; i++) {
             if (i = index) continue;
-            for(var a = 0; a<$scope.currentProduct.goods.length; a++){
-                var arrs = $scope.currentProduct.goods[a].attributes.split(",");
-                // var remove = arrs[];
-                // for (var b = 0; b<arrs.length; b++){
-                //     if(value == arrs[index] && $scope.selectedProperty[b]){
-                //         $scope.property[index][b+1]
+
+            console.log("-------");
+
+            for(var a = 0; a<goods.length; a++){
+                var arrs = goods[a].attributes.split(",");
+                // for (var b = 0; b<arrs.length; b++) {
+                //     if (value == arrs[index] && $scope.selectedProperty[b]) {
+                //         $scope.property[index][b + 1]
                 //     }
-                //     arrs[b]
-
+                // }
+                //删掉与选择无关的商品
                 for (var b = 0; b<$scope.selectedProperty.length; b++){
-                    if ($scope.selectedProperty[b]) {
-
+                    if (b == i) continue;
+                    if ($scope.selectedProperty[b] != arrs[b]) {
+                        goods.splice(a,1);
+                        break;
                     }
-
                 }
-
+            }
+            console.log(goods);
+            for(var a = 0; a<goods.length; a++){
+                var arrs = goods[a].attributes.split(",");
+                for (var b = 1; b<$scope.property[i].length; b++){
+                    if ($scope.property[i][b].value == arrs[i]){
+                        $scope.property[i][b].status = 2;
+                        continue;
+                    }
+                }
             }
         }
+
+
+        for (var i = 0; i<$scope.property.length; i++) {
+            for (var j = 1; j<$scope.property[i].length; j++){
+                if ($scope.property[i][j].status == 2){
+                    $scope.property[i][j].status == 0;
+                    if ($scope.property[i][j].value == $scope.selectedProperty[j-1]){
+                        $scope.property[i][j].status == 1;
+                    }
+                } else{
+                    $scope.property[i][j].status == -1;
+                }
+            }
+        }
+        console.log($scope.property);
+
+
     }
 
 });

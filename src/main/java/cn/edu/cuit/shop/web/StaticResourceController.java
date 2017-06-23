@@ -6,22 +6,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class StaticResourceController {
 	
-	
-	
-	@RequestMapping("/aboutUs")
-	public String getAboutUs() {
-		return "front/about_us";
-	}
-	
 	@RequestMapping("/cart")
 	public String Cart() {
-		return "front/cart";
-	}
-	
-	
-	@RequestMapping("/contactUs")
-	public String getContactUs() {
-		return "front/contact_us";
+		return "front/shopcart";
 	}
 	
 	@RequestMapping("/index")
@@ -29,14 +16,9 @@ public class StaticResourceController {
 		return "front/index";
 	}
 	
-	@RequestMapping("/shop")
-	public String getMyAccount() {
-		return "front/shop";
-	}
-	
-	@RequestMapping("/simpleProduct")
+	@RequestMapping("/item/{goodsID}")
 	public String simpleProduct() {
-		return "front/simple_product";
+		return "front/item";
 	}
 	
 	@RequestMapping("/cat/{catID}")
