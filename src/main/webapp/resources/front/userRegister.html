@@ -1,0 +1,204 @@
+<!DOCTYPE>
+<html>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<head>
+		<meta charset="gb2312">
+		<title>用户注册</title>
+		<style type="text/css">
+		body{
+			background-color:F9F9F9;
+		}
+		div{
+			display:block;
+		}
+		.registerArea{
+			width:854px;
+			margin:0 auto;
+			padding-bottom:10px;
+			align:left;
+		}
+		.mainContainer{
+			padding-bottom:10px;
+			padding-top:10px;
+			border:none;
+			background-color:ffffff;
+			min-height:580px;
+		}
+		.logo{
+			padding-bottom:40px;
+		}
+		.milogo{
+			width:49px;
+			height:48px;
+			margin:0 auto;
+			cursor:pointer;
+		}
+		.itemtitle{
+			text-align:center;
+		}
+		.title{
+			font-size:30px;
+		}
+		.regbox {
+			padding: 20px 0;
+			width:280px;
+			line-height: 20px;
+			margin-left:290px;
+		}
+		.inputtag{
+			padding-bottom:10px;
+			height:30px;
+			border:1px;
+			border-style:solid;
+			border-color:orange;
+			align:center;
+		}
+		.labelbox{
+			height:30px;
+			line-height:40px;
+			display:inline-block;
+		}
+		.labelbox input{
+			border-style:none;
+			width:270px;
+			height:30px;
+			margin:5px;			
+		}
+		.submit{
+				font-size: 20px;
+				font-weight: bold;
+				margin-left:90px;\
+				margin-top:10px;
+				width: 280px;
+				height: 40px;
+				border-style: none;
+				cursor: pointer;
+				background-color:#ff4500;				
+		}
+		.submit:hover{
+				background: #808080;
+		}
+		.inputtag01{
+			padding-bottom:10px;
+			height:30px;
+			border:1px;
+			border-style:solid;
+			border-color:orange;
+			align:center;
+		}
+		.labelbox01{
+			height:30px;
+			line-height:40px;
+			display:inline-block;
+		}
+		.labelbox01 input{
+			border-style:none;
+			width:270px;
+			height:30px;
+					
+		}
+		.footer{
+				position:fixed;
+				top:93%;
+				left:40%;
+			}
+		</style>
+		<script>
+			function judgePassword(){
+				var number = document.register.userName.value;
+				var password = document.register.password.value;
+				var nickName = "默默的看雨下";
+				var sex =  "男";
+				console.log(number + password + nickName + sex);
+				if(document.register.password.value!=document.register.password01.value){
+					alert("两次输入的密码不一致，请重新输入");
+					return;
+				}
+				if(document.register.userName.value==""){
+					alert("用户名不能为空");
+					return;
+				}
+				if(document.register.password.value==""){
+					alert("密码不能为空");
+					return;
+				}
+				if(document.register.gender.value==""){
+					alert("性别不能为空");
+					return;
+				}
+				
+				var user = {number,password,nickName,sex};
+				console.log(user);
+				$.ajax({
+		             type: "POST",
+		             url: "/pass/login",
+		             dataType: "json",
+		             data: {number:number,password:password,nickName:nickName,sex:sex},
+		             success: function(data){
+		            	 var success = data['success'];
+		            	 if (success) {
+		            		 window.location = '/index';
+		            	 } else {
+		            		 alert("用户名已被注册");
+		            	 }
+		             }
+		         });
+				
+			}
+			
+			function time(){	
+			t_div = document.getElementById('showtime');
+			var now=new Date();
+            t_div.innerHTML = now.getFullYear()
+				+"年"+(now.getMonth()+1)+"月"+now.getDate()
+				+"日"+now.getHours()+"时"+now.getMinutes()
+				+"分";    
+            }
+		</script>
+	</head>
+	<body>
+		<div class="ground">
+			<div class="registerArea">
+				<div class="mainContainer">
+					<div class="logo" align="center">
+						<a href="#.html" class="milogo"><img src="/resources/front/images/logo.png"></a>
+					</div>
+					<div class="itemtitle">
+						<h4 class="title">注册xiao米账号</h4>
+					</div>
+					<form method="post" name="register" action="userLogin.html">
+						<div class="regbox">
+							<div class="inputtag">
+								<!--那个啥，账号我默认的是数据库自动生成的额-->
+								<label class="labelbox" for><input type="text" name="userName" placeholder="请输入昵称"></label>							
+							</div>
+							<br>
+							<div class="inputtag">
+								<!--那个啥，账号我默认的是数据库自动生成的额-->
+								<label class="labelbox" for><input type="password" id="p" name="password" placeholder="请输入密码"></label>							
+							</div>
+							<br>
+							<div class="inputtag">
+								<!--那个啥，账号我默认的是数据库自动生成的额-->
+								<label class="labelbox" for><input type="password" id="p1" name="password01" placeholder="请再次输入密码"></label>							
+							</div>
+							<br>
+							<div>
+								<!--那个啥，账号我默认的是数据库自动生成的额-->
+								<label class="gender" for><input type="radio" name="gender">男</label>
+								<label class="gender" for><input type="radio" name="gender">女</label>								
+							</div>	
+							<div class="inputtag01">
+								<a class="submit" href="javascript:void(0);" onclick="judgePassword()">注 册</a>
+							</div>
+							<br>
+							<div class="footer" align="center">
+								<a href="#.html">Contact</a>|<a href="#.html">English</a>	|<a href="#.html">	News</a>|<a href="#.html">	About us</a>|
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

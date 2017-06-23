@@ -6,7 +6,6 @@ app.controller('controller', function($scope, $http) {
 		method: "get"
 	}).success(function(result){
 		$scope.categoryInfo = result['data'];
-		console.log($scope.categoryInfo);
 		var count;
 		if ($scope.categoryInfo.length >= 3) {
 			count = 3;
@@ -16,11 +15,9 @@ app.controller('controller', function($scope, $http) {
 		var catIDs = new Array(count);
 		for (var i = 0; i < count; i++) {
 			catIDs[i] = $scope.categoryInfo[i].categoryID;
-			console.log(catIDs);
 		}
 		$http.post("/index/info",catIDs).success(function(result){
 			$scope.info = result['data'];
-			console.log($scope.info);
 		});
 	});
 	
@@ -30,8 +27,20 @@ app.controller('controller', function($scope, $http) {
 		method: "get"
 	}).success(function(result){
 		$scope.highsellInfo = result['data'];
-		console.log($scope.highsellInfo);
+//		console.log($scope.highsellInfo);
 	});
 	
-	
+	// 获得userInfo,绑定userInfo
+	$http({
+		url: "/pass/getUser",
+		method: "get"
+	}).success(function(result){
+		$scope.userInfo = result['data'];
+		console.log($scope.userInfo);
+		if ($scope.userInfo == null) {
+			$scope.userName = "你好，请登录!";
+		} else {
+			$scope.userName = "你好，" + $scope.userInfo.nickname;
+		}
+	});
 });

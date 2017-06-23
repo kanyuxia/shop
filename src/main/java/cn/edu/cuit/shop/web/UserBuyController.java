@@ -2,6 +2,9 @@ package cn.edu.cuit.shop.web;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -40,10 +43,14 @@ public class UserBuyController {
 	@RequestMapping(value="/cart/current", method=RequestMethod.GET,
 			produces={"application/json;charset=UTF-8"})
 	@ResponseBody
-	public Result<List<ShopCart>> getShopCart() {
-		//TODO 没有写用户的获取，这里直接写了用户ID
-		List<ShopCart> list = shopCatService.listShopsByUserID(10000);
-		return new Result<List<ShopCart>>(true, list);
+	public Result<List<ShopCart>> getShopCart(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
+		if (user != null) {
+			List<ShopCart> list = shopCatService.listShopsByUserID(user.getUserID());
+			return new Result<List<ShopCart>>(true, list);
+		}
+		return new Result<List<ShopCart>>(false, "没有登录");
 	}
 	
 	/**
@@ -103,7 +110,7 @@ public class UserBuyController {
 		if (successed) {
 			return new Result<Boolean>(true, true);
 		}
-		return new Result<Boolean>(false, "加入购物车失败");
+		return new Result<Boolean>(false, "失败");
 	}
 	
 	/**
@@ -113,12 +120,14 @@ public class UserBuyController {
 	@RequestMapping(value="/order/current", method=RequestMethod.GET,
 			produces={"application/json;charset=UTF-8"})
 	@ResponseBody
-	public Result<List<Orders>> getOrders() {
-		//TODO 没有写用户的获取，这里直接写了用户ID
-		User user = new User();
-		user.setUserID(10000);
-		List<Orders> list = ordersService.queryUserOrders(user);
-		return new Result<List<Orders>>(true, list);
+	public Result<List<Orders>> getOrders(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
+		if (user != null) {
+			List<Orders> list = ordersService.queryUserOrders(user);
+			return new Result<List<Orders>>(true, list);
+		}
+		return new Result<List<Orders>>(false, "没有登录");
 	}
 	
 	/**
@@ -126,7 +135,7 @@ public class UserBuyController {
 	 * @param orders 商品信息
 	 * @return 是否购买成功
 	 */
-	@RequestMapping(value="/order/commit", method=RequestMethod.GET,
+	@RequestMapping(value="/order/commit", method=RequestMethod.POST,
 			produces={"application/json;charset=UTF-8"})
 	@ResponseBody
 	public Result<Boolean> commitOrders(@RequestBody() Orders orders) {

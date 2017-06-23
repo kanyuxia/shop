@@ -26,4 +26,13 @@ public class StaticResourceController {
 		return "front/category";
 	}
 	
+	@RequestMapping("/pass/login")
+	public String login() {
+		return "front/userLogin";
+	}
+	
+	@RequestMapping("/pass/register")
+	public String register() {
+		return "front/userRegister";
+	}
 }

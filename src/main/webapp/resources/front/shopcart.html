@@ -8,48 +8,34 @@
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <!-- GOOGLE WEB FONTS -->
 <link rel="stylesheet" href="/resources/front/css/font-awesome.min.css">
-
-<!-- BOOTSTRAP 3.3.7 CSS -->
-<link rel="stylesheet" href="/resources/front/css/bootstrap.min.css" />
-
-<!-- SLICK v1.6.0 CSS -->
-<link rel="stylesheet" href="/resources/front/css/slick-1.6.0/slick.css" />
-
-<link rel="stylesheet" href="/resources/front/css/jquery.fancybox.css" />
-<link rel="stylesheet"
-	href="/resources/front/css/yith-woocommerce-compare/colorbox.css" />
-<link rel="stylesheet"
-	href="/resources/front/css/owl-carousel/owl.carousel.min.css" />
-<link rel="stylesheet"
-	href="/resources/front/css/owl-carousel/owl.theme.default.min.css" />
-<link rel="stylesheet"
-	href="/resources/front/css/js_composer/js_composer.min.css" />
-<link rel="stylesheet"
-	href="/resources/front/css/woocommerce/woocommerce.css" />
-<link rel="stylesheet"
-	href="/resources/front/css/woocommerce/woocommerce-layout.css" />
-<link rel="stylesheet"
-	href="/resources/front/css/woocommerce/woocommerce-smallscreen.css" />
-<link rel="stylesheet"
-	href="/resources/front/css/woocommerce/prettyPhoto.css" />
-<link rel="stylesheet"
-	href="/resources/front/css/yith-woocommerce-wishlist/style.css" />
-<link rel="stylesheet" href="/resources/front/css/main.css" />
-
-
-<link rel="stylesheet" href="/resources/front/css/custom.css" />
-<link rel="stylesheet" href="/resources/front/css/app-orange.css"
-	id="theme_color" />
-<link rel="stylesheet" href="" id="rtl" />
-<link rel="stylesheet" href="/resources/front/css/app-responsive.css" />
+	
+	<!-- BOOTSTRAP 3.3.7 CSS -->
+	<link rel="stylesheet" href="/resources/front/css/bootstrap.min.css" />
+	
+	<!-- SLICK v1.6.0 CSS -->
+	<link rel="stylesheet" href="/resources/front/css/slick-1.6.0/slick.css" />
+	
+	<link rel="stylesheet" href="/resources/front/css/jquery.fancybox.css" />
+	<link rel="stylesheet" href="/resources/front/css/yith-woocommerce-compare/colorbox.css" />
+	<link rel="stylesheet" href="/resources/front/css/owl-carousel/owl.carousel.min.css" />
+	<link rel="stylesheet" href="/resources/front/css/owl-carousel/owl.theme.default.min.css" />
+	<link rel="stylesheet" href="/resources/front/css/js_composer/js_composer.min.css" />
+	<link rel="stylesheet" href="/resources/front/css/woocommerce/woocommerce.css" />
+	<link rel="stylesheet" href="/resources/front/css/woocommerce/woocommerce-layout.css" />
+	<link rel="stylesheet" href="/resources/front/css/woocommerce/woocommerce-smallscreen.css" />
+	<link rel="stylesheet" href="/resources/front/css/yith-woocommerce-wishlist/style.css" />
+	
+	
+	<link rel="stylesheet" href="/resources/front/css/custom.css" />
+	<link rel="stylesheet" href="/resources/front/css/app-orange.css" id="theme_color" />
+	<link rel="stylesheet" href="" id="rtl" />
+	<link rel="stylesheet" href="/resources/front/css/app-responsive.css" /> 
 
 <script src="https://cdn.bootcss.com/angular.js/1.6.3/angular.min.js"></script>
 <script src="/resources/front/dojs/docart.js"></script>
 </head>
 
-<body
-	class="product-template-default single single-product woocommerce woocommerce-page"
-	ng-app="simple" ng-controller="simpleController">
+<body class="product-template-default single single-product woocommerce woocommerce-page" ng-app="myApp" ng-controller="controller">
 
 
 
@@ -68,7 +54,7 @@
 										<div class="widget-inner">
 											<ul id="menu-my-account" class="menu">
 												<li class="menu-my-account"><a class="item-link"
-													href="my_account.html"> <span class="menu-title">我的账号</span>
+													href="my_account.html"> <span class="menu-title">{{userName}}</span>
 												</a></li>
 
 												<li class="menu-cart"><a class="item-link"
@@ -222,36 +208,31 @@
 											</thead>
 
 											<tbody>
-												<tr class="cart_item">
+												<tr class="cart_item" ng-repeat="x in shopcatInfo">
 													<td class="product-thumbnail"><a
-														href="simple_product.html"> <img width="180"
-															height="180"
-															src="/resources/front/images/1903/56-180x180.jpg"
-															class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image"
-															alt=""
-															srcset="/resources/front/images/1903/56-180x180.jpg 180w, /resources/front/images/1903/56-150x150.jpg 150w, /resources/front/images/1903/56-300x300.jpg 300w, /resources/front/images/1903/56.jpg 600w"
-															sizes="(max-width: 180px) 100vw, 180px">
+														href="/item/{{x.goods[0].goodsID}}"> 
+														<img src="{{x.goods[0].picture}}" >
 													</a></td>
 
 													<td class="product-name" data-title="Product"><a
-														href="simple_product.html">索尼相机X2445</a></td>
+														href="simple_product.html">{{x.goods[0].product.name}} {{x.goods[0].attributes}}</a></td>
 
 													<td class="product-price" data-title="Price"><span
 														class="woocommerce-Price-amount amount"><span
-															class="woocommerce-Price-currencySymbol">$</span>300.00</span></td>
+															class="woocommerce-Price-currencySymbol">￥</span>{{x.goods[0].sellPrice}}</span></td>
 
 													<td class="product-quantity" data-title="Quantity">
 														<div class="quantity">
 															<input type="number" step="1" min="1" max="" name=""
-																value="1" title="Qty" class="input-text qty text"
+																value="{{x.goodsNumber}}" title="Qty" class="input-text qty text"
 																size="4" pattern="[0-9]*" inputmode="numeric">
 														</div>
 													</td>
 
 													<td class="product-subtotal" data-title="Total"><span
 														class="woocommerce-Price-amount amount"><span
-															class="woocommerce-Price-currencySymbol">$</span>300.00</span></td>
-													<td class="product-remove"><a href="#"><h5>删除</h5></a>
+															class="woocommerce-Price-currencySymbol">￥</span>{{x.goods[0].sellPrice * x.goodsNumber}}</span></td>
+													<td class="product-remove"><a href="javascript:void(0);" ng-click="deleteShopcart(x.shopCartID)"><h5>删除</h5></a>
 													</td>
 												</tr>
 
@@ -270,15 +251,12 @@
 															<th>总计</th>
 															<td data-title="Total"><strong><span
 																	class="woocommerce-Price-amount amount"><span
-																		class="woocommerce-Price-currencySymbol">￥</span>300.00</span></strong>
+																		class="woocommerce-Price-currencySymbol">￥{{total}}</span></span></strong>
 															</td>
 														</tr>
 													</tbody>
 												</table>
-												<div class="wc-proceed-to-checkout">
-													<a href="checkout.html"
-														class="checkout-button button alt wc-forward">点击购买</a>
-												</div>
+												
 											</div>
 										</div>
 									</div>
@@ -290,8 +268,14 @@
 												<div class="form-group">
 													<input type="email" class="form-control" ng-model="harvestAddress">
 												</div>
+												<div class="wc-proceed-to-checkout">
+													<a href="javascript:void(0);" ng-click="commit()"
+														class="checkout-button button alt wc-forward">点击购买</a>
+												</div>
 											</div>
+											
 										</div>
+										
 									</div>
 								</div>
 							</div>
@@ -527,152 +511,116 @@
 	</div>
 
 
-	<a id="etrostore-totop" href="#"></a>
-
-	<div id="subscribe_popup" class="subscribe-popup"
-		style="background: url(/resources/front/images/icons/bg_newsletter.jpg)">
+	<a id="etrostore-totop" href="#"></a>	
+	
+	<div id="subscribe_popup" class="subscribe-popup" style="background: url(/resources/front/images/icons/bg_newsletter.jpg)">
 		<div class="subscribe-popup-container">
 			<h2>Join our newsletter</h2>
-			<div class="description">Subscribe now to get 40% of on any
-				product!</div>
+			<div class="description">Subscribe now to get 40% of on any product!</div>
 			<div class="subscribe-form">
-				<form id="mc4wp-form-2" class="mc4wp-form mc4wp-form-275"
-					method="post" data-id="275" data-name="">
+				<form id="mc4wp-form-2" class="mc4wp-form mc4wp-form-275" method="post" data-id="275" data-name="">
 					<div class="mc4wp-form-fields">
 						<div class="newsletter-content">
-							<input type="email" class="newsletter-email" name="EMAIL"
-								placeholder="Your email" required="" /> <input
-								class="newsletter-submit" type="submit" value="Subscribe" />
+							<input type="email" class="newsletter-email" name="EMAIL" placeholder="Your email" required="" />
+							<input class="newsletter-submit" type="submit" value="Subscribe" />
 						</div>
 					</div>
 					<div class="mc4wp-response"></div>
-				</form>
+				</form>		
 			</div>
-
+			
 			<div class="subscribe-checkbox">
-				<label for="popup_check"> <input id="popup_check"
-					name="popup_check" type="checkbox" /> <span>Don't show this
-						popup again!</span>
+				<label for="popup_check">
+					<input id="popup_check" name="popup_check" type="checkbox" />
+					<span>Don't show this popup again!</span>
 				</label>
 			</div>
-
+			
 			<div class="subscribe-social">
 				<div class="subscribe-social-inner">
-					<a href="#" class="social-fb"> <span class="fa fa-facebook"></span>
-					</a> <a href="#" class="social-tw"> <span class="fa fa-twitter"></span>
-					</a> <a href="#" class="social-gplus"> <span
-						class="fa fa-google-plus"></span>
-					</a> <a href="#" class="social-pin"> <span class="fa fa-instagram"></span>
-					</a> <a href="#" class="social-linkedin"> <span
-						class="fa fa-pinterest-p"></span>
+					<a href="#" class="social-fb">
+						<span class="fa fa-facebook"></span>
 					</a>
+					
+					<a href="#" class="social-tw">
+						<span class="fa fa-twitter"></span>
+					</a>
+					
+					<a href="#" class="social-gplus">
+						<span class="fa fa-google-plus"></span>
+					</a>
+					
+					<a href="#" class="social-pin">
+						<span class="fa fa-instagram"></span>
+					</a>
+					
+					<a href="#" class="social-linkedin">
+						<span class="fa fa-pinterest-p"></span>
+					</a>				
 				</div>
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript"
-		src="/resources/front/js/jquery/jquery.min.js"></script>
-	<script type="text/javascript"
-		src="/resources/front/js/jquery/jquery-migrate.min.js"></script>
-	<script type="text/javascript"
-		src="/resources/front/js/bootstrap.min.js"></script>
-	<script type="text/javascript"
-		src="/resources/front/js/jquery/js.cookie.min.js"></script>
-
+	<script type="text/javascript" src="/resources/front/js/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="/resources/front/js/jquery/jquery-migrate.min.js"></script>
+	<script type="text/javascript" src="/resources/front/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/resources/front/js/jquery/js.cookie.min.js"></script>
+	
 	<!-- OPEN LIBS JS -->
-	<script type="text/javascript"
-		src="/resources/front/js/owl-carousel/owl.carousel.min.js"></script>
-	<script type="text/javascript"
-		src="/resources/front/js/slick-1.6.0/slick.min.js"></script>
-
-	<script type="text/javascript">
-		/* <![CDATA[ */
-		var woocommerce_price_slider_params = {
-			"currency_symbol" : "$",
-			"currency_pos" : "left",
-			"min_price" : "100",
-			"max_price" : "500"
-		};
-		var wc_single_product_params = {
-			"i18n_required_rating_text" : "Please select a rating",
-			"review_rating_required" : "yes"
-		};
-		/* ]]> */
-	</script>
-
-	<script type="text/javascript" src="/resources/front/js/widget.min.js"></script>
-	<script type="text/javascript" src="/resources/front/js/mouse.min.js"></script>
-	<script type="text/javascript" src="/resources/front/js/slider.min.js"></script>
-	<script type="text/javascript"
-		src="/resources/front/js/js_composer/js_composer_front.min.js"></script>
-
-	<script type="text/javascript"
-		src="/resources/front/js/yith-woocommerce-compare/jquery.colorbox-min.js"></script>
-	<script type="text/javascript"
-		src="/resources/front/js/sw_core/isotope.js"></script>
-	<script type="text/javascript"
-		src="/resources/front/js/sw_core/jquery.fancybox.pack.js"></script>
-	<script type="text/javascript"
-		src="/resources/front/js/sw_woocommerce/category-ajax.js"></script>
-	<script type="text/javascript"
-		src="/resources/front/js/sw_woocommerce/jquery.countdown.min.js"></script>
-	<script type="text/javascript"
-		src="/resources/front/js/woocommerce/price-slider.min.js"></script>
-	<script type="text/javascript"
-		src="/resources/front/js/woocommerce/single-product.min.js"></script>
-	<script type="text/javascript"
-		src="/resources/front/js/woocommerce/prettyPhoto/jquery.prettyPhoto.init.min.js"></script>
-	<script type="text/javascript"
-		src="/resources/front/js/woocommerce/prettyPhoto/jquery.prettyPhoto.min.js"></script>
-
+	<script type="text/javascript" src="/resources/front/js/owl-carousel/owl.carousel.min.js"></script>
+	<script type="text/javascript" src="/resources/front/js/slick-1.6.0/slick.min.js"></script>
+	
+	<script type="text/javascript" src="/resources/front/js/yith-woocommerce-compare/jquery.colorbox-min.js"></script>
+	<script type="text/javascript" src="/resources/front/js/sw_core/isotope.js"></script>
+	<script type="text/javascript" src="/resources/front/js/sw_core/jquery.fancybox.pack.js"></script>
+	<script type="text/javascript" src="/resources/front/js/sw_woocommerce/category-ajax.js"></script>
+	<script type="text/javascript" src="/resources/front/js/sw_woocommerce/jquery.countdown.min.js"></script>
+	<script type="text/javascript" src="/resources/front/js/wc-quantity-increment.min.js"></script>
+	<script type="text/javascript" src="/resources/front/js/woocommerce/cart.min.js"></script>
+	<script type="text/javascript" src="/resources/front/js/js_composer/js_composer_front.min.js"></script>
+	
 	<script type="text/javascript" src="/resources/front/js/plugins.js"></script>
-	<script type="text/javascript"
-		src="/resources/front/js/megamenu.min.js"></script>
+	<script type="text/javascript" src="/resources/front/js/megamenu.min.js"></script>
 	<script type="text/javascript" src="/resources/front/js/main.min.js"></script>
-
+   
 	<script type="text/javascript">
 		var sticky_navigation_offset_top = $("#header .header-bottom").offset().top;
-		var sticky_navigation = function() {
-			var scroll_top = $(window).scrollTop();
-			if (scroll_top > sticky_navigation_offset_top) {
-				$("#header .header-bottom").addClass("sticky-menu");
-				$("#header .header-bottom").css({
-					"top" : 0,
-					"left" : 0,
-					"right" : 0
-				});
-			} else {
-				$("#header .header-bottom").removeClass("sticky-menu");
-			}
-		};
+		var sticky_navigation = function(){
+									var scroll_top = $(window).scrollTop();
+									if (scroll_top > sticky_navigation_offset_top) {
+										$("#header .header-bottom").addClass("sticky-menu");
+										$("#header .header-bottom").css({ "top":0, "left":0, "right" : 0 });
+									} else {
+										$("#header .header-bottom").removeClass("sticky-menu");
+									}
+								};
 		sticky_navigation();
 		$(window).scroll(function() {
 			sticky_navigation();
 		});
-
-		$(document).ready(function() {
-			$(".show-dropdown").each(function() {
-				$(this).on("click", function() {
+		
+		$(document).ready (function () {
+			$( ".show-dropdown" ).each(function(){
+				$(this).on("click", function(){
 					$(this).toggleClass("show");
-					var $element = $(this).parent().find("> ul");
-					$element.toggle(300);
+					var $element = $(this).parent().find( "> ul" );
+					$element.toggle( 300 );
 				});
 			});
 		});
-	</script>
-
-	<!--[if gte IE 9]><!-->
-	<script type="text/javascript">
-		var request, b = document.body, c = 'className', cs = 'customize-support', rcs = new RegExp(
-				'(^|\\s+)(no-)?' + cs + '(\\s+|$)');
+   </script>
+   
+   <!--[if gte IE 9]><!-->
+   <script type="text/javascript">
+		var request, b = document.body, c = 'className', cs = 'customize-support', rcs = new RegExp('(^|\\s+)(no-)?'+cs+'(\\s+|$)');
 		request = true;
-
-		b[c] = b[c].replace(rcs, ' ');
-		// The customizer requires postMessage and CORS (if the site is cross domain)
-		b[c] += (window.postMessage && request ? ' ' : ' no-') + cs;
-	</script>
-	<!--<![endif]-->
-</body>
+      
+      	b[c] = b[c].replace( rcs, ' ' );
+      	// The customizer requires postMessage and CORS (if the site is cross domain)
+      	b[c] += ( window.postMessage && request ? ' ' : ' no-' ) + cs;
+   </script>
+   <!--<![endif]-->
+   </body>
 </html>
 
 

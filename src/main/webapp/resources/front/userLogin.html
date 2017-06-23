@@ -1,0 +1,155 @@
+<!DOCTYPE>
+<html>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<head>
+		<meta charset="gb2312">
+		<title>登陆界面</title>
+		<style type="text/css">
+			body{
+				background-image:url(/resources/front/images/loginBackground.png);
+			}
+			div{
+				display:block;
+			}
+			.imgPosition{
+				width:600px;
+				top: 20%;
+				left: 10%;
+				position:fixed;
+			}
+			.moveImg{
+				cursor:pointer;
+				transition:1s linear;
+				-webkit-transition:1s linear;
+				-moz-transition:1s linear;
+				-o-transition:1s linear;
+			}
+			.moveImg:hover{
+				-webkit-transform:scale(1.1);
+				-moz-transform:scale(1.1);
+				-o-transform:scale(1.1);
+			}
+			.userName{
+				padding-left:45px;
+				background-image:url(/resources/front/images/username.png);
+				background-repeat:no-repeat;
+				background-size:40px 40px;
+				width:200px;
+				height:40px;
+				border:1px;
+				border-style:solid;
+				border-color:#D3D3D3;
+			}
+			.password{
+				padding-left:45px;
+				background-image:url(/resources/front/images/password.png);
+				background-repeat:no-repeat;
+				background-size:40px 40px;
+				width:200px;
+				height:40px;
+				border:1px;
+				border-style:solid;
+				border-color:#D3D3D3;
+			}
+			.position{
+				position:fixed;
+				top:25%;
+				left:70%;
+			}
+			#border1{
+				width:300px;
+				border:2px;
+				border-style:solid;
+				border-color:#D3D3D3;
+				background-color:rgba(255, 255, 255, 0.5);
+			}
+			#href_pwd{
+				font-size:12px;
+				position:absolute;
+				left:30px;
+				color:#808080;
+			}
+			#href{
+				font-size:12px;
+				position:absolute;
+				left:220px;
+				color:#808080;
+			}
+			.submit{
+				font-size: 20px;
+				font-weight: bold;
+				width: 250px;
+				height: 40px;
+				border-style: none;
+				cursor: pointer;
+				background-color:#ff4500;
+				
+			}
+			.submit:hover{
+				background: #808080;
+			}
+			.footer{
+				position:fixed;
+				top:93%;
+				left:40%;
+			}
+		</style>
+		<script>
+			function judgeInput(){
+				var number = document.login.userName.value;
+				var password = document.login.password.value;
+				if(number=="") {
+					alert("用户名不能为空");
+					return;
+				}
+				else if(password=="") {
+					alert("密码不能为空");
+					return;
+				}
+				$.ajax({
+		             type: "POST",
+		             url: "/pass/login",
+		             data: {number:number, password:password},
+		             dataType: "json",
+		             success: function(data){
+		            	 var success = data['success'];
+		            	 if (success) {
+		            		 window.location = '/index';
+		            	 } else {
+		            		 document.login.userName.value = "";
+			            	 document.login.password.value = "";
+			            	 alert("用户名或者密码错误");
+		            	 }
+		             }
+		         });
+				
+			}
+		</script>
+	
+	<div class="imgPosition">
+		<div align="center">
+			<img alt="" src="/resources/front/images/mi.png">
+			<div class="moveImg">
+				<a href="index.html">
+					<img alt="" src="/resources/front/images/xxx.png"><br>
+					<img alt="" src="/resources/front/images/under-arrow_318-10932.png">
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="position">
+		<div align="center" id="border1"> 
+			<h2>账户密码登陆</h2>
+			<form name="login" method="post">
+				<input type="text" name="userName" class="userName" placeholder="用户名" autocomplete="off"><br><br>
+				<input type="password" name="password" class="password" placeholder="密码"><br><br>
+				<a id="href" href="/pass/register">免费注册</a><br> <br>
+				<a class="submit" href="javascript:void(0);" onclick="judgeInput()">登 陆</a>
+			</form>
+		</div>
+	</div>
+	<div class="footer" align="center">
+		<a href="#.html">Contact</a>	|<a href="#.html">English</a>	|<a href="#.html">	News</a>|<a href="#.html">	About us</a>|
+	</div>
+	</body>
+</html>
