@@ -11,6 +11,20 @@ app.controller('controller', function($scope, $http, $location) {
 	// 最后一页以及第一页提示符
 	$scope.hint = "";
 	
+	// 获得userInfo,绑定userInfo
+	$http({
+		url: "/pass/getUser",
+		method: "get"
+	}).success(function(result){
+		$scope.userInfo = result['data'];
+		console.log($scope.userInfo);
+		if ($scope.userInfo == null) {
+			$scope.userName = "你好，请登录!";
+		} else {
+			$scope.userName = "你好，" + $scope.userInfo.nickname;
+		}
+	});
+	
 	// 第一次加载获得goodsInfo,绑定goodsInfo
 	$http({
 		url: "/cat/" + catID + "/products" + "?sort=sort_sales&offset=" + offset + "&number=" + number,

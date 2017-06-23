@@ -91,7 +91,7 @@ app.controller('controller', function($scope, $http) {
 		}
 		$http.post("/order/commit",order).then(function successCallback(result) {
 			var successed = result['data']['success'];
-			console.log(successed);
+			window.location = '/index';
 		});
 	}
 });

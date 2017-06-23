@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import cn.edu.cuit.shop.dao.GoodsDao;
 import cn.edu.cuit.shop.dao.OrderItemDao;
+import cn.edu.cuit.shop.dao.OrdersDao;
 import cn.edu.cuit.shop.entity.OrderItem;
 import cn.edu.cuit.shop.service.OrderItemService;
 
@@ -17,6 +19,10 @@ public class OrderItemServiceImpl implements OrderItemService {
 	
 	@Autowired
 	private OrderItemDao orderItemDao;
+	@Autowired
+	private OrdersDao orderDao;
+	@Autowired
+	private GoodsDao goodsDao;
 	
 	@Override
 	@Transactional
@@ -32,8 +38,12 @@ public class OrderItemServiceImpl implements OrderItemService {
 
 	@Override
 	public List<OrderItem> queryByOrderId(long ordersID) {
-		// TODO Auto-generated method stub
-		return null;
+		List<OrderItem> list = orderDao.selectWithOrderItemById(ordersID).getItems();
+		for (OrderItem orderItem : list) {
+			orderItem.setGoods(goodsDao.selectWithCleanById(orderItem.getGoodsID()));
+		}
+		System.out.println(list);
+		return list;
 	}
 
 }

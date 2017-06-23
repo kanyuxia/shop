@@ -18,6 +18,14 @@ public class TestOrdersDao {
 	private OrdersDao ordersDao;
 	
 	@Test
+	public void testInsert1() {
+		Orders orders = new Orders(12, new Date(), "四川成都", 2, 1599.00, 10000);
+		
+		int countNum = ordersDao.insertOrders(orders);
+		System.out.println(ordersDao.selectID(orders));
+	}
+	
+	@Test
 	public void testInsert() {
 		Orders orders = new Orders(12, new Date(), "四川成都", 2, 1599.00, 10000);
 		int countNum = ordersDao.insertOrders(orders);
