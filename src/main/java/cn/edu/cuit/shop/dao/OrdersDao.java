@@ -8,7 +8,14 @@ import cn.edu.cuit.shop.entity.Orders;
 
 public interface OrdersDao {
 
-
+	/**
+	 * 插入订单
+	 * @param orders 要插入的实体
+	 * @return 收影响的行数
+	 */
+	long selectID(@Param("orders") Orders orders);
+	
+	
 	/**
 	 * 插入订单
 	 * @param orders 要插入的实体

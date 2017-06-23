@@ -49,7 +49,9 @@ public class OrdersServiceImpl implements OrdersService {
 	public synchronized boolean commitOrders(Orders orders) throws SysException{
 		boolean inventoryFlag = true;
 		ordersDao.insertOrders(orders);
+		long orderID = ordersDao.selectID(orders);
 		for (OrderItem orderItem : orders.getItems()) {
+			orderItem.setOrdersID(orderID);
 			orderItemDao.insertOrderItem(orderItem);
 			Goods goods = goodsDao.selectWithOneById(orderItem.getGoodsID());
 			Inventory inventory = inventoryDao.selectWithCleanByGoodsId(goods.getGoodsID());

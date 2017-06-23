@@ -25,6 +25,12 @@
 	    </collection>  
 	</resultMap>
 	
+	<select id="selectID" resultType="long">
+	  	select orders_id
+	  	from orders
+	  	where create_time = #{orders.createTime}
+  	</select>
+	
 	<!-- 插入订单信息 -->
 	<insert id="insertOrders">
 		<!-- 'ignore' 忽略主键、唯一键冲突错误(返回值为0) -->

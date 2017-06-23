@@ -141,7 +141,6 @@ public class UserBuyController {
 			produces={"application/json;charset=UTF-8"})
 	@ResponseBody
 	public Result<Boolean> commitOrders(@RequestBody() Orders orders) {
-		System.out.println(orders);
 		orders.setCreateTime(new Date());
 		for (OrderItem orderItem : orders.getItems()) {
 			orderItem.setCreateTime(new Date());

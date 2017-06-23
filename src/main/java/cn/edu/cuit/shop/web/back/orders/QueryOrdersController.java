@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
@@ -101,8 +102,10 @@ public class QueryOrdersController {
 	@RequestMapping(value = "/queryOrderItemsByorderId", method = RequestMethod.POST, produces = { "application/json;charset=UTF-8" })
 	@ResponseBody
 	public DataGridJson queryOrderItemsByorderId(long ordersID) {
+		System.out.println(ordersID);
 		// 根据订单id查询订单对应的订单项
 		List<OrderItem> orderItems = orderItemServiice.queryByOrderId(ordersID);
+		System.out.println(orderItems);
 		// 装取出的订单项
 		List<BackOrderItem> items = new ArrayList<BackOrderItem>();
 		// 循环取出对象
