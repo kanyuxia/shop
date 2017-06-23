@@ -57,19 +57,17 @@ function save() {
         //effecrow["delete"] = addJson(deleted);
         alertJSON(effecrow);
         // 通过ajax提交到后台进行处理
+ 
         $.ajax({
-            type: 'POST',
-            url: 'url',
-            data: effecrow,
-            // 执行成功返回值
-            success: function () {
-                $("#spsj").datagrid('reload');
-            },
-            // 错误处理
-            error: function () {
-                alert('更新数据时发生了错误');
-            }
-        })
+        	  type: 'POST',
+        	  url: '/addGoods.do',
+        	  contentType: 'application/json',
+        	  data:JSON.stringify(effecrow),
+        	  dataType:"json",
+        	  success: function() {
+        		  
+        	  }
+        	});
     }
 }
 
@@ -143,17 +141,10 @@ function addJson(one) {
                 attributes: one[i].attributes,               // 商品属性
                 originalPrice: one[i].originalPrice,         // 原价
                 sellPrice: one[i].sellPrice,                // 售价
-                Inventory: {                             // 库存
-                    inventoryID: "",                         //库存id
-                    createTime: "",                          //创建时间
-                    inventoryNumber: one[i].inventoryNumber, //库存数量
-                    sellNumber: "",                           //销售数量
-                    goodsID: ""                              //商品id
-                }
+                inventoryNumber: one[i].inventoryNumber,   // 库存数量
             }
         }
         return goods;
-        alert(JSON.stringify(goods));
     }
 }
 

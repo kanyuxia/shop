@@ -2,26 +2,82 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3bbb9f88-8f0a-4298-acad-53d70f5147ea" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/resources/front/picture/photo.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/resources/front/dojs/my.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/resources/front/dojs/orders.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/resources/front/my.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/resources/front/images/loginBackground.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/resources/front/images/logo.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/resources/front/images/mi.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/resources/front/images/password.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/resources/front/images/shopping.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/resources/front/images/under-arrow_318-10932.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/resources/front/images/username.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/resources/front/images/xxx.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.settings/org.eclipse.core.resources.prefs" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/cuit/shop/entity/back/order/BackGoods.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/cuit/shop/entity/back/order/BackUser.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/cuit/shop/entity/back/order/SpsjSelect.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/cuit/shop/service/ProductsService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/cuit/shop/service/impl/ProductsServiceImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/cuit/shop/web/back/flgl/spfl/SpflController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/cuit/shop/web/back/orders/QueryOrdersController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/cuit/shop/web/back/spgl/AddProducts.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/cuit/shop/web/back/spgl/SplbController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/cuit/shop/web/back/spgl/SpsjController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/cuit/shop/web/back/yhgl/YhlbController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/resources/front/userLogin.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/resources/front/userRegister.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/cn/edu/cuit/shop/dao/GoodsDao.class" afterPath="$PROJECT_DIR$/target/classes/cn/edu/cuit/shop/dao/GoodsDao.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/cn/edu/cuit/shop/dao/ProductDao.class" afterPath="$PROJECT_DIR$/target/classes/cn/edu/cuit/shop/dao/ProductDao.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/cn/edu/cuit/shop/dao/UserDao.class" afterPath="$PROJECT_DIR$/target/classes/cn/edu/cuit/shop/dao/UserDao.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/cn/edu/cuit/shop/service/UserService.class" afterPath="$PROJECT_DIR$/target/classes/cn/edu/cuit/shop/service/UserService.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/cn/edu/cuit/shop/service/impl/UserServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/cn/edu/cuit/shop/service/impl/UserServiceImpl.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/cn/edu/cuit/shop/web/StaticResourceController.class" afterPath="$PROJECT_DIR$/target/classes/cn/edu/cuit/shop/web/StaticResourceController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/test-classes/cn/edu/cuit/shop/dao/TestGoodsDao.class" afterPath="$PROJECT_DIR$/target/test-classes/cn/edu/cuit/shop/dao/TestGoodsDao.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/test-classes/cn/edu/cuit/shop/dao/TestUserDao.class" afterPath="$PROJECT_DIR$/target/test-classes/cn/edu/cuit/shop/dao/TestUserDao.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/test-classes/cn/edu/cuit/shop/service/TestUserService.class" afterPath="$PROJECT_DIR$/target/test-classes/cn/edu/cuit/shop/service/TestUserService.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cn/edu/cuit/shop/dao/CategoryDao.java" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/cuit/shop/dao/CategoryDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cn/edu/cuit/shop/dao/GoodsDao.java" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/cuit/shop/dao/GoodsDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cn/edu/cuit/shop/dao/ProductDao.java" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/cuit/shop/dao/ProductDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cn/edu/cuit/shop/dao/UserDao.java" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/cuit/shop/dao/UserDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cn/edu/cuit/shop/entity/back/order/BackOrder.java" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/cuit/shop/entity/back/order/BackOrder.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cn/edu/cuit/shop/service/CategoryService.java" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/cuit/shop/service/CategoryService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cn/edu/cuit/shop/service/GoodsService.java" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/cuit/shop/service/GoodsService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cn/edu/cuit/shop/service/OrderItemService.java" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/cuit/shop/service/OrderItemService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cn/edu/cuit/shop/service/OrdersService.java" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/cuit/shop/service/OrdersService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cn/edu/cuit/shop/service/UserService.java" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/cuit/shop/service/UserService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cn/edu/cuit/shop/service/impl/CatetoryServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/cuit/shop/service/impl/CatetoryServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cn/edu/cuit/shop/service/impl/GoodsServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/cuit/shop/service/impl/GoodsServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cn/edu/cuit/shop/service/impl/OrderItemServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/cuit/shop/service/impl/OrderItemServiceImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cn/edu/cuit/shop/service/impl/OrdersServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/cuit/shop/service/impl/OrdersServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cn/edu/cuit/shop/web/OrdersController.java" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/cuit/shop/web/OrdersController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cn/edu/cuit/shop/service/impl/UserServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/cuit/shop/service/impl/UserServiceImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cn/edu/cuit/shop/web/StaticResourceController.java" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/cuit/shop/web/StaticResourceController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cn/edu/cuit/shop/web/UserAccountController.java" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/cuit/shop/web/UserAccountController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cn/edu/cuit/shop/web/UserBuyController.java" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/cuit/shop/web/UserBuyController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/dbConfig.properties" afterPath="$PROJECT_DIR$/src/main/resources/dbConfig.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/resources/front/css/app-orange.css" afterPath="$PROJECT_DIR$/src/main/webapp/resources/front/css/app-orange.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/resources/front/css/main.css" afterPath="$PROJECT_DIR$/src/main/webapp/resources/front/css/main.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/resources/front/dojs/item.js" afterPath="$PROJECT_DIR$/src/main/webapp/resources/front/dojs/item.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/resources/front/item.html" afterPath="$PROJECT_DIR$/src/main/webapp/resources/front/item.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/resources/front/my_account.html" afterPath="$PROJECT_DIR$/src/main/webapp/resources/front/my_account.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/cn/edu/cuit/shop/dao/TestOrdersDao.java" afterPath="$PROJECT_DIR$/src/test/java/cn/edu/cuit/shop/dao/TestOrdersDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/dbConfig.properties" afterPath="$PROJECT_DIR$/target/classes/dbConfig.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mapper/CategoryDao.xml" afterPath="$PROJECT_DIR$/src/main/resources/mapper/CategoryDao.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mapper/GoodsDao.xml" afterPath="$PROJECT_DIR$/src/main/resources/mapper/GoodsDao.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mapper/ProductDao.xml" afterPath="$PROJECT_DIR$/src/main/resources/mapper/ProductDao.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mapper/UserDao.xml" afterPath="$PROJECT_DIR$/src/main/resources/mapper/UserDao.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/resources/front/dojs/docart.js" afterPath="$PROJECT_DIR$/src/main/webapp/resources/front/dojs/docart.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/resources/front/dojs/docategory.js" afterPath="$PROJECT_DIR$/src/main/webapp/resources/front/dojs/docategory.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/resources/front/dojs/index.js" afterPath="$PROJECT_DIR$/src/main/webapp/resources/front/dojs/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/resources/front/index.html" afterPath="$PROJECT_DIR$/src/main/webapp/resources/front/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/resources/front/js/wc-quantity-increment.min.js" afterPath="$PROJECT_DIR$/src/main/webapp/resources/front/js/wc-quantity-increment.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/resources/front/shopcart.html" afterPath="$PROJECT_DIR$/src/main/webapp/resources/front/shopcart.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/resources/shopback/ddgl/ddlb/ddlb001.html" afterPath="$PROJECT_DIR$/src/main/webapp/resources/shopback/ddgl/ddlb/ddlb001.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/resources/shopback/flgl/spfl/add.html" afterPath="$PROJECT_DIR$/src/main/webapp/resources/shopback/flgl/spfl/add.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/resources/shopback/flgl/spfl/spfl.html" afterPath="$PROJECT_DIR$/src/main/webapp/resources/shopback/flgl/spfl/spfl.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/resources/shopback/spgl/splb/splb001.html" afterPath="$PROJECT_DIR$/src/main/webapp/resources/shopback/spgl/splb/splb001.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/resources/shopback/spgl/spsj/spsj.html" afterPath="$PROJECT_DIR$/src/main/webapp/resources/shopback/spgl/spsj/spsj.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/resources/shopback/spgl/spsj/spsj.js" afterPath="$PROJECT_DIR$/src/main/webapp/resources/shopback/spgl/spsj/spsj.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/resources/shopback/spgl/tjcp/tjcp.html" afterPath="$PROJECT_DIR$/src/main/webapp/resources/shopback/spgl/tjcp/tjcp.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/resources/shopback/yhgl/yhlb/yhlb.html" afterPath="$PROJECT_DIR$/src/main/webapp/resources/shopback/yhgl/yhlb/yhlb.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/cn/edu/cuit/shop/dao/TestGoodsDao.java" afterPath="$PROJECT_DIR$/src/test/java/cn/edu/cuit/shop/dao/TestGoodsDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/mapper/GoodsDao.xml" afterPath="$PROJECT_DIR$/target/classes/mapper/GoodsDao.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/mapper/ProductDao.xml" afterPath="$PROJECT_DIR$/target/classes/mapper/ProductDao.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/mapper/UserDao.xml" afterPath="$PROJECT_DIR$/target/classes/mapper/UserDao.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/maven/cn.edu.cuit.shop/shop/pom.properties" afterPath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/maven/cn.edu.cuit.shop/shop/pom.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/maven/cn.edu.cuit.shop/shop/pom.xml" afterPath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/maven/cn.edu.cuit.shop/shop/pom.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/cn/edu/cuit/shop/entity/back/order/OrderJson.java" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/cuit/shop/entity/back/order/DataGridJson.java" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -86,7 +142,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/front/my_account.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-738">
-              <caret line="238" column="178" lean-forward="true" selection-start-line="238" selection-start-column="64" selection-end-line="238" selection-end-column="178" />
+              <caret line="238" column="178" lean-forward="false" selection-start-line="238" selection-start-column="64" selection-end-line="238" selection-end-column="178" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -127,7 +183,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/front/dojs/orders.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-12">
-              <caret line="10" column="10" lean-forward="true" selection-start-line="10" selection-start-column="10" selection-end-line="10" selection-end-column="10" />
+              <caret line="10" column="10" lean-forward="false" selection-start-line="10" selection-start-column="10" selection-end-line="10" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -136,7 +192,7 @@
       <file leaf-file-name="my.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/front/my.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="92">
+            <state relative-caret-position="-460">
               <caret line="4" column="70" lean-forward="false" selection-start-line="4" selection-start-column="64" selection-end-line="4" selection-end-column="70" />
               <folding>
                 <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -522,12 +578,12 @@
       <updated>1497886276827</updated>
       <workItem from="1497886281655" duration="3178000" />
       <workItem from="1497935804086" duration="34043000" />
-      <workItem from="1498210319265" duration="30548000" />
+      <workItem from="1498210319265" duration="30710000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="67769000" />
+    <option name="totallyTimeSpent" value="67931000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -717,7 +773,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/front/my_account.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-738">
-          <caret line="238" column="178" lean-forward="true" selection-start-line="238" selection-start-column="64" selection-end-line="238" selection-end-column="178" />
+          <caret line="238" column="178" lean-forward="false" selection-start-line="238" selection-start-column="64" selection-end-line="238" selection-end-column="178" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -746,7 +802,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/front/dojs/orders.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-12">
-          <caret line="10" column="10" lean-forward="true" selection-start-line="10" selection-start-column="10" selection-end-line="10" selection-end-column="10" />
+          <caret line="10" column="10" lean-forward="false" selection-start-line="10" selection-start-column="10" selection-end-line="10" selection-end-column="10" />
           <folding />
         </state>
       </provider>
@@ -793,7 +849,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/front/my.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
+        <state relative-caret-position="-460">
           <caret line="4" column="70" lean-forward="false" selection-start-line="4" selection-start-column="64" selection-end-line="4" selection-end-column="70" />
           <folding>
             <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />

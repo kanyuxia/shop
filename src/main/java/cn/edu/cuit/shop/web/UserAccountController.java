@@ -1,9 +1,14 @@
 package cn.edu.cuit.shop.web;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.edu.cuit.shop.dto.Result;
@@ -26,14 +31,17 @@ public class UserAccountController {
 	 * @param user 用户信息
 	 * @return
 	 */
-	@RequestMapping(value="/pass/register", method=RequestMethod.GET, 
+	@RequestMapping(value="/pass/register", method=RequestMethod.POST, 
 			produces={"application/json;charset=UTF-8"})
 	@ResponseBody
-	public Result<Object> register(User user){
+	public Result<Object> register(@RequestParam() User user, HttpServletRequest request){
 		System.out.println(user);
 		boolean successed = userService.register(user.getNumber(), user.getPassword(), 
 				user.getNickname(), user.getSex());
 		if (successed) {
+			User user1 = userService.login(user.getNickname(), user.getPassword());
+			HttpSession session = request.getSession();
+			session.setAttribute("user", user1);
 			return new Result<Object>(true, null);
 		}
 		return new Result<Object>(false, "注册失败");
@@ -41,18 +49,35 @@ public class UserAccountController {
 	
 	
 	/**
+	 * 获取用户信息
+	 * @param number
+	 * @param password
+	 * @return
+	 */
+	@RequestMapping(value="/pass/getUser", method=RequestMethod.GET,
+			produces={"application/json;charset=UTF-8"})
+	@ResponseBody
+	public Result<User> login(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
+		return new Result<User>(true, user);
+	}
+	/**
 	 * 用户登录
 	 * @param number
 	 * @param password
 	 * @return
 	 */
-	@RequestMapping(value="/pass/login", method=RequestMethod.GET,
+	@RequestMapping(value="/pass/login", method=RequestMethod.POST,
 			produces={"application/json;charset=UTF-8"})
 	@ResponseBody
-	public Result<User> login(String number, String password) {
+	public Result<User> login(@RequestParam(required=true)String number, 
+			@RequestParam(required=true)String password, HttpServletRequest request) {
 		System.out.println(number + password);
 		User user = userService.login(number, password);
 		if (user != null) {
+			HttpSession session = request.getSession();
+			session.setAttribute("user", user);
 			return new Result<User>(true, user);
 		}
 		return new Result<User>(false, "登录失败");

@@ -51,7 +51,7 @@
 					<div class="rows">
 						<div class="wrap-myacc pull-right">
 							<div class="sidebar-account pull-left">
-								<div class="account-title">你好，默默的看雨下</div>
+								<div class="account-title">{{userName}}</div>
 								<div id="my-account" class="my-account">
 									<div class="widget-1 widget-first widget nav_menu-4 widget_nav_menu">
 										<div class="widget-inner">
@@ -370,7 +370,6 @@
 														
 														<div class="banner-content clearfix">
 															<img width="195" height="354" src="/resources/front/images/1903/image-cd.jpg" class="attachment-larges size-larges" alt="" 
-																	srcset="/resources/front/images/1903/image-cd.jpg 195w, /resources/front/images/1903/image-cd-165x300.jpg 165w" 
 																	sizes="(<max-widt></max-widt>h: 195px) 100vw, 195px" />
 														</div>
 										  
@@ -399,8 +398,7 @@
 																		<div class="item-image-countdown">
 																			<a href="/item/{{x.goods[0].goodsID}}">
 																				<div class="product-thumb-hover">
-																					<img 	width="300" height="300" src="/resources/front/images/1903/45-300x300.jpg" class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="" 
-																							srcset="/resources/front/images/1903/45-300x300.jpg 300w, /resources/front/images/1903/45-150x150.jpg 150w, /resources/front/images/1903/45-180x180.jpg 180w, /resources/front/images/1903/45.jpg 600w" 
+																					<img 	width="300" height="300" src="{{x.goods[0].picture}}" class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="" 
 																							sizes="(max-width: 300px) 100vw, 300px" />
 																				</div>
 																			</a>
@@ -502,8 +500,7 @@
 																				<div class="item-img products-thumb">
 																					<a href="/item/{{xx.goods[0].goodsID}}">
 																						<div class="product-thumb-hover">
-																							<img width="300" height="300" src="/resources/front/images/1903/52-300x300.jpg" class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="" 
-																									srcset="/resources/front/images/1903/52-300x300.jpg 300w, /resources/front/images/1903/52-150x150.jpg 150w, /resources/front/images/1903/52-180x180.jpg 180w, /resources/front/images/1903/52.jpg 600w" 
+																							<img width="300" height="300" src="{{xx.goods[0].picture}}" class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="" 
 																									sizes="(max-width: 300px) 100vw, 300px" />
 																						</div>
 																					</a>
@@ -524,8 +521,7 @@
 																	<div class="item-inner">
 																		<div class="item-img">
 																			<a href="/item/{{xy.goods[0].goodsID}}" title="corned beef enim">
-																				<img width="180" height="180" src="/resources/front/images/1903/65-180x180.jpg" class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" alt="" 
-																						srcset="/resources/front/images/1903/65-180x180.jpg 180w, /resources/front/images/1903/65-150x150.jpg 150w, /resources/front/images/1903/65-300x300.jpg 300w, /resources/front/images/1903/65.jpg 600w" 
+																				<img width="180" height="180" src="{{xy.goods[0].picture}}" class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" alt="" 
 																						sizes="(max-width: 180px) 100vw, 180px" />
 																			</a>
 																		</div>

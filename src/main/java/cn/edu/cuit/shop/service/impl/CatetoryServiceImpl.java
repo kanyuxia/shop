@@ -26,6 +26,7 @@ public class CatetoryServiceImpl implements CategoryService {
 
 	@Override
 	public boolean modifyCat(long categoryID, String newName) {
+		
 		return false;
 	}
 
@@ -36,7 +37,14 @@ public class CatetoryServiceImpl implements CategoryService {
 
 	@Override
 	public boolean insertCat(String name) {
-		return false;
+		int countNum = categoryDao.insertCategory(name);
+		return countNum == 1 ? true : false;
+	}
+
+	@Override
+	public List<Category> queryByPagesize(int i, int rows) {
+		List<Category> list = categoryDao.selectBypage(i, rows);
+		return list;
 	}
 
 }

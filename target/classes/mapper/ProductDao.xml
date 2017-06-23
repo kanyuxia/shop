@@ -66,6 +66,11 @@
 	    </collection>  
 	</resultMap>
 
+	<select id="selectAll" resultType="cn.edu.cuit.shop.entity.Product">
+		select product_id,name,create_time,category_id,attributes
+		from product
+	</select>
+
 	<!-- 插入产品信息 -->
 	<insert id="insertProduct">
 		<!-- 'ignore' 忽略主键、唯一键冲突错误(返回值为0) -->
@@ -124,6 +129,44 @@
 		delete from product
 		where product_id = #{productId}
 	</delete>
+	
+	<!-- 根据销量查询产品信息 -->
+	<select id="selectHightest" resultMap="orderResult">
+		SELECT
+			p.product_id,
+			p.create_time as product_create_time,
+			p.attributes as product_attributes,
+			p.name,
+			p.category_id,
+			d.goods_id,
+			d.attributes as goods_attributes,
+			d.create_time as goods_create_time,
+			d.original_price,
+			d.sell_price,
+			d.picture,
+			d.sell_number
+		FROM
+			product AS p
+		RIGHT JOIN (
+			SELECT
+				b.goods_id,
+				b.create_time,
+				b.attributes,
+				b.original_price,
+				b.sell_price,
+				b.picture,
+				b.product_id AS product_id,
+				a.sell_number
+			FROM
+				inventory AS a
+			LEFT JOIN goods AS b ON a.goods_id = b.goods_id
+			GROUP BY
+				b.product_id
+		) AS d ON p.product_id = d.product_id
+		ORDER BY
+			d.sell_number DESC
+		LIMIT #{offsetStart},#{rowCount}
+	</select>
 	
 	<!-- 根据销量查询产品信息 -->
 	<select id="selectHightestBySellNum" resultMap="orderResult">

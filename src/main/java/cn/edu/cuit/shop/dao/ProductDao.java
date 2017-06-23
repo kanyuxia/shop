@@ -107,4 +107,8 @@ public interface ProductDao {
 	 */
 	List<Product> selectPageByPrice(@Param("categoryID")long categoryID, @Param("offsetStart")long offsetStart, 
 			@Param("rowCount")long rowCount);
+
+	List<Product> selectHightest(@Param("offsetStart")int offset, @Param("rowCount")int size);
+
+	List<Product> selectAll();
 }

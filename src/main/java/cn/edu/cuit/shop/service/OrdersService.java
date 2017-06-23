@@ -51,4 +51,6 @@ public interface OrdersService {
 	
 	List<Orders> queryAllOrders(int offset, int size);
 
+	List<Orders> queryOrdersByNickName(long id);
+
 }

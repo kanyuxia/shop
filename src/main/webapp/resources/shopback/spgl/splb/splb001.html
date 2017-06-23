@@ -14,7 +14,7 @@
     <!-- 创建主网格
     url:获取主网格JSON的数据源-->
     <table id="dg" style="width:auto;height:auto" class="easyui-datagrid"
-           url="datagrid_data1.json"
+           url="/QueryProducts.do"
            title="产品列表"
            singleSelect="true"
            fitColumns="true"
@@ -41,7 +41,7 @@
 				iconCls: 'icon-edit',
 				singleSelect: true,
 				<!-- 数据来源-->
-				url: 'goods.json',
+				url: '/QueryByProductId.do',
 				method:'get',
 				onClickCell: onClickCell,
 				pagination:true,
@@ -68,11 +68,10 @@
 </div>
 <script type="text/javascript">
     function onClickCell1(rowIndex, rowData) {
-        $("#splbTable").datagrid('load'), {
+        $("#splbTable").datagrid('load', {
             // 传递产品参数给后台
             productID: rowData.productID
-        }
-        alert("成功");
+        });
     }
     var editIndex = undefined;
     function endEditing() {
