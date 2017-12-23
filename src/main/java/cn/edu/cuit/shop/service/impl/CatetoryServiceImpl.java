@@ -2,7 +2,10 @@ package cn.edu.cuit.shop.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.xml.XmlBeanFactory;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 
 import cn.edu.cuit.shop.dao.CategoryDao;
@@ -20,6 +23,7 @@ public class CatetoryServiceImpl implements CategoryService {
 	 * @return 所有的分类信息
 	 */
 	public List<Category> listCats() {
+		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext();
 		List<Category> categoryList = categoryDao.selectAll();
 		return categoryList;
 	}
