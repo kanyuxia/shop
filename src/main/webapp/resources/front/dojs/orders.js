@@ -1,5 +1,19 @@
 var app = angular.module('orders',[]);
 app.controller('ordersController', function($scope, $http) {
+	
+	// 获得userInfo,绑定userInfo
+	$http({
+		url: "/pass/getUser",
+		method: "get"
+	}).then(function(result) {
+		$scope.userInfo = result['data']['data'];
+		console.log($scope.userInfo);
+		if ($scope.userInfo == null) {
+			window.location = '/pass/login';
+		} else {
+			$scope.userName = "你好，" + $scope.userInfo.nickname;
+		}
+	});
 
     // $http({
     //     method: 'GET',

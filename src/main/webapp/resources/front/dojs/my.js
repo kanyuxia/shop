@@ -9,37 +9,51 @@ app.controller('myController', function($scope, $http) {
     //         $scope.name = result.data.data;
     //     }
     // });
+	
+	// 获得userInfo,绑定userInfo
+	$http({
+		url: "/pass/getUser",
+		method: "get"
+	}).then(function(result) {
+		console.log(result);
+		$scope.userInfo = result['data']['data'];
+		console.log($scope.userInfo);
+		$scope.user = $scope.userInfo;
+		if ($scope.userInfo == null) {
+			window.location = '/pass/login';
+		} else {
+			$scope.userName = "你好，" + $scope.userInfo.nickname;
+		}
+	});
 
-    $scope.user = {
-        nickname : "尹健康",
-        number: "12345678913",
-        sex : "男"
-    };
-    $scope.oldpass = "-1";
-    $scope.newpass = "-1";
-    $scope.surepass = "-2";
+    $scope.user = {};
+    
+    $scope.newpass = "";
+    $scope.surepass = "";
+    $scope.oldpass = "";
 
 
-    // $http({
-    //     method: 'GET',
-    //     url: '/order/current'
-    // }).then(function(result) {
-    //
-    // });
+//   
 
     $scope.password = function () {
+    	if($scope.oldpass == "" || $scope.newpass == "" || $scope.surepass == ""){
+    		 message("input is null!","danger");
+    		 return;
+    	}
         if($scope.newpass!=$scope.surepass){
-            message("输入的两次新密码不同！","danger");
+            message("new password input different!","danger");
             return;
         }
+        console.log($scope.oldpass);
         $http({
             method: 'GET',
             url: '/pass/modifyPassword?number='+$scope.user.number+"&oldPassword="+$scope.oldpass+"&newPassword="+$scope.newpass
         }).then(function(result) {
-            if (result.data.data.success){
-                message("修改密码成功！", "success");
+        	console.log(result);
+            if (result.data.success){
+                message("success!", "success");
             }else{
-                message(result.data.data.message, "danger")
+                message(result.data.message, "danger")
             }
 
         });

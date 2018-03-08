@@ -1,5 +1,20 @@
 var app = angular.module('simple',[]);
-app.controller('simpleController', function($scope, $http) {
+app.controller('simpleController', function($scope, $http, $location) {
+	
+	
+	// 获得userInfo,绑定userInfo
+	$http({
+		url: "/pass/getUser",
+		method: "get"
+	}).then(function(result) {
+		$scope.userInfo = result['data']['data'];
+		console.log($scope.userInfo);
+		if ($scope.userInfo == null) {
+			$scope.userName = "你好，请登录!";
+		} else {
+			$scope.userName = "你好，" + $scope.userInfo.nickname;
+		}
+	});
 
     // $http({
     //     method: 'GET',
@@ -44,9 +59,15 @@ app.controller('simpleController', function($scope, $http) {
     $scope.selectedGoodsId = -1;
     $scope.selectedProperty = new Array();
 
+    // 完整URL地址
+	var absurl = $location.absUrl(); 
+	// URL中的分类ID
+	var itemID = absurl.split("/");
+	console.log("hello"+itemID[4]);
+    
     $http({
         method: 'GET',
-        url: '/item/10003/current'
+        url: '/item/' + itemID[4] + '/current'
     }).then(function(result) {
         if (result.data.success == true){
             $scope.currentGoods = result.data.data;

@@ -34,12 +34,18 @@ public class UserAccountController {
 	@RequestMapping(value="/pass/register", method=RequestMethod.POST, 
 			produces={"application/json;charset=UTF-8"})
 	@ResponseBody
-	public Result<Object> register(@RequestParam() User user, HttpServletRequest request){
-		System.out.println(user);
+	public Result<Object> register(@RequestParam("number")String number,@RequestParam("password")String password,
+			@RequestParam("nickName")String nickName,@RequestParam("sex")String sex, HttpServletRequest request){
+		User user = new User();
+		user.setNickname(nickName);
+		user.setNumber(number);
+		user.setPassword(password);
+		user.setSex(sex);
 		boolean successed = userService.register(user.getNumber(), user.getPassword(), 
 				user.getNickname(), user.getSex());
+		System.out.println(successed + "-----------------------------");
 		if (successed) {
-			User user1 = userService.login(user.getNickname(), user.getPassword());
+			User user1 = userService.login(user.getNumber(), user.getPassword());
 			HttpSession session = request.getSession();
 			session.setAttribute("user", user1);
 			return new Result<Object>(true, null);

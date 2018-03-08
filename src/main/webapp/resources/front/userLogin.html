@@ -99,11 +99,11 @@
 				var number = document.login.userName.value;
 				var password = document.login.password.value;
 				if(number=="") {
-					alert("用户名不能为空");
+					alert("username can not be empty");
 					return;
 				}
 				else if(password=="") {
-					alert("密码不能为空");
+					alert("password can not be empty");
 					return;
 				}
 				$.ajax({
@@ -118,7 +118,7 @@
 		            	 } else {
 		            		 document.login.userName.value = "";
 			            	 document.login.password.value = "";
-			            	 alert("用户名或者密码错误");
+			            	 alert("there is some mistakes in the username or password");
 		            	 }
 		             }
 		         });
@@ -139,12 +139,12 @@
 	</div>
 	<div class="position">
 		<div align="center" id="border1"> 
-			<h2>账户密码登陆</h2>
+			<h2>login</h2>
 			<form name="login" method="post">
-				<input type="text" name="userName" class="userName" placeholder="用户名" autocomplete="off"><br><br>
-				<input type="password" name="password" class="password" placeholder="密码"><br><br>
-				<a id="href" href="/pass/register">免费注册</a><br> <br>
-				<a class="submit" href="javascript:void(0);" onclick="judgeInput()">登 陆</a>
+				<input type="text" name="userName" class="userName" placeholder="username" autocomplete="off"><br><br>
+				<input type="password" name="password" class="password" placeholder="password"><br><br>
+				<a id="href" href="/pass/register">register</a><br> <br>
+				<a class="submit" href="javascript:void(0);" onclick="judgeInput()">sign in</a>
 			</form>
 		</div>
 	</div>

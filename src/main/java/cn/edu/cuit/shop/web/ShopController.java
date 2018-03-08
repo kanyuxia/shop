@@ -44,18 +44,6 @@ public class ShopController {
 	
 	
 	/**
-	 * 获得所有的分类信息
-	 * @return 所有的分类信息
-	 */
-	@RequestMapping(value="/index/cats", method=RequestMethod.GET,
-			produces={"application/json;charset=UTF-8"})
-	@ResponseBody
-	public Result<List<Category>> getCategory() {
-		List<Category> listCategory = categoryService.listCats();
-		return new Result<List<Category>>(true, listCategory);
-	}
-	
-	/**
 	 * 获得最高销量相关商品信息
 	 * @param number 商品数量
 	 * @return 相关商品信息
@@ -93,6 +81,22 @@ public class ShopController {
 		
 		return new Result<List<List<List<Product>>>>(true, list); 
 	}
+
+	
+	
+	
+	/**
+	 * 获得所有的分类信息
+	 * @return 所有的分类信息
+	 */
+	@RequestMapping(value="/index/cats", method=RequestMethod.GET,
+			produces={"application/json;charset=UTF-8"})
+	@ResponseBody
+	public Result<List<Category>> getCategory() {
+		List<Category> listCategory = categoryService.listCats();
+		return new Result<List<Category>>(true, listCategory);
+	}
+	
 	
 	
 	/**
@@ -124,6 +128,8 @@ public class ShopController {
 		}
 		return new Result<List<Product>>(true, list);
 	}
+	
+	
 	
 	
 	/**

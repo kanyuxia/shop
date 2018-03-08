@@ -1,11 +1,15 @@
 var app = angular.module('myApp', []);
 app.controller('controller', function($scope, $http) {
+	
+	
+	
 	// 获得categoryInfo,绑定categoryInfo
 	$http({
 		url: "/index/cats",
 		method: "get"
-	}).success(function(result){
-		$scope.categoryInfo = result['data'];
+	}).then(function(result) {
+		console.log($scope.categoryInfo);
+		$scope.categoryInfo = result['data']['data'];
 		var count;
 		if ($scope.categoryInfo.length >= 3) {
 			count = 3;
@@ -33,8 +37,8 @@ app.controller('controller', function($scope, $http) {
 	$http({
 		url: "/index/highsell/6",
 		method: "get"
-	}).success(function(result){
-		$scope.highsellInfo = result['data'];
+	}).then(function(result) {
+		$scope.highsellInfo = result['data']['data'];
 		
 		for (var i = 0; i < $scope.highsellInfo.length; i++) {
 			$scope.highsellInfo[i].goods[0].picture = splitPicture($scope.highsellInfo[i].goods[0].picture);
@@ -54,8 +58,8 @@ app.controller('controller', function($scope, $http) {
 	$http({
 		url: "/pass/getUser",
 		method: "get"
-	}).success(function(result){
-		$scope.userInfo = result['data'];
+	}).then(function(result) {
+		$scope.userInfo = result['data']['data'];
 		console.log($scope.userInfo);
 		if ($scope.userInfo == null) {
 			$scope.userName = "你好，请登录!";

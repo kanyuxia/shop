@@ -77,7 +77,6 @@ function save() {
         var deleted = $('#dg').datagrid('getChanges',deleted);
         // 将所有数据装到一起
         var effecrow = new Object();
-        alert(JSON.stringify(deleted));
         updated = deleteArray(updated,deleted);
         effecrow = {'updated':updated,
             'deleted':deleted};

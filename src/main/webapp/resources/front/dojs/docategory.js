@@ -15,8 +15,8 @@ app.controller('controller', function($scope, $http, $location) {
 	$http({
 		url: "/pass/getUser",
 		method: "get"
-	}).success(function(result){
-		$scope.userInfo = result['data'];
+	}).then(function(result) {
+		$scope.userInfo = result['data']['data'];
 		console.log($scope.userInfo);
 		if ($scope.userInfo == null) {
 			$scope.userName = "你好，请登录!";
@@ -29,8 +29,8 @@ app.controller('controller', function($scope, $http, $location) {
 	$http({
 		url: "/cat/" + catID + "/products" + "?sort=sort_sales&offset=" + offset + "&number=" + number,
 		method: "get"
-	}).success(function(result){
-		$scope.goodsInfo = result['data'];
+	}).then(function(result) {
+		$scope.goodsInfo = result['data']['data'];
 		for (var i = 0; i < $scope.goodsInfo.length; i++) {
 			$scope.goodsInfo[i].goods[0].picture = splitPicture($scope.goodsInfo[i].goods[0].picture);
 			
@@ -42,8 +42,8 @@ app.controller('controller', function($scope, $http, $location) {
 	$http({
 		url: "/cat/" + catID + "/properties",
 		method: "get"
-	}).success(function(result){
-		$scope.prosInfo = result['data'];
+	}).then(function(result) {
+		$scope.prosInfo = result['data']['data'];
 		console.log($scope.prosInfo);
 	});
 	
@@ -72,8 +72,8 @@ app.controller('controller', function($scope, $http, $location) {
 			$http({
 				url: "/cat/" + catID[4] + "/products" + "?sort=sort_sales&offset=" + offset + "&number=" + number,
 				method: "get"
-			}).success(function(result){
-				$scope.goodsInfo = result['data'];
+			}).then(function(result) {
+				$scope.goodsInfo = result['data']['data'];
 				for (var i = 0; i < $scope.goodsInfo.length; i++) {
 					$scope.goodsInfo[i].goods[0].picture = splitPicture($scope.goodsInfo[i].goods[0].picture);
 				}
@@ -91,8 +91,8 @@ app.controller('controller', function($scope, $http, $location) {
 		$http({
 			url: "/cat/" + catID[4] + "/products" + "?sort=sort_sales&offset=" + offset + "&number=" + number,
 			method: "get"
-		}).success(function(result){
-			var resultInfo = result['data'];
+		}).then(function(result) {
+			var resultInfo = result['data']['data'];
 			if (resultInfo.length == 0) {
 				$scope.hint="已经没有商品了"
 			} else {

@@ -65,12 +65,13 @@ public class UserBuyController {
 			produces={"application/json;charset=UTF-8"})
 	@ResponseBody
 	public Result<Boolean> addCart(@RequestParam(value="gid", required=true) long goodsID,
-			@RequestParam(value="gnum", defaultValue="1") long goodsNumber) {
+			@RequestParam(value="gnum", defaultValue="1") long goodsNumber, HttpServletRequest request) {
 		if (goodsNumber <= 0) {
 			return new Result<Boolean>(false, "加入购物车失败,商品数量小于等于0");
 		}
-		//TODO 没有写用户的获取，这里直接写了用户ID
-		boolean successed = shopCatService.addShopCart(10000, goodsID, goodsNumber);
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
+		boolean successed = shopCatService.addShopCart(user.getUserID(), goodsID, goodsNumber);
 		if (successed) {
 			return new Result<Boolean>(true, true);
 		}

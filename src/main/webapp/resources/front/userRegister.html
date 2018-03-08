@@ -131,11 +131,12 @@
 				console.log(user);
 				$.ajax({
 		             type: "POST",
-		             url: "/pass/login",
+		             url: "/pass/register",
 		             dataType: "json",
 		             data: {number:number,password:password,nickName:nickName,sex:sex},
 		             success: function(data){
 		            	 var success = data['success'];
+		            	 console.log(success);
 		            	 if (success) {
 		            		 window.location = '/index';
 		            	 } else {
