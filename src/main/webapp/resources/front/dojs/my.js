@@ -59,7 +59,6 @@ app.controller('myController', function($scope, $http) {
         });
     }
 
-
     function message(messages, type){
         $.bootstrapGrowl(messages, {
             ele: 'body', // which element to append to

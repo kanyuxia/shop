@@ -3,7 +3,7 @@
 <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 	<head>
 		<meta charset="gb2312">
-		<title>用户注册</title>
+		<title>??????</title>
 		<style type="text/css">
 		body{
 			background-color:F9F9F9;
@@ -107,23 +107,23 @@
 			function judgePassword(){
 				var number = document.register.userName.value;
 				var password = document.register.password.value;
-				var nickName = "默默的看雨下";
-				var sex =  "男";
+				var nickName = "?????????";
+				var sex =  "??";
 				console.log(number + password + nickName + sex);
 				if(document.register.password.value!=document.register.password01.value){
-					alert("两次输入的密码不一致，请重新输入");
+					alert("???????????????????????????");
 					return;
 				}
 				if(document.register.userName.value==""){
-					alert("用户名不能为空");
+					alert("????????????");
 					return;
 				}
 				if(document.register.password.value==""){
-					alert("密码不能为空");
+					alert("?????????");
 					return;
 				}
 				if(document.register.gender.value==""){
-					alert("性别不能为空");
+					alert("????????");
 					return;
 				}
 				
@@ -140,7 +140,7 @@
 		            	 if (success) {
 		            		 window.location = '/index';
 		            	 } else {
-		            		 alert("用户名已被注册");
+		            		 alert("???????????");
 		            	 }
 		             }
 		         });
@@ -151,9 +151,9 @@
 			t_div = document.getElementById('showtime');
 			var now=new Date();
             t_div.innerHTML = now.getFullYear()
-				+"年"+(now.getMonth()+1)+"月"+now.getDate()
-				+"日"+now.getHours()+"时"+now.getMinutes()
-				+"分";    
+				+"??"+(now.getMonth()+1)+"??"+now.getDate()
+				+"??"+now.getHours()+"?"+now.getMinutes()
+				+"??";    
             }
 		</script>
 	</head>
@@ -165,32 +165,32 @@
 						<a href="#.html" class="milogo"><img src="/resources/front/images/logo.png"></a>
 					</div>
 					<div class="itemtitle">
-						<h4 class="title">注册xiao米账号</h4>
+						<h4 class="title">???xiao?????</h4>
 					</div>
 					<form method="post" name="register" action="userLogin.html">
 						<div class="regbox">
 							<div class="inputtag">
-								<!--那个啥，账号我默认的是数据库自动生成的额-->
-								<label class="labelbox" for><input type="text" name="userName" placeholder="请输入昵称"></label>							
+								<!--???????????????????????????????-->
+								<label class="labelbox" for><input type="text" name="userName" placeholder="?????????"></label>							
 							</div>
 							<br>
 							<div class="inputtag">
-								<!--那个啥，账号我默认的是数据库自动生成的额-->
-								<label class="labelbox" for><input type="password" id="p" name="password" placeholder="请输入密码"></label>							
+								<!--???????????????????????????????-->
+								<label class="labelbox" for><input type="password" id="p" name="password" placeholder="??????????"></label>							
 							</div>
 							<br>
 							<div class="inputtag">
-								<!--那个啥，账号我默认的是数据库自动生成的额-->
-								<label class="labelbox" for><input type="password" id="p1" name="password01" placeholder="请再次输入密码"></label>							
+								<!--???????????????????????????????-->
+								<label class="labelbox" for><input type="password" id="p1" name="password01" placeholder="?????????????"></label>							
 							</div>
 							<br>
 							<div>
-								<!--那个啥，账号我默认的是数据库自动生成的额-->
-								<label class="gender" for><input type="radio" name="gender">男</label>
-								<label class="gender" for><input type="radio" name="gender">女</label>								
+								<!--???????????????????????????????-->
+								<label class="gender" for><input type="radio" name="gender">??</label>
+								<label class="gender" for><input type="radio" name="gender">?</label>								
 							</div>	
 							<div class="inputtag01">
-								<a class="submit" href="javascript:void(0);" onclick="judgePassword()">注 册</a>
+								<a class="submit" href="javascript:void(0);" onclick="judgePassword()">? ??</a>
 							</div>
 							<br>
 							<div class="footer" align="center">
